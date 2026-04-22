@@ -6,7 +6,7 @@ CodeBTI is a code-style counterpart to MBTI. MBTI describes personality preferen
 
 The goal is not to create a toy personality quiz. The goal is to help an AI agent and a human developer explicitly choose the coding style, architectural boundaries, design patterns, and review standards that should remain consistent throughout a project. The final result should be practical enough to become a `SKILL.md`, a project `SPEC.md`, or a reusable `CodeStyle.md`.
 
-The initial version focuses on Python. The repository should be designed so that other languages can be added later without changing the core workflow.
+The current version focuses on Python. The repository is organized so that other languages can be added later without changing the core workflow.
 
 ## Audience
 
@@ -24,16 +24,32 @@ All primary content should be plain markdown. Avoid runtime dependencies, web ap
 ## Core Workflow
 
 1. The user describes what they want to build.
-2. The agent asks 10 fixed CodeBTI questions.
-3. The agent asks 5 adaptive follow-up questions based on the user's previous answers and project description.
-4. The agent records all answers in a session record file.
-5. The agent analyzes the answers and assigns a CodeBTI style profile.
-6. The agent generates a detailed `CodeStyle.md` for the project.
-7. If appropriate, the agent distills the style guidance into a `SKILL.md` or one or more `SPEC.md` files.
+2. The agent asks the 10 fixed Python questions in `questions/fixed-python.md`.
+3. The agent asks exactly 5 adaptive follow-up questions using `questions/adaptive-question-guide.md`.
+4. The agent records all answers with `records/session-record.template.md`.
+5. The agent analyzes the answers using `profiles/python-profile-taxonomy.md` and the pattern database in `patterns/`.
+6. The agent generates a detailed project `CodeStyle.md` from `templates/CodeStyle.template.md`.
+7. If appropriate, the agent distills the style guidance into `SKILL.md` or `SPEC.md` using the templates in `templates/`.
+
+## Current Status
+
+The Python-first CodeBTI foundation is implemented:
+
+- human entry point: `README.md`,
+- agent entry point: `AGENT.md`,
+- fixed question sheet: `questions/fixed-python.md`,
+- adaptive question guide: `questions/adaptive-question-guide.md`,
+- question editorial rules: `questions/editorial-guide.md`,
+- 22-page Python design-pattern database: `patterns/python/`,
+- Python profile taxonomy: `profiles/python-profile-taxonomy.md`,
+- session recording template: `records/session-record.template.md`,
+- output templates: `templates/CodeStyle.template.md`, `templates/SKILL.template.md`, and `templates/SPEC.template.md`.
+
+No automation scripts, CLI, web app, or CI system are part of the current version.
 
 ## Repository Shape
 
-Use this structure for the initial Python-focused version:
+The current Python-focused structure is:
 
 ```text
 CodeBTI/
@@ -43,32 +59,47 @@ CodeBTI/
     README.md
     fixed-python.md
     adaptive-question-guide.md
+    editorial-guide.md
+    question-format.md
   patterns/
     README.md
     python/
       README.md
-      error-handling.md
-      typing.md
-      data-modeling.md
-      dependency-boundaries.md
-      testing.md
-      configuration.md
-      cli-and-scripts.md
-      documentation.md
+      abstract-factory.md
+      adapter.md
+      bridge.md
+      builder.md
+      chain-of-responsibility.md
+      command.md
+      composite.md
+      decorator.md
+      facade.md
+      factory-method.md
+      flyweight.md
+      iterator.md
+      mediator.md
+      memento.md
+      observer.md
+      prototype.md
+      proxy.md
+      singleton.md
+      state.md
+      strategy.md
+      template-method.md
+      visitor.md
   profiles/
     README.md
     python-profile-taxonomy.md
   records/
     README.md
-    .gitkeep
+    session-record.template.md
   templates/
     CodeStyle.template.md
-    session-record.template.md
     SKILL.template.md
     SPEC.template.md
 ```
 
-The exact filenames can evolve, but the content types should remain clear:
+The filenames can evolve, but the content types should remain clear:
 
 - Entry files: orient the agent and define the workflow.
 - Design pattern examples: explain style options and tradeoffs.
@@ -95,24 +126,24 @@ Pattern files describe real engineering preferences. They should not simply list
 - what signals in a user's answers suggest this preference,
 - and how the preference should appear in generated code or review comments.
 
-Pattern examples are general references. The generated `CodeStyle.md` should be project-specific.
+Pattern examples are general references. The generated `CodeStyle.md` should be project-specific. The current Python pattern database mirrors the classic GoF catalog structure and cites RefactoringGuru sources in each pattern page.
 
 ### QA Sheets
 
-The fixed QA sheet should contain 10 carefully designed questions for Python projects. These questions should cover stable style axes such as:
+The fixed Python QA sheet contains 10 example-based questions covering:
 
-- explicitness vs. concision,
-- strict typing vs. lightweight typing,
-- functional style vs. object-oriented style,
-- framework-driven design vs. small local abstractions,
-- exception strategy,
-- data validation boundaries,
-- test granularity,
-- dependency tolerance,
-- configuration style,
-- and documentation expectations.
+- general purpose and paradigm,
+- defensive coding and type boundaries,
+- error handling and recovery,
+- naming and readability,
+- architecture and wiring style,
+- folder structure,
+- testing philosophy,
+- comments and docstrings,
+- Git history and collaboration,
+- dependencies and environments.
 
-The adaptive question guide should instruct the agent to ask 5 follow-up questions based on ambiguity, contradictions, project risk, and domain-specific needs.
+The adaptive question guide instructs the agent to ask exactly 5 follow-up questions based on ambiguity, contradictions, project risk, strong signals, and likely pattern misuse.
 
 ### Records
 
@@ -173,15 +204,17 @@ For the initial Python version, define profiles across practical axes such as:
 - Dependency posture: standard-library first vs. ecosystem-friendly.
 - Testing style: behavior-first, unit-first, property-based, integration-heavy, or smoke-test oriented.
 
-Example profile naming styles:
+The current Python taxonomy defines practical profile families such as:
 
-- `Typed Minimalist`
-- `Pragmatic Layerist`
-- `Functional Pipeline Builder`
+- `Object-Centered Boundary Keeper`
+- `Function-First Pipeline Builder`
+- `Data-First Validator`
+- `Pragmatic Script Builder`
+- `Test-First Integrator`
 - `Framework-Aligned Builder`
-- `Test-First Boundary Keeper`
+- `Algorithm-First Minimalist`
 
-These names are placeholders. The taxonomy should be refined in `profiles/python-profile-taxonomy.md`.
+Use `profiles/python-profile-taxonomy.md` as the initial Python taxonomy and refine it as new interview data appears.
 
 ## Initial Python Scope
 
@@ -244,19 +277,21 @@ When an agent works in this repository:
 - Treat CodeBTI results as project guidance, not personal judgment.
 - Keep Python as the first implementation target while leaving room for other languages.
 
-## Definition of Done for the Initial Commit
+## Current Definition of Done
 
-The initial repository should be considered ready when it contains:
+The Python-first markdown foundation is ready when it contains:
 
 - this `AGENT.md`,
 - a human-facing `README.md`,
 - the fixed Python question sheet,
 - the adaptive question guide,
 - a pattern index,
-- several Python pattern examples,
+- the 22 Python GoF pattern pages,
 - a profile taxonomy draft,
 - a session record template,
 - a `CodeStyle.md` template,
-- and an empty `records/` folder with a short README.
+- output templates for `SKILL.md` and `SPEC.md`,
+- a `records/` folder with recording guidance,
+- and all local markdown links resolving.
 
-After those files exist, a user should be able to ask an AI agent to run a CodeBTI interview and receive a useful project-specific `CodeStyle.md`.
+With these files present, a user can ask an AI agent to run a CodeBTI interview and receive a useful project-specific `CodeStyle.md`.
