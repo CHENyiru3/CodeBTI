@@ -78,12 +78,15 @@ The root `SKILL.md` is the installable skill entry point. `AGENT.md` and `README
 ## Core Workflow
 
 1. The user describes what they want to build.
-2. The agent asks the 10 fixed Python questions in `python/questions/fixed-python.md`.
-3. The agent asks exactly 5 adaptive follow-up questions using `python/questions/adaptive-question-guide.md`.
-4. The agent records all answers with `python/records/session-record.template.md`.
-5. The agent analyzes the answers using `python/profiles/python-profile-taxonomy.md` and the pattern database in `python/patterns/`.
-6. The agent generates a detailed project `CodeStyle.md` from `python/templates/CodeStyle.template.md`.
-7. If appropriate, the agent distills the style guidance into `SKILL.md` or `SPEC.md` using the templates in `python/templates/`.
+2. The agent creates or updates a live `Recording.md` in the target project.
+3. The agent asks the 10 fixed Python questions in `python/questions/fixed-python.md`.
+4. Before every question, the agent saves the full question card in `Recording.md`; after every answer, it updates the answer log and gives brief project-specific feedback before asking the next question.
+5. The agent asks exactly 5 adaptive follow-up questions using `python/questions/adaptive-question-guide.md`.
+6. The agent rereads `Recording.md` and treats it as the source of truth for final inference.
+7. The agent analyzes the answers using `python/profiles/python-profile-taxonomy.md` and the pattern database in `python/patterns/`.
+8. The agent selects specific local pattern/resource references that ground the recommendation.
+9. The agent generates a detailed project `CodeStyle.md` from `python/templates/CodeStyle.template.md`, including references and one-sentence relevance notes.
+10. If appropriate, the agent preserves or renames `Recording.md` as the final session record and distills the style guidance into `SKILL.md` or `SPEC.md` using the templates in `python/templates/`.
 
 ## Current Status
 
@@ -142,7 +145,13 @@ The adaptive question guide instructs the agent to ask exactly 5 follow-up quest
 
 ### Records
 
-Each session should be recorded in `python/records/` using a markdown file. The filename should include the date and a short project slug, for example:
+Each session should be recorded incrementally while the interview is happening. The default live filename is:
+
+```text
+Recording.md
+```
+
+The live record should live in the target project root so another agent can recover the interview state if context is lost. After the session, the record may be kept as `Recording.md` or copied into `python/records/` with a date-stamped filename. The date-stamped filename should include the date and a short project slug, for example:
 
 ```text
 python/records/2026-04-22-my-python-cli.md
@@ -151,8 +160,12 @@ python/records/2026-04-22-my-python-cli.md
 A session record should include:
 
 - project summary,
+- interview progress,
+- full question card snapshots,
+- answer log in chronological order,
 - fixed questions and answers,
 - adaptive questions and answers,
+- brief feedback given after each answer,
 - agent observations,
 - inferred CodeBTI profile,
 - generated output files,
@@ -179,6 +192,7 @@ A strong `CodeStyle.md` should define:
 - examples of avoided code,
 - review checklist,
 - and instructions for future agent behavior.
+- references to the local pattern/resource pages that ground the recommendations.
 
 When useful, the same guidance can be distilled into:
 

@@ -58,6 +58,13 @@ How the answer should affect generated project guidance.
 - Avoid labels that imply skill level, such as "advanced", "strict", "simple", or "quick and dirty".
 - Keep scoring hidden unless the user asks to inspect how CodeBTI works.
 
+## Recording Rules
+
+- Before asking a question, save the full user-facing card in `Recording.md`.
+- Record the title, dimension, scenario, instruction, code example if present, choices, and source path.
+- For adaptive questions, record the generated question text exactly enough that another agent can understand what the user answered without chat history.
+- After the answer, record the selected choice, user note, feedback given, and hidden inference notes.
+
 ## Scoring Rules
 
 Score answers on style dimensions before pattern names. Useful dimensions include:
