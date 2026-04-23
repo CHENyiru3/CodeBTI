@@ -11,21 +11,21 @@ This repository can be installed directly as a Codex skill. Copy or install this
 ## How It Works
 
 1. The user describes the project.
-2. The agent asks the 10 fixed Python questions in [ref/questions/fixed-python.md](ref/questions/fixed-python.md).
-3. The agent asks exactly 5 adaptive follow-up questions using [ref/questions/adaptive-question-guide.md](ref/questions/adaptive-question-guide.md).
-4. The agent records answers with [ref/records/session-record.template.md](ref/records/session-record.template.md).
-5. The agent infers a Python style profile from [ref/profiles/python-profile-taxonomy.md](ref/profiles/python-profile-taxonomy.md).
-6. The agent generates project guidance using the templates in [ref/templates/](ref/templates/).
+2. The agent asks the 10 fixed Python questions in [python/questions/fixed-python.md](python/questions/fixed-python.md).
+3. The agent asks exactly 5 adaptive follow-up questions using [python/questions/adaptive-question-guide.md](python/questions/adaptive-question-guide.md).
+4. The agent records answers with [python/records/session-record.template.md](python/records/session-record.template.md).
+5. The agent infers a Python style profile from [python/profiles/python-profile-taxonomy.md](python/profiles/python-profile-taxonomy.md).
+6. The agent generates project guidance using the templates in [python/templates/](python/templates/).
 
 ## Repository Map
 
 - [SKILL.md](SKILL.md): installable skill entry point for AI agents.
 - [AGENT.md](AGENT.md): top-level agent guide and workflow reference.
-- [ref/questions/](ref/questions/README.md): fixed and adaptive interview guidance.
-- [ref/patterns/](ref/patterns/README.md): Python design-pattern database with RefactoringGuru citations.
-- [ref/profiles/](ref/profiles/README.md): profile inference rules and Python profile taxonomy.
-- [ref/records/](ref/records/README.md): session recording rules and record template.
-- [ref/templates/](ref/templates/README.md): output templates for generated project guidance.
+- [python/questions/](python/questions/README.md): fixed and adaptive interview guidance.
+- [python/patterns/](python/patterns/README.md): Python design-pattern database with RefactoringGuru citations.
+- [python/profiles/](python/profiles/README.md): profile inference rules and Python profile taxonomy.
+- [python/records/](python/records/README.md): session recording rules and record template.
+- [python/templates/](python/templates/README.md): output templates for generated project guidance.
 
 ## Current Scope
 

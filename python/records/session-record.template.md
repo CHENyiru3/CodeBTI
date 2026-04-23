@@ -64,16 +64,16 @@ Profile name:
 TODO
 
 Profile taxonomy reference:
-[python-profile-taxonomy.md](../../profiles/python-profile-taxonomy.md)
+[python-profile-taxonomy.md](../profiles/python-profile-taxonomy.md)
 
 Short explanation:
 TODO
 
 ## Generated Outputs
 
-- `CodeStyle.md`: TODO. Use [CodeStyle.template.md](../../templates/CodeStyle.template.md).
-- `SKILL.md`: TODO. Use [SKILL.template.md](../../templates/SKILL.template.md).
-- `SPEC.md`: TODO. Use [SPEC.template.md](../../templates/SPEC.template.md).
+- `CodeStyle.md`: TODO. Use [CodeStyle.template.md](../templates/CodeStyle.template.md).
+- `SKILL.md`: TODO. Use [SKILL.template.md](../templates/SKILL.template.md).
+- `SPEC.md`: TODO. Use [SPEC.template.md](../templates/SPEC.template.md).
 
 ## Unresolved Assumptions
 

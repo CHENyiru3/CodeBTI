@@ -28,7 +28,7 @@ CodeBTI/
   SKILL.md          # installable skill entry point
   AGENT.md          # agent guide and workflow reference
   README.md         # human entry point
-  ref/
+  python/
     questions/
       README.md
       fixed-python.md
@@ -78,12 +78,12 @@ The root `SKILL.md` is the installable skill entry point. `AGENT.md` and `README
 ## Core Workflow
 
 1. The user describes what they want to build.
-2. The agent asks the 10 fixed Python questions in `ref/questions/fixed-python.md`.
-3. The agent asks exactly 5 adaptive follow-up questions using `ref/questions/adaptive-question-guide.md`.
-4. The agent records all answers with `ref/records/session-record.template.md`.
-5. The agent analyzes the answers using `ref/profiles/python-profile-taxonomy.md` and the pattern database in `ref/patterns/`.
-6. The agent generates a detailed project `CodeStyle.md` from `ref/templates/CodeStyle.template.md`.
-7. If appropriate, the agent distills the style guidance into `SKILL.md` or `SPEC.md` using the templates in `ref/templates/`.
+2. The agent asks the 10 fixed Python questions in `python/questions/fixed-python.md`.
+3. The agent asks exactly 5 adaptive follow-up questions using `python/questions/adaptive-question-guide.md`.
+4. The agent records all answers with `python/records/session-record.template.md`.
+5. The agent analyzes the answers using `python/profiles/python-profile-taxonomy.md` and the pattern database in `python/patterns/`.
+6. The agent generates a detailed project `CodeStyle.md` from `python/templates/CodeStyle.template.md`.
+7. If appropriate, the agent distills the style guidance into `SKILL.md` or `SPEC.md` using the templates in `python/templates/`.
 
 ## Current Status
 
@@ -92,13 +92,13 @@ The Python-first CodeBTI foundation is implemented:
 - human entry point: `README.md`,
 - agent guide: `AGENT.md`,
 - installable skill entry point: `SKILL.md`,
-- fixed question sheet: `ref/questions/fixed-python.md`,
-- adaptive question guide: `ref/questions/adaptive-question-guide.md`,
-- question editorial rules: `ref/questions/editorial-guide.md`,
-- 22-page Python design-pattern database: `ref/patterns/python/`,
-- Python profile taxonomy: `ref/profiles/python-profile-taxonomy.md`,
-- session recording template: `ref/records/session-record.template.md`,
-- output templates: `ref/templates/CodeStyle.template.md`, `ref/templates/SKILL.template.md`, and `ref/templates/SPEC.template.md`.
+- fixed question sheet: `python/questions/fixed-python.md`,
+- adaptive question guide: `python/questions/adaptive-question-guide.md`,
+- question editorial rules: `python/questions/editorial-guide.md`,
+- 22-page Python design-pattern database: `python/patterns/python/`,
+- Python profile taxonomy: `python/profiles/python-profile-taxonomy.md`,
+- session recording template: `python/records/session-record.template.md`,
+- output templates: `python/templates/CodeStyle.template.md`, `python/templates/SKILL.template.md`, and `python/templates/SPEC.template.md`.
 
 No automation scripts, CLI, web app, or CI system are part of the current version.
 
@@ -142,10 +142,10 @@ The adaptive question guide instructs the agent to ask exactly 5 follow-up quest
 
 ### Records
 
-Each session should be recorded in `ref/records/` using a markdown file. The filename should include the date and a short project slug, for example:
+Each session should be recorded in `python/records/` using a markdown file. The filename should include the date and a short project slug, for example:
 
 ```text
-ref/records/2026-04-22-my-python-cli.md
+python/records/2026-04-22-my-python-cli.md
 ```
 
 A session record should include:
@@ -209,7 +209,7 @@ The current Python taxonomy defines practical profile families such as:
 - `Framework-Aligned Builder`
 - `Algorithm-First Minimalist`
 
-Use `ref/profiles/python-profile-taxonomy.md` as the initial Python taxonomy and refine it as new interview data appears.
+Use `python/profiles/python-profile-taxonomy.md` as the initial Python taxonomy and refine it as new interview data appears.
 
 ## Initial Python Scope
 
@@ -246,15 +246,16 @@ Future languages should be added by creating parallel language folders rather th
 Example:
 
 ```text
-ref/questions/
-  fixed-python.md
-  fixed-typescript.md
-ref/patterns/
-  python/
-  typescript/
-ref/profiles/
-  python-profile-taxonomy.md
-  typescript-profile-taxonomy.md
+python/
+  questions/
+    fixed-python.md
+    fixed-typescript.md
+  patterns/
+    python/
+    typescript/
+  profiles/
+    python-profile-taxonomy.md
+    typescript-profile-taxonomy.md
 ```
 
 The general workflow should stay language-neutral. Language folders should hold language-specific examples, questions, and taxonomy details.
@@ -279,15 +280,15 @@ The Python-first markdown foundation is ready when it contains:
 - root `SKILL.md` as the installable skill entry point,
 - this `AGENT.md`,
 - a human-facing `README.md`,
-- the fixed Python question sheet in `ref/questions/`,
-- the adaptive question guide in `ref/questions/`,
-- a pattern index in `ref/patterns/`,
-- the 22 Python GoF pattern pages in `ref/patterns/python/`,
-- a profile taxonomy draft in `ref/profiles/`,
-- a session record template in `ref/records/`,
-- a `CodeStyle.md` template in `ref/templates/`,
-- output templates for `SKILL.md` and `SPEC.md` in `ref/templates/`,
-- a `ref/records/` folder with recording guidance,
+- the fixed Python question sheet in `python/questions/`,
+- the adaptive question guide in `python/questions/`,
+- a pattern index in `python/patterns/`,
+- the 22 Python GoF pattern pages in `python/patterns/python/`,
+- a profile taxonomy draft in `python/profiles/`,
+- a session record template in `python/records/`,
+- a `CodeStyle.md` template in `python/templates/`,
+- output templates for `SKILL.md` and `SPEC.md` in `python/templates/`,
+- a `python/records/` folder with recording guidance,
 - and all local markdown links resolving.
 
 With these files present, a user can ask an AI agent to run a CodeBTI interview and receive a useful project-specific `CodeStyle.md`.
