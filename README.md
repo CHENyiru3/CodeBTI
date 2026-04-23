@@ -2,6 +2,8 @@
 
 ![CodeBTI Overview](https://i.imgur.com/annGWpK.jpeg)
 
+> **简体中文** | [Chinese translation available](zh/) — [中文版入口](zh/README.md)
+
 CodeBTI is a code-style version of MBTI for software projects. It helps a human and an AI agent choose a consistent coding style, design-pattern posture, testing policy, dependency policy, and collaboration workflow before implementation starts.
 
 CodeBTI is not a personality test. It is a practical interview and documentation system for generating project-specific guidance such as `CodeStyle.md`, `SKILL.md`, or `SPEC.md`.
@@ -43,6 +45,7 @@ The inferred profile is **Algorithm-First Minimalist with Object-Centered Bounda
 
 - [SKILL.md](SKILL.md): installable skill entry point for AI agents.
 - [AGENT.md](AGENT.md): top-level agent guide and workflow reference.
+- [zh/](zh/): Simplified Chinese translation — [中文入口](zh/README.md).
 - [example/](example/): completed Python GUI calculator CodeBTI example.
 - [python/](python/): first language pack, including questions, patterns, profiles, records, and templates for Python.
 - [python/questions/](python/questions/README.md): fixed and adaptive interview guidance for Python.
@@ -53,7 +56,7 @@ The inferred profile is **Algorithm-First Minimalist with Object-Centered Bounda
 
 ## Language Coverage
 
-The initial language pack is Python. Contributions for other languages are welcome.
+The initial language pack is Python. A Simplified Chinese translation is available in [zh/](zh/).
 
 Each language should keep the same CodeBTI interview contract while adapting the content to that ecosystem:
 
