@@ -6,12 +6,16 @@ The first version is Python-first. Future languages should add parallel fixed qu
 
 ## Interview Flow
 
-1. Ask the user for a short project description.
+1. Ask the required opening prompt: "What kind of project do you want to build? Please describe shortly."
 2. Ask the 10 fixed Python questions from [fixed-python.md](fixed-python.md).
 3. Ask exactly 5 adaptive follow-up questions using [adaptive-question-guide.md](adaptive-question-guide.md).
 4. Record answers in a session record file using [../records/session-record.template.md](../records/session-record.template.md).
 5. Infer style dimensions and pattern tendencies.
 6. Generate a project-specific `CodeStyle.md`.
+
+The opening project-description prompt is pre-interview context. Record it as the session `Project Summary`; do not count it as one of the 10 fixed questions.
+
+Ask exactly one user-facing interview question per turn. This applies to the opening prompt, each fixed question, and each adaptive follow-up question.
 
 ## Question Style
 

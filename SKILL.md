@@ -9,12 +9,14 @@ Use this skill when a user wants to establish consistent coding style, design-pa
 
 ## Workflow
 
-1. Ask the 10 fixed Python questions in `python/questions/fixed-python.md`.
-2. Ask exactly 5 adaptive follow-up questions using `python/questions/adaptive-question-guide.md`.
-3. Record the session with `python/records/session-record.template.md`.
-4. Infer the Python profile from `python/profiles/python-profile-taxonomy.md` and the pattern database in `python/patterns/`.
-5. Generate `CodeStyle.md` from `python/templates/CodeStyle.template.md`.
-6. Optionally distill the result into `SKILL.md` or `SPEC.md` using the templates in `python/templates/`.
+1. Ask the required opening prompt: "What kind of project do you want to build? Please describe shortly."
+2. Record the answer as the project summary. This opening prompt is not a scored fixed question.
+3. Ask the 10 fixed Python questions in `python/questions/fixed-python.md`.
+4. Ask exactly 5 adaptive follow-up questions using `python/questions/adaptive-question-guide.md`.
+5. Record the session with `python/records/session-record.template.md`.
+6. Infer the Python profile from `python/profiles/python-profile-taxonomy.md` and the pattern database in `python/patterns/`.
+7. Generate `CodeStyle.md` from `python/templates/CodeStyle.template.md`.
+8. Optionally distill the result into `SKILL.md` or `SPEC.md` using the templates in `python/templates/`.
 
 ## Reference Material
 
@@ -32,6 +34,7 @@ Use this skill when a user wants to establish consistent coding style, design-pa
 
 ## Agent Rules
 
+- Ask exactly one user-facing interview question per turn, including the opening prompt, fixed questions, and adaptive follow-up questions.
 - Show user-facing scenarios, instructions, code examples, and choices; keep scoring/signal notes hidden unless the user asks.
 - Allow the user to revise earlier answers at any time.
 - Do not mix typing styles, error policies, or naming conventions inconsistently in generated output.

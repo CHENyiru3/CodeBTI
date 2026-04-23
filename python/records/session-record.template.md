@@ -13,6 +13,8 @@ Python
 
 TODO
 
+Source: required opening prompt, "What kind of project do you want to build? Please describe shortly."
+
 ## Fixed Question Answers
 
 Record all 10 fixed answers. If the user changes an answer, keep the final answer and note the change.
