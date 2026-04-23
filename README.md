@@ -1,6 +1,6 @@
 # CodeBTI
 
-![CodeBTI Overview](https://i.imgur.com/RRNOh09.jpeg)
+![CodeBTI Overview](https://i.imgur.com/annGWpK.jpeg)
 
 CodeBTI is a code-style version of MBTI for software projects. It helps a human and an AI agent choose a consistent Python coding style, design-pattern posture, testing policy, dependency policy, and collaboration workflow before implementation starts.
 
