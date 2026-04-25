@@ -151,7 +151,9 @@ Language-neutral interview resources used by all language packs.
 
 ## Chinese Translation (`zh/`)
 
-Simplified Chinese translation of the English documentation. Mirrors the root structure: shared layer is used directly, Python pack is fully translated.
+Simplified Chinese translation of the English documentation. Mirrors the root structure: shared layer is used directly, Python and TypeScript language packs are fully translated.
+
+### Root-level translated files
 
 | File | Description |
 |------|-------------|
@@ -159,16 +161,49 @@ Simplified Chinese translation of the English documentation. Mirrors the root st
 | `zh/README.md` | Chinese entry point and overview. |
 | `zh/SKILL.md` | Chinese skill entry point. |
 | `zh/TRANSLATION_STATUS.md` | Translation maintenance guide — which files are shared vs independently translated. |
+
+### Shared layer (mirrors `shared/`)
+
+| File | Description |
+|------|-------------|
 | `zh/shared/questions/adaptive-question-guide.md` | Shared — mirror of `shared/questions/`. |
 | `zh/shared/questions/editorial-guide.md` | Shared — mirror of `shared/questions/`. |
 | `zh/shared/questions/question-format.md` | Shared — mirror of `shared/questions/`. |
-| `zh/shared/questions/shared-architecture.md` | Reference the English version — `../../shared/questions/shared-architecture.md`. |
+| `zh/shared/questions/shared-architecture.md` | Reference `../../shared/questions/shared-architecture.md`. |
 | `zh/shared/records/session-record.template.md` | Shared — mirror of `shared/records/`. |
 | `zh/shared/templates/SKILL.template.md` | Shared — mirror of `shared/templates/`. |
 | `zh/shared/templates/SPEC.template.md` | Shared — mirror of `shared/templates/`. |
-| `zh/python/` | Chinese version of the Python language pack. |
+
+### Chinese Python language pack (`zh/python/`)
+
+| File | Description |
+|------|-------------|
+| `zh/python/questions/README.md` | Interview framework guide in Chinese. |
 | `zh/python/questions/fixed-python.md` | 10 fixed Python questions in Chinese. |
+| `zh/python/patterns/README.md` | Pattern database index in Chinese. |
 | `zh/python/patterns/gof/` | 22 GoF pattern pages in Chinese. |
+| `zh/python/profiles/README.md` | Profile inference guide in Chinese. |
 | `zh/python/profiles/python-profile-taxonomy.md` | Chinese profile taxonomy. |
+| `zh/python/records/README.md` | Session recording rules in Chinese. |
+| `zh/python/templates/README.md` | Template guide in Chinese. |
 | `zh/python/templates/CodeStyle.template.md` | Chinese CodeStyle output template. |
+
+### Chinese TypeScript language pack (`zh/typescript/`)
+
+| File | Description |
+|------|-------------|
+| `zh/typescript/questions/README.md` | Interview framework guide in Chinese. |
+| `zh/typescript/questions/fixed-typescript.md` | 10 fixed TypeScript questions in Chinese. |
+| `zh/typescript/patterns/README.md` | Pattern database index in Chinese. |
+| `zh/typescript/patterns/gof/` | 22 GoF pattern pages in Chinese. |
+| `zh/typescript/profiles/README.md` | Profile inference guide in Chinese. |
+| `zh/typescript/profiles/typescript-profile-taxonomy.md` | Chinese TypeScript profile taxonomy. |
+| `zh/typescript/records/README.md` | Session recording rules in Chinese. |
+| `zh/typescript/templates/README.md` | Template guide in Chinese. |
+| `zh/typescript/templates/CodeStyle.template.md` | Chinese TypeScript CodeStyle output template. |
+
+### Chinese examples
+
+| File | Description |
+|------|-------------|
 | `zh/examples/CodeStyle.md` | Chinese version of the example CodeStyle.md. |

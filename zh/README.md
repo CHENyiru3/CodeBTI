@@ -10,24 +10,40 @@ CodeBTI 不是人格测试。它是一套实用的访谈与文档系统，用来
 
 本仓库可直接安装为 Codex skill。将本仓库复制或安装到 Codex skills 目录中，命名为 `codebti`。根目录的 `SKILL.md` 即为入口文件。
 
-## 工作原理
+## 工作原理 — 单语言项目
 
-1. 用户描述项目需求。
+适用于使用一种主要语言的项目：
+
+1. 用户描述项目及其语言。
 2. Agent 在目标项目中创建一份实时的 `Recording.md`，并记录项目摘要。
-3. Agent 针对选定语言提出固定问题集。当前的 Python 问题集位于 [python/questions/fixed-python.md](python/questions/fixed-python.md)。
+3. Agent 针对选定语言提出 `questions/fixed-<lang>.md` 中的 10 个固定问题。
 4. 每个问题之前，Agent 将完整的题目卡保存到 `Recording.md`；用户回答后，更新答案日志并给出简短的项目反馈，再问下一个问题。
-5. Agent 使用该语言的适应性追问指南，提出恰好 5 个后续追问。当前的 Python 追问指南位于 [python/questions/adaptive-question-guide.md](python/questions/adaptive-question-guide.md)。
+5. Agent 使用 `shared/questions/adaptive-question-guide.md` 提出恰好 5 个适应性后续追问。
 6. Agent 将 `Recording.md` 作为事实来源重新阅读。
-7. Agent 根据相关语言专属的 Profile 分类体系推断风格 Profile。
-8. Agent 为该语言和生态系统选择相关的本地模式/资源引用。
-9. Agent 使用语言包中的模板生成项目指导，包括引用说明——解释每个被引用模式或资源的重要性。
+7. Agent 根据该语言的 `profiles/<lang>-profile-taxonomy.md` 推断风格 Profile。
+8. Agent 为该语言从 `patterns/gof/` 中选择相关的模式页面。
+9. Agent 使用语言包中的 `templates/CodeStyle.template.md` 生成项目指导。
+
+## 工作原理 — 多语言项目
+
+适用于使用多种语言的项目（例如，Python 后端 + TypeScript 前端）。Agent 可以分语言运行多轮访谈：
+
+1. **第一轮**：选择主要或最复杂的语言，运行完整的 10 固定 + 5 自适应问题流程。
+2. **后续轮次**：第一份 `CodeStyle.md` 生成后，为第二种语言运行较短的访谈。在 `Recording.md` 中记录第二种语言的答案。Agent 可以生成第二份 `CodeStyle.md`，或将两份合并为一份项目级 `CodeStyle.md`，在其中定义语言间的边界。
+
+对于多语言项目，Agent 应：
+
+- 在 `Recording.md` 中标注每组答案属于哪种语言。
+- 以第一种语言的 `CodeStyle.md` 作为跨语言共同事项的默认值（Git 工作流、依赖策略、测试策略）。
+- 用后续轮次补充语言专属章节或覆盖默认值。
+- 两轮访谈都引用同一个 `shared/` 面试资源——只有固定问题表和模式页面是语言专属的。
 
 ## 示例
 
-[example/](example/) 目录中包含一个完整的 CodeBTI 访谈记录，针对一个小型 Python GUI 计算器。
+[examples/](examples/) 目录中包含一个完整的 CodeBTI 访谈记录，针对一个小型 Python GUI 计算器。
 
-- [example/Recording.md](example/Recording.md)：完整访谈记录，包含项目摘要、10 个固定答案、5 个自适应答案、反馈、隐藏推理笔记和最终 Profile 推断。
-- [example/CodeStyle.md](example/CodeStyle.md)：生成的项目风格指南。
+- [examples/Recording.md](examples/Recording.md)：完整访谈记录，包含项目摘要、10 个固定答案、5 个自适应答案、反馈、隐藏推理笔记和最终 Profile 推断。
+- [examples/CodeStyle.md](examples/CodeStyle.md)：生成的项目风格指南。
 
 推断出的 Profile 为 **算法优先极简主义者（Algorithm-First Minimalist），具有对象中心边界特征**。最终指导建议：
 
@@ -39,31 +55,68 @@ CodeBTI 不是人格测试。它是一套实用的访谈与文档系统，用来
 - 最小化注释，保持轻量类型注解，
 - 使用 `uv`、`pyproject.toml` 和 `uv.lock` 进行依赖管理。
 
-## 仓库地图
+## 仓库结构
 
-- [SKILL.md](SKILL.md)：面向 AI Agent 的可安装技能入口。
-- [AGENT.md](AGENT.md)：顶层 Agent 指南和工作流参考。
-- [example/](example/)：Python GUI 计算器 CodeBTI 示例。
-- [python/](python/)：第一个语言包，包含 Python 的问题集、模式库、Profile 体系、记录模板和输出模板。
-- [python/questions/](python/questions/README.md)：Python 固定问题和适应性追问指南。
-- [python/patterns/](python/patterns/README.md)：Python 设计模式数据库，引用 RefactoringGuru。
-- [python/profiles/](python/profiles/README.md)：Profile 推断规则和 Python Profile 分类体系。
-- [python/records/](python/records/README.md)：会话记录规则和记录模板。
-- [python/templates/](python/templates/README.md)：生成项目指导的输出模板。
+```
+CodeBTI/
+├── shared/                    # 所有语言包共享
+│   ├── questions/             # 访谈流程和编辑规则
+│   ├── records/               # 会话记录模板
+│   └── templates/             # SKILL 和 SPEC 输出模板
+│
+├── python/                    # Python 语言包
+│   ├── questions/             # fixed-python.md + README
+│   ├── patterns/gof/          # 22 个 Python GoF 模式页面
+│   ├── profiles/              # Profile 分类体系
+│   ├── records/               # README
+│   └── templates/             # CodeStyle.template.md
+│
+├── typescript/                # TypeScript 语言包
+│   ├── questions/             # fixed-typescript.md + README
+│   ├── patterns/gof/          # 22 个 TypeScript GoF 模式页面
+│   ├── profiles/              # Profile 分类体系
+│   ├── records/               # README
+│   └── templates/             # CodeStyle.template.md
+│
+├── examples/                  # 完成的访谈示例
+├── zh/                        # 简体中文翻译（镜像结构）
+├── AGENT.md                   # Agent 指南
+├── MANIFEST.md                # 文件清单
+├── README.md                 # 本文件
+└── SKILL.md                   # 可安装技能入口
+```
+
+**语言中立 vs 语言专属：**
+
+| 资源 | 范围 | 示例 |
+|------|------|------|
+| 固定问题 | 按语言 | `python/questions/fixed-python.md`、`typescript/questions/fixed-typescript.md` |
+| 模式页面 | 按语言 | `python/patterns/gof/facade.md`、`typescript/patterns/gof/facade.md` |
+| Profile 分类体系 | 按语言 | `python/profiles/python-profile-taxonomy.md` |
+| CodeStyle 模板 | 按语言 | `python/templates/CodeStyle.template.md`（含 Python 专属章节） |
+| 适应性追问指南 | **共享** | `shared/questions/adaptive-question-guide.md` |
+| 编辑规则 | **共享** | `shared/questions/editorial-guide.md` |
+| 问题格式 | **共享** | `shared/questions/question-format.md` |
+| 会话记录模板 | **共享** | `shared/records/session-record.template.md` |
+| SKILL/SPEC 模板 | **共享** | `shared/templates/SKILL.template.md`、`shared/templates/SPEC.template.md` |
 
 ## 语言覆盖
 
-初始语言包为 Python。欢迎为其他语言贡献内容。
+可用语言包：
 
-每个语言包应保持相同的 CodeBTI 访谈约定，同时将内容适配到该生态系统：
+- **Python** — [python/](python/)：完整包，包含 10 个固定问题、22 个 GoF 模式页面、7 个 Profile 家族。
+- **TypeScript** — [typescript/](typescript/)：完整包，包含 10 个固定问题、22 个 GoF 模式页面、7 个 Profile 家族。
+- **中文** — [zh/](zh/)：翻译版 Python 包。`zh/shared/` 镜像英文共享层。
 
-- 针对该语言风格、架构、测试、依赖和协作规范的固定问题集，
-- 针对项目特定追问的适应性追问指南，
-- 将答案模式映射为实用编码指导的 Profile 分类体系，
-- 适配该语言而非强行使用 Python 或 GoF 术语的模式/资源引用，
-- `CodeStyle.md`、`SKILL.md`、`SPEC.md` 等生成式输出的模板。
+新增语言包：
 
-未来的语言包应作为同级目录添加，例如 `javascript/`、`typescript/`、`go/`、`rust/`、`java/` 或 `r/`。
+1. 创建顶层目录，例如 `rust/`。
+2. 添加 `questions/fixed-rust.md`（10 个语言专属问题）。
+3. 添加 `patterns/gof/`（Rust 惯用法的模式页面）。
+4. 添加 `profiles/rust-profile-taxonomy.md`。
+5. 添加 `templates/CodeStyle.template.md`（含 Rust 专属章节）。
+6. 从 `shared/` 引用适应性指南、编辑规则、会话记录和 SKILL/SPEC 模板——不要复制它们。
+7. 更新本 README 和 `MANIFEST.md`。
 
 ## 输出
 
@@ -72,6 +125,8 @@ CodeBTI 不是人格测试。它是一套实用的访谈与文档系统，用来
 - `SKILL.md`：可复用的 Agent 行为定义，
 - `SPEC.md`：项目需求文档，
 - 更细分的专项规范，如 `API_SPEC.md`、`TESTING_SPEC.md` 或 `ARCHITECTURE_SPEC.md`。
+
+对于多语言项目，单份 `CodeStyle.md` 可以包含语言专属章节。例如，Python 章节定义类型纪律和异常策略；TypeScript 章节定义 `interface` vs `type` 用法和异步模式。跨语言共同事项（Git 工作流、依赖策略、测试策略）适用于所有语言，除非被覆盖。
 
 访谈中的实时证据保存在会话期间的 `Recording.md` 中，包含完整题目卡、答案日志、反馈、隐藏推理笔记和最终证据审核。项目可保留原文件、按日期重命名存入语言包 `records/` 目录，或在输出生成后将文件归档。
 
@@ -87,14 +142,5 @@ CodeBTI 不是人格测试。它是一套实用的访谈与文档系统，用来
 - 问 10 个固定问题加上恰好 5 个适应性追问，
 - 根据完整的会话记录推断最终 Profile，
 - 仅引用对生成指导有实质影响的参考。
-
-新增语言包时：
-
-1. 创建顶层语言目录，如 `typescript/` 或 `rust/`。
-2. 包含平行的子目录：`questions/`、`patterns/`、`profiles/`、`records/` 和 `templates/`，除非该语言有充分理由不这样做。
-3. 问题卡要具体且基于示例。使用该语言的惯用法、依赖工具、测试框架和协作规范。
-4. 避免将 Python 特有的假设照搬到其他语言。生成的风格应原生适配目标生态系统。
-5. 当新语言包足够成熟时，添加或更新示例。
-6. 更新本 README 和仓库地图，以便 Agent 能发现新语言包。
 
 小型改动请提交聚焦的补丁，说明要修复的行为或文档问题。如果问题、Profile 或模式页面有改动，需说明新措辞如何改善未来生成的指导。
