@@ -12,17 +12,33 @@ CodeBTI is not a personality test. It is a practical interview and documentation
 
 This repository can be installed directly as a Codex skill. Copy or install this repo into your Codex skills directory as `codebti`. The root `SKILL.md` is the entry point.
 
-## How It Works
+## How It Works — Single Language
 
-1. The user describes the project.
+For a project that uses one primary language:
+
+1. The user describes the project and its language.
 2. The agent starts a live `Recording.md` in the target project and records the project summary.
-3. The agent asks the fixed questions for the selected language. The current Python question set lives in [python/questions/fixed-python.md](python/questions/fixed-python.md).
+3. The agent asks the 10 fixed questions from the language's `questions/fixed-<lang>.md`.
 4. Before each question, the agent saves the full question card in `Recording.md`; after each answer, it updates the answer log and gives a short project-specific feedback response before asking the next question.
-5. The agent asks exactly 5 adaptive follow-up questions using the language's adaptive question guide. The current Python guide lives in [python/questions/adaptive-question-guide.md](python/questions/adaptive-question-guide.md).
+5. The agent asks exactly 5 adaptive follow-up questions using `shared/questions/adaptive-question-guide.md`.
 6. The agent rereads `Recording.md` as the source of truth.
-7. The agent infers a language-specific style profile from the relevant profile taxonomy.
-8. The agent selects relevant local pattern/resource references for that language and ecosystem.
-9. The agent generates project guidance using the templates in the language pack, including a references section that explains why each cited pattern or resource matters.
+7. The agent infers a style profile from the language's `profiles/<lang>-profile-taxonomy.md`.
+8. The agent selects relevant pattern pages from `patterns/gof/` for that language.
+9. The agent generates project guidance using `templates/CodeStyle.template.md` in the language pack.
+
+## How It Works — Multi-Language
+
+For a project that uses multiple languages (for example, a Python backend with a TypeScript frontend), the agent can run separate interview rounds per language:
+
+1. **First round**: Select the primary or most complex language. Run the full 10 fixed + 5 adaptive question flow.
+2. **Later rounds**: After the first `CodeStyle.md` is generated, run a shorter follow-up interview for the second language. Update `Recording.md` with the second language's answers. The agent can generate a second `CodeStyle.md` or merge the two into a single project `CodeStyle.md` that defines boundaries between languages.
+
+For multi-language projects, the agent should:
+
+- Record which language each answer set belongs to in `Recording.md`.
+- Use the first language's `CodeStyle.md` as the default for cross-cutting concerns (Git workflow, dependency policy, test strategy).
+- Use later rounds to add language-specific sections or override defaults.
+- Reference the same `shared/` interview resources for both rounds — only the fixed question sheet and pattern pages are language-specific.
 
 ## Example
 
@@ -41,34 +57,68 @@ The inferred profile is **Algorithm-First Minimalist with Object-Centered Bounda
 - minimal comments and light typing,
 - `uv`, `pyproject.toml`, and `uv.lock` for dependency management.
 
-## Repository Map
+## Repository Structure
 
-- [SKILL.md](SKILL.md): installable skill entry point for AI agents.
-- [AGENT.md](AGENT.md): top-level agent guide and workflow reference.
-- [zh/](zh/): Simplified Chinese translation — [中文入口](zh/README.md).
-- [examples/](examples/): completed Python GUI calculator CodeBTI example.
-- [shared/](shared/): language-neutral interview flow, editorial rules, and shared templates.
-- [python/](python/): first language pack, including questions, patterns, profiles, records, and templates for Python.
-- [typescript/](typescript/): second language pack for TypeScript.
-- [python/questions/](python/questions/README.md): fixed and adaptive interview guidance for Python.
-- [python/patterns/](python/patterns/README.md): Python design-pattern database with RefactoringGuru citations.
-- [python/profiles/](python/profiles/README.md): profile inference rules and Python profile taxonomy.
-- [python/records/](python/records/README.md): session recording rules and record template.
-- [python/templates/](python/templates/README.md): output templates for generated project guidance.
+```
+CodeBTI/
+├── shared/                    # shared across all language packs
+│   ├── questions/             # interview flow and editorial rules
+│   ├── records/               # session recording template
+│   └── templates/             # SKILL and SPEC output templates
+│
+├── python/                    # Python language pack
+│   ├── questions/             # fixed-python.md + README
+│   ├── patterns/gof/          # 22 GoF pattern pages for Python
+│   ├── profiles/              # profile taxonomy
+│   ├── records/               # README
+│   └── templates/             # CodeStyle.template.md
+│
+├── typescript/                # TypeScript language pack
+│   ├── questions/             # fixed-typescript.md + README
+│   ├── patterns/gof/          # 22 GoF pattern pages for TypeScript
+│   ├── profiles/              # profile taxonomy
+│   ├── records/               # README
+│   └── templates/             # CodeStyle.template.md
+│
+├── examples/                  # completed interview example
+├── zh/                        # Simplified Chinese translation
+├── AGENT.md                   # agent guide
+├── MANIFEST.md                # file inventory
+├── README.md                 # this file
+└── SKILL.md                   # installable skill entry point
+```
+
+**Language-neutral vs language-specific:**
+
+| Resource | Scope | Example |
+|----------|-------|---------|
+| Fixed questions | Per language | `python/questions/fixed-python.md`, `typescript/questions/fixed-typescript.md` |
+| Pattern pages | Per language | `python/patterns/gof/facade.md`, `typescript/patterns/gof/facade.md` |
+| Profile taxonomy | Per language | `python/profiles/python-profile-taxonomy.md` |
+| CodeStyle template | Per language | `python/templates/CodeStyle.template.md` (has Python-specific sections) |
+| Adaptive guide | **Shared** | `shared/questions/adaptive-question-guide.md` |
+| Editorial guide | **Shared** | `shared/questions/editorial-guide.md` |
+| Question format | **Shared** | `shared/questions/question-format.md` |
+| Session record | **Shared** | `shared/records/session-record.template.md` |
+| SKILL/SPEC templates | **Shared** | `shared/templates/SKILL.template.md`, `shared/templates/SPEC.template.md` |
 
 ## Language Coverage
 
-The first language pack is Python. TypeScript is also available in [typescript/](typescript/). A Simplified Chinese translation is available in [zh/](zh/).
+Available language packs:
 
-Each language should keep the same CodeBTI interview contract while adapting the content to that ecosystem:
+- **Python** — [python/](python/): full pack with 10 fixed questions, 22 GoF pattern pages, 7 profile families.
+- **TypeScript** — [typescript/](typescript/): full pack with 10 fixed questions, 22 GoF pattern pages, 7 profile families.
+- **Chinese** — [zh/](zh/): translated Python pack. `zh/shared/` mirrors the English shared layer.
 
-- fixed questions for the language's style, architecture, testing, dependency, and collaboration norms,
-- a profile taxonomy that maps answer patterns to practical coding guidance,
-- pattern/resource references that fit the language rather than forcing Python or GoF terminology,
-- a `CodeStyle.md` template with language-specific output sections.
-- Interview flow, editorial rules, and SKILL/SPEC output templates are shared across all languages in [shared/](shared/).
+Adding a new language pack:
 
-Future language packs should be added as sibling directories, for example `javascript/`, `go/`, `rust/`, `java/`, or `r/`.
+1. Create a top-level directory, for example `rust/`.
+2. Add `questions/fixed-rust.md` with 10 language-specific questions.
+3. Add `patterns/gof/` with pattern pages in Rust idioms.
+4. Add `profiles/rust-profile-taxonomy.md`.
+5. Add `templates/CodeStyle.template.md` with Rust-specific sections.
+6. Reference `shared/` for adaptive guide, editorial rules, session record, and SKILL/SPEC templates — do not copy them.
+7. Update this README and `MANIFEST.md`.
 
 ## Output
 
@@ -77,6 +127,8 @@ The main output is a project-specific `CodeStyle.md`. When useful, the same resu
 - `SKILL.md` for reusable agent behavior,
 - `SPEC.md` for project requirements,
 - narrower specs such as `API_SPEC.md`, `TESTING_SPEC.md`, or `ARCHITECTURE_SPEC.md`.
+
+For multi-language projects, a single `CodeStyle.md` can contain language-specific sections. For example, Python section defines type discipline and exception policy; TypeScript section defines `interface` vs `type` usage and async patterns. Cross-cutting concerns (Git workflow, dependency policy, test strategy) apply to all languages unless overridden.
 
 The live interview evidence is kept in `Recording.md` during the session. It includes the full question cards, answer log, feedback, hidden inference notes, and final evidence review. A project may keep that file as-is, copy it into the relevant language pack's `records/` directory, or rename it to a date-stamped session record after outputs are generated.
 
@@ -92,14 +144,5 @@ Good contributions should preserve the core workflow:
 - ask 10 fixed questions plus exactly 5 adaptive questions,
 - infer the final profile from the completed session record,
 - cite only references that materially affect the generated guidance.
-
-When adding a new language pack:
-
-1. Create a top-level language directory, such as `typescript/` or `rust/`.
-2. Include parallel subdirectories for `questions/`, `patterns/`, `profiles/`, `records/`, and `templates/` unless the language has a strong reason to differ.
-3. Keep question cards concrete and example-based. Use that language's idioms, dependency tools, test frameworks, and collaboration norms.
-4. Avoid copying Python-specific assumptions into another language. The generated style should feel native to the target ecosystem.
-5. Add or update an example when the new language pack is mature enough to demonstrate.
-6. Update this README and the repository map so agents can discover the new language pack.
 
 For smaller changes, open a focused patch that explains the behavior or documentation problem being fixed. If a question, profile, or pattern page changes, include the reason the new wording improves future generated guidance.
