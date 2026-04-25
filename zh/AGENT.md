@@ -70,12 +70,12 @@ Python 优先的 CodeBTI 基础已实现：
 - Agent 指南：`AGENT.md`，
 - 可安装技能入口：`SKILL.md`，
 - 固定问题集：`python/questions/fixed-python.md`，
-- 适应性追问指南：`python/questions/adaptive-question-guide.md`，
-- 问题编辑规则：`python/questions/editorial-guide.md`，
-- 22 页 Python 设计模式数据库：`python/patterns/python/`，
+- 适应性追问指南：`shared/questions/adaptive-question-guide.md`（所有语言共享），
+- 问题编辑规则：`shared/questions/editorial-guide.md`（所有语言共享），
+- 22 页 Python 设计模式数据库：`python/patterns/gof/`，
 - Python Profile 分类体系：`python/profiles/python-profile-taxonomy.md`，
-- 会话记录模板：`python/records/session-record.template.md`，
-- 输出模板：`python/templates/CodeStyle.template.md`、`python/templates/SKILL.template.md`、`python/templates/SPEC.template.md`，
+- 会话记录模板：`shared/records/session-record.template.md`（所有语言共享），
+- 输出模板：`python/templates/CodeStyle.template.md`（Python 专用）、`shared/templates/SKILL.template.md`、`shared/templates/SPEC.template.md`（所有语言共享），
 - 简体中文翻译包：`zh/`。
 
 当前版本无自动化脚本、CLI、Web 应用或 CI 系统。
@@ -272,7 +272,7 @@ Python 优先的 markdown 基础在包含以下内容时即为就绪：
 - `python/questions/` 中的固定 Python 问题集，
 - `python/questions/` 中的适应性追问指南，
 - `python/patterns/` 中的模式索引，
-- `python/patterns/python/` 中的 22 个 Python GoF 模式页面，
+- `python/patterns/gof/` 中的 22 个 Python GoF 模式页面，
 - `python/profiles/` 中的 Profile 分类体系草案，
 - `python/records/` 中的会话记录模板，
 - `python/templates/` 中的 `CodeStyle.md` 模板，

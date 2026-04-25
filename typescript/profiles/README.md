@@ -8,7 +8,7 @@ Use profiles after the 10 fixed questions and 5 adaptive questions are complete.
 
 Use these inputs together:
 
-- fixed question answers from [questions/fixed-python.md](../questions/fixed-python.md),
+- fixed question answers from [questions/fixed-typescript.md](../questions/fixed-typescript.md),
 - adaptive answers from [../../shared/questions/adaptive-question-guide.md](../../shared/questions/adaptive-question-guide.md),
 - project context,
 - pattern signals from [patterns/](../patterns/README.md),
@@ -22,6 +22,6 @@ Use these inputs together:
 - Use pattern names as supporting evidence, not the main result.
 - Generate concrete `CodeStyle.md` rules from the profile.
 
-## Python Taxonomy
+## TypeScript Taxonomy
 
-Use [python-profile-taxonomy.md](python-profile-taxonomy.md) for the initial Python profile families.
+Use [typescript-profile-taxonomy.md](typescript-profile-taxonomy.md) for the TypeScript profile families.

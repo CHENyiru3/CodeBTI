@@ -26,10 +26,10 @@ This repository can be installed directly as a Codex skill. Copy or install this
 
 ## Example
 
-The [example/](example/) directory contains a completed CodeBTI run for a small Python GUI calculator.
+The [examples/](examples/) directory contains a completed CodeBTI run for a small Python GUI calculator.
 
-- [example/Recording.md](example/Recording.md): full interview record with the project summary, 10 fixed answers, 5 adaptive answers, feedback, hidden inference notes, and final profile inference.
-- [example/CodeStyle.md](example/CodeStyle.md): generated project style guide.
+- [examples/Recording.md](examples/Recording.md): full interview record with the project summary, 10 fixed answers, 5 adaptive answers, feedback, hidden inference notes, and final profile inference.
+- [examples/CodeStyle.md](examples/CodeStyle.md): generated project style guide.
 
 The inferred profile is **Algorithm-First Minimalist with Object-Centered Boundary traits**. The resulting guidance recommends:
 
@@ -46,8 +46,10 @@ The inferred profile is **Algorithm-First Minimalist with Object-Centered Bounda
 - [SKILL.md](SKILL.md): installable skill entry point for AI agents.
 - [AGENT.md](AGENT.md): top-level agent guide and workflow reference.
 - [zh/](zh/): Simplified Chinese translation — [中文入口](zh/README.md).
-- [example/](example/): completed Python GUI calculator CodeBTI example.
+- [examples/](examples/): completed Python GUI calculator CodeBTI example.
+- [shared/](shared/): language-neutral interview flow, editorial rules, and shared templates.
 - [python/](python/): first language pack, including questions, patterns, profiles, records, and templates for Python.
+- [typescript/](typescript/): second language pack for TypeScript.
 - [python/questions/](python/questions/README.md): fixed and adaptive interview guidance for Python.
 - [python/patterns/](python/patterns/README.md): Python design-pattern database with RefactoringGuru citations.
 - [python/profiles/](python/profiles/README.md): profile inference rules and Python profile taxonomy.
@@ -56,17 +58,17 @@ The inferred profile is **Algorithm-First Minimalist with Object-Centered Bounda
 
 ## Language Coverage
 
-The initial language pack is Python. A Simplified Chinese translation is available in [zh/](zh/).
+The first language pack is Python. TypeScript is also available in [typescript/](typescript/). A Simplified Chinese translation is available in [zh/](zh/).
 
 Each language should keep the same CodeBTI interview contract while adapting the content to that ecosystem:
 
 - fixed questions for the language's style, architecture, testing, dependency, and collaboration norms,
-- an adaptive question guide for project-specific follow-up questions,
 - a profile taxonomy that maps answer patterns to practical coding guidance,
 - pattern/resource references that fit the language rather than forcing Python or GoF terminology,
-- templates for generated outputs such as `CodeStyle.md`, `SKILL.md`, and `SPEC.md`.
+- a `CodeStyle.md` template with language-specific output sections.
+- Interview flow, editorial rules, and SKILL/SPEC output templates are shared across all languages in [shared/](shared/).
 
-Future language packs should be added as sibling directories, for example `javascript/`, `typescript/`, `go/`, `rust/`, `java/`, or `r/`.
+Future language packs should be added as sibling directories, for example `javascript/`, `go/`, `rust/`, `java/`, or `r/`.
 
 ## Output
 

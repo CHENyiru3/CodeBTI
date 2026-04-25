@@ -2,14 +2,12 @@
 
 This folder defines the CodeBTI interview system. The interview helps an agent convert a user's project goals and coding preferences into a project-specific `CodeStyle.md`, `SKILL.md`, or `SPEC.md`.
 
-The first version is Python-first. Future languages should add parallel fixed question sheets instead of changing the shared interview flow.
-
 ## Interview Flow
 
 1. Ask the required opening prompt: "What kind of project do you want to build? Please describe shortly."
 2. Create or update a live `Recording.md` using [../../shared/records/session-record.template.md](../../shared/records/session-record.template.md).
 3. Before asking each question, save the full question card in `Recording.md`.
-4. Ask the 10 fixed Python questions from [fixed-python.md](fixed-python.md).
+4. Ask the 10 fixed TypeScript questions from [fixed-typescript.md](fixed-typescript.md).
 5. After each answer, record the answer and give brief project-specific feedback.
 6. Ask exactly 5 adaptive follow-up questions using [../../shared/questions/adaptive-question-guide.md](../../shared/questions/adaptive-question-guide.md).
 7. Reread `Recording.md`, infer style dimensions and pattern tendencies, then generate a project-specific `CodeStyle.md`.
@@ -26,7 +24,7 @@ Questions should use concrete examples instead of pattern terminology. A user sh
 
 Good questions:
 
-- present realistic Python tradeoffs,
+- present realistic TypeScript tradeoffs,
 - cover one primary dimension at a time,
 - use short code snippets when code makes the choice clearer,
 - avoid trick choices,
@@ -34,7 +32,7 @@ Good questions:
 
 Use [../../shared/questions/question-format.md](../../shared/questions/question-format.md) for the required card structure.
 Use [../../shared/questions/editorial-guide.md](../../shared/questions/editorial-guide.md) when rewriting draft questions into final form.
-Use [../records/README.md](../records/README.md) for recording guidance.
+Use [../../records/README.md](../../records/README.md) for recording guidance.
 
 ## Scoring Principle
 

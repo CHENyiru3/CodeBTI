@@ -15,7 +15,7 @@ YYYY-MM-DD-project-slug.md
 Example:
 
 ```text
-2026-04-22-python-cli-tool.md
+2026-04-22-typescript-api-gateway.md
 ```
 
 ## Recording Rules

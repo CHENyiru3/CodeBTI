@@ -1,173 +1,170 @@
-# Fixed Python Questions
+# Fixed TypeScript Questions
 
-This file defines the 10 fixed CodeBTI questions for Python projects.
+This file defines the 10 fixed CodeBTI questions for TypeScript projects.
 
 Users can revise earlier answers at any time. During an interview, show the user-facing scenario, instruction, code example, and choices. Keep `Agent scoring`, `Pattern signals`, and `CodeStyle output implications` hidden unless the user explicitly asks how CodeBTI works.
 
 ## Q1. General Purpose and Paradigm
 
 Dimension:
-Object-centered vs function-first vs data-first vs flat procedural organization.
+Class-based vs interface-based vs functional vs flat procedural organization.
 
 User-facing scenario:
-When starting a fresh Python project, how do you naturally organize the core logic? Here is the same small task, greeting a user with their age, written in four different styles.
+When starting a fresh TypeScript project, how do you naturally organize the core logic? Here is the same small task — greeting a user with their age — written in four different styles.
 
 User-facing instruction:
 Choose the style you would most naturally want to maintain. You can revise earlier answers at any time.
 
 Code example:
 
-```python
-# A. Object-centered
-class User:
-    def __init__(self, name: str, birth_year: int):
-        self.name = name
-        self.birth_year = birth_year
+```typescript
+// A. Class-based
+class User {
+  readonly name: string;
+  readonly birthYear: number;
 
-    def age(self, current_year: int) -> int:
-        return current_year - self.birth_year
+  constructor(name: string, birthYear: number) {
+    this.name = name;
+    this.birthYear = birthYear;
+  }
 
-    def greeting(self, current_year: int) -> str:
-        return f"Hi {self.name}, you are {self.age(current_year)}."
+  greeting(currentYear: number): string {
+    return `Hi ${this.name}, you are ${currentYear - this.birthYear}.`;
+  }
+}
 
+// B. Interface-based with functions
+interface User {
+  name: string;
+  birthYear: number;
+}
 
-# B. Function-first
-def calculate_age(birth_year: int, current_year: int) -> int:
-    return current_year - birth_year
+function greeting(user: User, currentYear: number): string {
+  return `Hi ${user.name}, you are ${currentYear - user.birthYear}.`;
+}
 
+// C. Type alias with readonly fields
+type UserData = {
+  readonly name: string;
+  readonly birthYear: number;
+};
 
-def greeting(name: str, age: int) -> str:
-    return f"Hi {name}, you are {age}."
+function greeting(user: UserData, currentYear: number): string {
+  return `Hi ${user.name}, you are ${currentYear - user.birthYear}.`;
+}
 
-
-# C. Data-first
-from dataclasses import dataclass
-
-
-@dataclass(frozen=True)
-class UserData:
-    name: str
-    birth_year: int
-
-
-def greet_user(user: UserData, current_year: int) -> str:
-    age = current_year - user.birth_year
-    return f"Hi {user.name}, you are {age}."
-
-
-# D. Flat procedural
-CURRENT_YEAR = 2026
-
-
-def greet(user_payload: dict) -> str:
-    age = CURRENT_YEAR - user_payload["birth_year"]
-    return f"Hi {user_payload['name']}, you are {age}."
+// D. Simple object without explicit typing
+function greeting(name: string, birthYear: number, currentYear: number): string {
+  return `Hi ${name}, you are ${currentYear - birthYear}.`;
+}
 ```
 
 Choices:
-- A. Object-centered: keep state and behavior together in domain objects.
-- B. Function-first: use small functions that transform explicit inputs into outputs.
-- C. Data-first: define the data shape first, then write lightweight functions around it.
-- D. Flat procedural: write a direct flow with simple helpers and module-level constants when useful.
+- A. Class-based: keep state and behavior together in classes with access modifiers.
+- B. Interface-based: define data shapes with interfaces and use standalone functions.
+- C. Type alias: prefer `type` aliases for modeling data, with utility types for transformations.
+- D. Simple and direct: write straightforward functions without explicit type wrappers.
 
 Agent scoring:
 - A: Class-friendly, encapsulation-first, comfortable with objects owning behavior.
-- B: Stateless, function-first, explicit data flow, prefers easy composition.
-- C: Data-shape-first, clear model boundaries, likes immutable or validated records.
-- D: Low ceremony, speed-first, comfortable with scripts and direct module flow.
+- B: Interface-first, explicit contracts, prefers functions over methods.
+- C: Data-shape-first, likes utility types, mapped types, and readonly immutability.
+- D: Low ceremony, speed-first, comfortable with scripts and direct function calls.
 
 Pattern signals:
 - A: Possible [State](../patterns/gof/state.md), [Template Method](../patterns/gof/template-method.md), [Strategy](../patterns/gof/strategy.md) as classes.
-- B: Possible [Strategy](../patterns/gof/strategy.md) as callables, [Iterator](../patterns/gof/iterator.md)/generator pipelines.
-- C: Possible [Builder](../patterns/gof/builder.md) or [Factory Method](../patterns/gof/factory-method.md) only when data construction grows.
+- B: Possible [Strategy](../patterns/gof/strategy.md) as callable interfaces, [Adapter](../patterns/gof/adapter.md).
+- C: Possible [Builder](../patterns/gof/builder.md) or [Factory Method](../patterns/gof/factory-method.md) when typed construction grows.
 - D: Avoid premature GoF patterns; prefer small helpers and clear modules.
 
 CodeStyle output implications:
-Use this answer to set the default project shape: class-centered, function-first, data-model-centered, or script/procedure-first. Future guidance should explain when the project may deviate from that default.
+Use this answer to set the default project shape: class-centered, interface-first, type-alias data-model, or function-first. Future guidance should explain when the project may deviate from that default.
 
 ## Q2. Defensive Coding and Type Boundaries
 
 Dimension:
-Strict static typing vs boundary typing vs runtime validation vs dynamic duck typing.
+Strict static typing vs boundary typing vs runtime validation vs flexible duck typing.
 
 User-facing scenario:
-Python lets you choose how strongly the code checks its own assumptions. For a function that updates a user's age, how strict should the project be?
+TypeScript gives you control over how strictly types are enforced. For a function that updates a user's age, how strict should the project be?
 
 User-facing instruction:
 Choose the style you would most naturally want to maintain. You can revise earlier answers at any time.
 
 Code example:
 
-```python
-# A. Strict checks
-def update_user_age(user_id: int, new_age: int) -> bool:
-    if not isinstance(new_age, int):
-        raise TypeError("new_age must be an integer")
-    if new_age <= 0:
-        raise ValueError("new_age must be positive")
+```typescript
+// A. Strict type narrowing
+function updateUserAge(userId: number, newAge: number): boolean {
+  if (typeof newAge !== 'number' || !Number.isInteger(newAge)) {
+    throw new TypeError('newAge must be an integer');
+  }
+  if (newAge <= 0) {
+    throw new RangeError('newAge must be positive');
+  }
+  const user = dbGet(userId);
+  user.age = newAge;
+  dbSave(user);
+  return true;
+}
 
-    user: dict[str, object] = db_get(user_id)
-    user["age"] = new_age
-    db_save(user)
-    return True
+// B. Boundary typing
+function updateUserAge(userId: number, newAge: number): boolean {
+  const user = dbGet(userId);
+  if (newAge <= 0) return false;
+  user.age = newAge;
+  dbSave(user);
+  return true;
+}
 
+// C. Runtime validation with a schema library
+import { z } from 'zod';
 
-# B. Boundary typing
-def update_user_age(user_id: int, new_age: int) -> bool:
-    user = db_get(user_id)
-    if new_age <= 0:
-        return False
+const AgeUpdateSchema = z.object({
+  userId: z.number().int().positive(),
+  newAge: z.number().int().positive(),
+});
 
-    user["age"] = new_age
-    db_save(user)
-    return True
+function updateUserAge(rawInput: unknown): boolean {
+  const payload = AgeUpdateSchema.parse(rawInput);
+  const user = dbGet(payload.userId);
+  user.age = payload.newAge;
+  dbSave(user);
+  return true;
+}
 
-
-# C. Runtime validation
-from pydantic import BaseModel, Field
-
-
-class AgeUpdate(BaseModel):
-    user_id: int
-    new_age: int = Field(gt=0)
-
-
-def update_user_age(raw_input: dict) -> bool:
-    payload = AgeUpdate(**raw_input)
-    user = db_get(payload.user_id)
-    user["age"] = payload.new_age
-    db_save(user)
-    return True
-
-
-# D. Dynamic Python
-def update_user_age(user_id, new_age):
-    user = db_get(user_id)
-    user["age"] = int(new_age)
-    db_save(user)
-    return True
+// D. Flexible duck typing
+function updateUserAge(userId: unknown, newAge: unknown): boolean {
+  const id = Number(userId);
+  const age = Number(newAge);
+  if (!id || !age) return false;
+  const user = dbGet(id);
+  user.age = age;
+  dbSave(user);
+  return true;
+}
 ```
 
 Choices:
-- A. Strict checks: use strong type hints and explicit validation in important functions.
-- B. Boundary typing: type public functions and module boundaries, but keep internal code flexible.
-- C. Runtime validation: use validation models to clean and check incoming data.
-- D. Dynamic Python: keep type hints light and trust callers unless a bug proves otherwise.
+- A. Strict type narrowing: use `typeof` checks, type guards, and explicit error throwing in important functions.
+- B. Boundary typing: type public function signatures strictly, but keep internal code flexible.
+- C. Runtime validation: use a schema library like Zod, Yup, or class-validator to clean and check incoming data.
+- D. Flexible duck typing: accept broad input types and coerce them safely, keeping type checks lightweight.
 
 Agent scoring:
 - A: High defensive coding, explicit invariants, stronger static-analysis posture.
 - B: Boundary-first discipline, pragmatic internal flexibility.
 - C: Validation-first, accepts runtime model libraries and coercion.
-- D: Dynamic, low ceremony, duck-typing friendly.
+- D: Flexible, low ceremony, duck-typing friendly.
 
 Pattern signals:
-- A: Supports explicit interfaces, protocols, strict adapters.
+- A: Supports explicit interfaces, protocols, strict [Adapter](../patterns/gof/adapter.md).
 - B: Supports [Facade](../patterns/gof/facade.md) and [Adapter](../patterns/gof/adapter.md) at boundaries without overtyping internals.
 - C: Supports data-first modeling, validation boundaries, [Builder](../patterns/gof/builder.md) for complex payloads.
 - D: Avoid heavy interface patterns unless project risk demands them.
 
 CodeStyle output implications:
-Set typing policy, validation policy, and where agents should add checks. This answer should prevent future code from mixing strict type-heavy style with casual untyped style without a clear boundary.
+Set the typing policy, validation strategy, and where agents should add checks. This answer should prevent future code from mixing strict type-heavy style with casual untyped style without a clear boundary.
 
 ## Q3. Error Handling and Recovery
 
@@ -182,52 +179,67 @@ Choose the style you would most naturally want to maintain. You can revise earli
 
 Code example:
 
-```python
-# A. Fail fast
-class MalformedTransactionError(ValueError):
-    pass
+```typescript
+// A. Fail fast
+class MalformedTransactionError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'MalformedTransactionError';
+  }
+}
 
+function calculateTotal(tx: Record<string, unknown>): number {
+  if (!('amount' in tx)) {
+    throw new MalformedTransactionError('Transaction is missing amount');
+  }
+  if (typeof tx.amount !== 'number') {
+    throw new MalformedTransactionError('Transaction amount must be numeric');
+  }
+  return tx.amount * 1.2;
+}
 
-def calculate_total(tx: dict) -> float:
-    if "amount" not in tx:
-        raise MalformedTransactionError("Transaction is missing amount")
-    if not isinstance(tx["amount"], (int, float)):
-        raise MalformedTransactionError("Transaction amount must be numeric")
-    return tx["amount"] * 1.2
+// B. Safe fallback
+function calculateTotal(tx: Record<string, unknown>): number {
+  const amount = Number(tx.amount ?? 0);
+  return isNaN(amount) ? 0 : amount * 1.2;
+}
 
+// C. Explicit result
+type Result<T> =
+  | { ok: true; value: T }
+  | { ok: false; error: string };
 
-# B. Safe fallback
-def calculate_total(tx: dict) -> float:
-    try:
-        return float(tx.get("amount", 0)) * 1.2
-    except (TypeError, ValueError):
-        return 0.0
+function calculateTotal(tx: Record<string, unknown>): Result<number> {
+  const amount = tx.amount;
+  if (typeof amount !== 'number') {
+    return { ok: false, error: 'Invalid amount' };
+  }
+  return { ok: true, value: amount * 1.2 };
+}
 
+// D. Log and continue
+import { Logger } from './logger';
 
-# C. Explicit result
-def calculate_total(tx: dict) -> dict:
-    amount = tx.get("amount")
-    if not isinstance(amount, (int, float)):
-        return {"ok": False, "value": None, "error": "Invalid amount"}
-    return {"ok": True, "value": amount * 1.2, "error": None}
-
-
-# D. Log and continue
-import logging
-
-
-def process_batch(transactions: list[dict]) -> list[float]:
-    totals = []
-    for tx in transactions:
-        try:
-            totals.append(float(tx["amount"]) * 1.2)
-        except (KeyError, TypeError, ValueError) as exc:
-            logging.warning("Skipped transaction %s: %s", tx.get("id"), exc)
-    return totals
+function processBatch(transactions: Record<string, unknown>[]): number[] {
+  const totals: number[] = [];
+  for (const tx of transactions) {
+    try {
+      const amount = Number(tx.amount);
+      if (!isNaN(amount)) {
+        totals.push(amount * 1.2);
+      } else {
+        Logger.warn(`Skipped invalid transaction: ${JSON.stringify(tx)}`);
+      }
+    } catch (err) {
+      Logger.warn(`Skipped transaction: ${err instanceof Error ? err.message : err}`);
+    }
+  }
+  return totals;
+}
 ```
 
 Choices:
-- A. Fail fast: raise a clear error as soon as invalid data appears.
+- A. Fail fast: throw a clear typed error as soon as invalid data appears.
 - B. Safe fallback: return a default value and keep the main flow moving.
 - C. Explicit result: return a structured success or failure value instead of raising for expected problems.
 - D. Log and continue: record the failure, skip the bad item, and keep processing the rest.
@@ -239,13 +251,13 @@ Agent scoring:
 - D: Batch-resilient, observability-friendly, good for data pipelines.
 
 Pattern signals:
-- A: Supports boundary validation, strict Facades, custom exception hierarchy.
+- A: Supports boundary validation, strict [Facade](../patterns/gof/facade.md), custom error class hierarchy.
 - B: Supports tolerant [Adapter](../patterns/gof/adapter.md)/[Facade](../patterns/gof/facade.md) behavior but needs clear fallback policy.
 - C: Supports functional style, [Command](../patterns/gof/command.md) outcomes, explicit workflow states.
 - D: Supports pipeline style, [Chain of Responsibility](../patterns/gof/chain-of-responsibility.md), quarantine/dead-letter workflows.
 
 CodeStyle output implications:
-Define the project-wide error policy so agents do not mix silent defaults, exceptions, result dictionaries, and quarantine behavior randomly.
+Define the project-wide error policy so agents do not mix silent defaults, exceptions, result objects, and quarantine behavior randomly.
 
 ## Q4. Naming and Readability
 
@@ -253,7 +265,7 @@ Dimension:
 Explicit names vs concise idioms vs domain vocabulary vs comment-supported naming.
 
 User-facing scenario:
-Names shape how a codebase feels to read. How should variables, functions, and classes be named in this project?
+Names shape how a codebase feels to read. How should variables, functions, interfaces, and classes be named in this project?
 
 User-facing instruction:
 Choose the style you would most naturally want to maintain. You can revise earlier answers at any time.
@@ -262,14 +274,14 @@ Code example:
 None. The choice is about naming style and review expectations.
 
 Choices:
-- A. Explicit names: prefer names like `calculate_total_revenue_for_active_users`, even when they are longer.
-- B. Concise idioms: allow short common names like `idx`, `req`, `df`, or `cfg` when context is clear.
-- C. Domain language: use the terms from the product, business, math, or science domain instead of generic names like `manager` or `handler`.
-- D. Short names with explanation: allow shorter names when docstrings or comments explain the reason and context.
+- A. Explicit names: prefer names like `calculateTotalRevenueForActiveUsers`, even when they are longer.
+- B. Concise idioms: allow short common names like `id`, `req`, `cfg`, or `idx` when context is clear.
+- C. Domain language: use the terms from the product, business, math, or science domain instead of generic names like `Manager` or `Handler`.
+- D. Short names with explanation: allow shorter names when JSDoc or comments explain the reason and context.
 
 Agent scoring:
 - A: Readability through explicit naming; tolerates longer lines and less abbreviation.
-- B: Context-heavy, idiomatic Python, comfortable with compact local names.
+- B: Context-heavy, idiomatic TypeScript, comfortable with compact local names.
 - C: Domain-driven naming, avoids generic service/object vocabulary.
 - D: Documentation-supported naming, accepts comments as part of readability.
 
@@ -280,12 +292,12 @@ Pattern signals:
 - D: Supports comment-guided agent workflows and more verbose generated docs.
 
 CodeStyle output implications:
-Set naming rules for functions, classes, modules, variables, and review comments. The generated `CodeStyle.md` should include allowed abbreviations and discouraged generic names.
+Set naming rules for functions, classes, interfaces, types, modules, variables, and review comments. The generated `CodeStyle.md` should include allowed abbreviations and discouraged generic names.
 
 ## Q5. Architecture and Wiring Style
 
 Dimension:
-Python language tools vs dependency injection vs swappable patterns vs central registry vs algorithm-first code.
+Class composition vs dependency injection vs factory patterns vs central registry vs direct module imports.
 
 User-facing scenario:
 When a project has routing, setup/teardown, services, or multiple implementations, how do you prefer to wire the pieces together?
@@ -297,28 +309,28 @@ Code example:
 None. This question compares architecture preferences rather than one local code snippet.
 
 Choices:
-- A. Python tools: use decorators, context managers, and small wrappers for repeated setup or cleanup.
-- B. Passed-in dependencies: pass services, clients, and repositories directly into functions or classes.
+- A. Class composition with decorators: use TypeScript decorators, class property injection, or framework-provided composition.
+- B. Dependency injection: pass services, clients, and repositories explicitly into constructors or functions.
 - C. Swappable implementations: define clear interfaces so different backends or algorithms can be exchanged.
-- D. Central registry: keep shared services in one configured module or object that other code imports.
-- E. Algorithm-first: keep abstractions thin and focus on data structures, performance, and direct APIs.
+- D. Central registry or module singleton: keep shared services in one configured module that other code imports.
+- E. Direct module imports: keep modules self-contained with direct imports, minimal indirection.
 
 Agent scoring:
-- A: Pythonic composition, accepts hidden setup when names and tests are clear.
+- A: Decorator-friendly, framework-aligned composition, accepts hidden setup when names and tests are clear.
 - B: Testability-first, explicit dependencies, low hidden global state.
 - C: Interface-first, extension-friendly, comfortable with pattern-like structure.
 - D: Convenience-first, centralized configuration, risk of hidden coupling.
-- E: Performance and directness first, avoids architecture ceremony.
+- E: Simplicity-first, avoids ceremony, prefers flat module graphs.
 
 Pattern signals:
-- A: [Decorator](../patterns/gof/decorator.md), context manager patterns, [Proxy](../patterns/gof/proxy.md)-like wrappers.
+- A: [Decorator](../patterns/gof/decorator.md), [Proxy](../patterns/gof/proxy.md)-like wrappers, framework-specific composition.
 - B: [Adapter](../patterns/gof/adapter.md), [Facade](../patterns/gof/facade.md), dependency injection, test doubles.
 - C: [Strategy](../patterns/gof/strategy.md), [Factory Method](../patterns/gof/factory-method.md), [Abstract Factory](../patterns/gof/abstract-factory.md), [Bridge](../patterns/gof/bridge.md).
-- D: [Singleton](../patterns/gof/singleton.md)/Registry, service locator caution.
+- D: [Singleton](../patterns/gof/singleton.md)/Registry caution.
 - E: Avoid unnecessary GoF structure; prefer clear functions and data structures.
 
 CodeStyle output implications:
-Set the default wiring rule: Python wrappers, dependency injection, explicit interfaces, central registry, or algorithm-first direct code. Include caution rules for hidden state and over-abstraction.
+Set the default wiring rule: decorators, dependency injection, explicit interfaces, central registry, or direct module imports. Include caution rules for hidden state and over-abstraction.
 
 ## Q6. Folder Structure
 
@@ -335,23 +347,26 @@ Code example:
 
 ```text
 # A. Feature folders
-src/users/
-src/billing/
-src/reports/
+src/features/users/
+src/features/billing/
+src/features/reports/
 
 # B. Technical layers
-src/models/
-src/services/
-src/routes/
+src/
+  models/
+  services/
+  routes/
+  controllers/
 
 # C. Flat until needed
 src/
-  users.py
-  billing.py
-  reports.py
+  users.ts
+  billing.ts
+  reports.ts
 
 # D. Tool or framework layout
-src/<framework-or-template-convention>/
+src/
+  <framework-convention>/
 tests/
 docs/
 ```
@@ -369,7 +384,7 @@ Agent scoring:
 - D: Convention-first, values compatibility with tools and ecosystem expectations.
 
 Pattern signals:
-- A: Supports bounded contexts, [Facade](../patterns/gof/facade.md) per feature, local adapters.
+- A: Supports bounded contexts, [Facade](../patterns/gof/facade.md) per feature, local [Adapter](../patterns/gof/adapter.md).
 - B: Supports service-layer and MVC-like organization.
 - C: Supports procedural/function-first code and low abstraction.
 - D: Supports framework-aligned design and template-driven structure.
@@ -393,7 +408,7 @@ None. The choice is about testing scope and review expectations.
 
 Choices:
 - A. Test-first and broad coverage: write tests early and cover branches, edge cases, and important failure paths.
-- B. Integration-heavy: focus on endpoints, database boundaries, CLI flows, or full workflows.
+- B. Integration-heavy: focus on endpoints, database boundaries, service flows, or full workflows.
 - C. Core logic only: test custom algorithms and business rules, but avoid testing framework boilerplate.
 - D. Manual and logs first: move fast, test manually, and rely on logs or user feedback until the project stabilizes.
 
@@ -404,7 +419,7 @@ Agent scoring:
 - D: Prototype speed, low automated-test expectation, higher regression risk.
 
 Pattern signals:
-- A: Supports contract tests, adapters, strict interfaces.
+- A: Supports contract tests, [Adapter](../patterns/gof/adapter.md), strict interfaces.
 - B: Supports [Facade](../patterns/gof/facade.md)/API testing and integration boundaries.
 - C: Supports algorithm-first and function-first testing.
 - D: Avoid heavy abstractions that require extensive test scaffolding.
@@ -415,7 +430,7 @@ Set minimum test requirements for generated code and future agent edits. Define 
 ## Q8. Comments and Docstrings
 
 Dimension:
-Self-documenting code vs why-focused comments vs strict docstrings vs AI-facing context comments.
+Self-documenting code vs why-focused comments vs strict JSDoc vs AI-facing context comments.
 
 User-facing scenario:
 AI agents can over-explain code. What comment and docstring style should this project enforce?
@@ -427,25 +442,25 @@ Code example:
 None. The choice is about comment policy and documentation density.
 
 Choices:
-- A. Minimal comments: code should be clear enough that comments are rare; docstrings are mainly for public APIs.
+- A. Minimal comments: code should be clear enough that comments are rare; JSDoc is mainly for public API surfaces.
 - B. Explain why: avoid comments that repeat the code, but explain business rules, constraints, and non-obvious decisions.
-- C. Full docstrings: use a consistent docstring style for most classes, methods, and functions.
+- C. Full JSDoc: use a consistent JSDoc style for most classes, methods, and functions, including all parameters and return types.
 - D. AI context comments: allow comments as planning markers or context for future agent edits when they reduce confusion.
 
 Agent scoring:
 - A: Self-documenting preference, low comment density.
-- B: Context-first comments, moderate docstrings, strong review value.
+- B: Context-first comments, moderate JSDoc, strong review value.
 - C: Documentation-heavy, API-reference friendly, higher maintenance cost.
 - D: Agent-collaboration friendly, accepts comments as future-edit guidance.
 
 Pattern signals:
-- A: Works best with clear names and small functions.
+- A: Works best with clear names, small functions, and well-named types.
 - B: Supports domain-driven rules and boundary documentation.
 - C: Supports public library/API style and strict interfaces.
 - D: Supports agent workflows, planning/spec markers, and guided refactors.
 
 CodeStyle output implications:
-Define when agents should add comments, docstrings, planning notes, and context markers. Also define what kinds of comments should be removed during cleanup.
+Define when agents should add comments, JSDoc, planning notes, and context markers. Also define what kinds of comments should be removed during cleanup.
 
 ## Q9. Git History and Collaboration
 
@@ -459,7 +474,7 @@ User-facing instruction:
 Choose the style you would most naturally want to maintain. You can revise earlier answers at any time.
 
 Code example:
-None. The choice is about collaboration workflow, not Python code.
+None. The choice is about collaboration workflow, not TypeScript code.
 
 Choices:
 - A. Fast mainline: commit directly to `main` or one shared `dev` branch with short descriptive messages.
@@ -488,10 +503,10 @@ Set commit-message, branch, PR, and history expectations for future agent work. 
 ## Q10. Dependencies and Environments
 
 Dimension:
-Standard pip/venv vs conda environments vs lockfile package managers vs newer Rust-based tooling.
+Standard npm vs pnpm/yarn vs lockfile discipline vs newer fast tooling.
 
 User-facing scenario:
-Python dependency management can shape the whole project. How should environments and third-party libraries be managed?
+TypeScript/JavaScript dependency management shapes the whole project. How should environments and third-party libraries be managed?
 
 User-facing instruction:
 Choose the style you would most naturally want to maintain. You can revise earlier answers at any time.
@@ -499,29 +514,29 @@ Choose the style you would most naturally want to maintain. You can revise earli
 Code example:
 
 ```text
-A. requirements.txt + venv
-B. environment.yml + conda/miniconda
-C. pyproject.toml + poetry.lock or Pipfile.lock
-D. pyproject.toml / uv.lock / inline script metadata
+A. package.json + node_modules + npm
+B. package.json + pnpm-lock.yaml or yarn.lock
+C. pnpm-workspace.yaml or monorepo with strict lockfile
+D. Minimal dependencies + copybara or esm.sh CDN-style imports
 ```
 
 Choices:
-- A. Standard `pip` and `venv`: keep setup simple with `requirements.txt` and built-in virtual environments.
-- B. Conda-style environment: use `conda` or `miniconda` when data science packages or native dependencies matter.
-- C. Lockfile package manager: use Poetry or Pipenv for structured config and reproducible lock files.
-- D. Newer fast tooling: use tools like `uv` or `rye` for fast resolution and modern Python project workflows.
+- A. Standard npm: keep setup simple with `package.json` and built-in node_modules.
+- B. pnpm or yarn: use a faster, more efficient package manager with workspace support when needed.
+- C. Strict lockfile with monorepo: use pnpm workspaces or a similar setup for strict reproducibility.
+- D. Minimal dependencies: prefer standard library, minimal npm packages, and CDN-style imports where practical.
 
 Agent scoring:
 - A: Minimal tooling, broad compatibility, simple setup.
-- B: Data-science friendly, native dependency aware, environment-file centered.
-- C: Reproducibility-first, structured project metadata, lockfile discipline.
-- D: Modern tooling preference, speed-first dependency management.
+- B: Speed-first, modern tooling preference, workspace support.
+- C: Reproducibility-first, structured project metadata, monorepo discipline.
+- D: Dependency-minimalist, avoids supply-chain risk, prefers built-in APIs.
 
 Pattern signals:
 - A: Supports lightweight scripts and simple packages.
-- B: Supports research/data workflows and environment-heavy projects.
+- B: Supports modern agent workflows and fast iteration.
 - C: Supports package/library style and CI reproducibility.
-- D: Supports modern agent workflows and fast iteration.
+- D: Supports algorithm-first projects and minimal toolchain.
 
 CodeStyle output implications:
 Set dependency policy, environment files, install commands, and whether agents may add new libraries. Include the preferred source of truth for dependencies.

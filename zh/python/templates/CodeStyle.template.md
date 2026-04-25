@@ -71,9 +71,9 @@ TODO
 
 Design pattern references:
 
-- Encouraged: TODO. Link to the relevant local page in `python/patterns/python/` and state why it applies.
-- Allowed with caution: TODO. Link to the relevant local page in `python/patterns/python/` and state the constraint.
-- Avoid by default: TODO. Link to the relevant local page in `python/patterns/python/` and state why it should usually be avoided for this project.
+- Encouraged: TODO. Link to the relevant local page in `python/patterns/gof/` and state why it applies.
+- Allowed with caution: TODO. Link to the relevant local page in `python/patterns/gof/` and state the constraint.
+- Avoid by default: TODO. Link to the relevant local page in `python/patterns/gof/` and state why it should usually be avoided for this project.
 
 Useful project resources:
 

@@ -17,7 +17,7 @@ Do not copy large upstream examples into CodeBTI. Link to the original examples 
 
 ## Python Pattern Index
 
-See [patterns/python/README.md](python/README.md) for the Python database.
+See [patterns/gof/README.md](gof/README.md) for the Python database.
 
 ## Agent Use
 

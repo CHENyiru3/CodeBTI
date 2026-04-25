@@ -30,7 +30,7 @@ TODO
 When to keep code direct:
 TODO
 
-## Python Style Rules
+## TypeScript Style Rules
 
 Naming:
 TODO
@@ -38,10 +38,16 @@ TODO
 Typing:
 TODO
 
+Interfaces vs type aliases:
+TODO
+
 Data modeling:
 TODO
 
 Error handling:
+TODO
+
+Async patterns:
 TODO
 
 State management:
@@ -71,9 +77,9 @@ TODO
 
 Design pattern references:
 
-- Encouraged: TODO. Link to the relevant local page in `python/patterns/gof/` and state why it applies.
-- Allowed with caution: TODO. Link to the relevant local page in `python/patterns/gof/` and state the constraint.
-- Avoid by default: TODO. Link to the relevant local page in `python/patterns/gof/` and state why it should usually be avoided for this project.
+- Encouraged: TODO. Link to the relevant local page in `typescript/patterns/gof/` and state why it applies.
+- Allowed with caution: TODO. Link to the relevant local page in `typescript/patterns/gof/` and state the constraint.
+- Avoid by default: TODO. Link to the relevant local page in `typescript/patterns/gof/` and state why it should usually be avoided for this project.
 
 Useful project resources:
 
@@ -124,14 +130,14 @@ TODO
 
 Preferred code shape:
 
-```python
-# TODO
+```typescript
+// TODO
 ```
 
 Avoided code shape:
 
-```python
-# TODO
+```typescript
+// TODO
 ```
 
 ## Open Assumptions

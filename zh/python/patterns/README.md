@@ -17,7 +17,7 @@ Python 目录结构和来源引用基于：
 
 ## Python 模式索引
 
-参见 [patterns/python/README.md](python/README.md) 查看 Python 数据库。
+参见 [patterns/gof/README.md](../patterns/gof/README.md) 查看 Python 数据库。
 
 ## Agent 使用
 

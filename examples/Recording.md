@@ -43,7 +43,7 @@ Question kind:
 Fixed
 
 Source:
-/Users/eric_yiru/.codex/skills/codebti/python/questions/fixed-python.md
+../../python/questions/fixed-python.md
 
 Dimension:
 Object-centered vs function-first vs data-first vs flat procedural organization.
@@ -116,7 +116,7 @@ Question kind:
 Fixed
 
 Source:
-/Users/eric_yiru/.codex/skills/codebti/python/questions/fixed-python.md
+../../python/questions/fixed-python.md
 
 Dimension:
 Strict static typing vs boundary typing vs runtime validation vs dynamic duck typing.
@@ -192,7 +192,7 @@ Question kind:
 Fixed
 
 Source:
-/Users/eric_yiru/.codex/skills/codebti/python/questions/fixed-python.md
+../../python/questions/fixed-python.md
 
 Dimension:
 Fail-fast exceptions vs safe fallback vs explicit result objects vs batch quarantine.
@@ -262,7 +262,7 @@ Question kind:
 Fixed
 
 Source:
-/Users/eric_yiru/.codex/skills/codebti/python/questions/fixed-python.md
+../../python/questions/fixed-python.md
 
 Dimension:
 Explicit names vs concise idioms vs domain vocabulary vs comment-supported naming.
@@ -290,7 +290,7 @@ Question kind:
 Fixed
 
 Source:
-/Users/eric_yiru/.codex/skills/codebti/python/questions/fixed-python.md
+../../python/questions/fixed-python.md
 
 Dimension:
 Python language tools vs dependency injection vs swappable patterns vs central registry vs algorithm-first code.
@@ -319,7 +319,7 @@ Question kind:
 Fixed
 
 Source:
-/Users/eric_yiru/.codex/skills/codebti/python/questions/fixed-python.md
+../../python/questions/fixed-python.md
 
 Dimension:
 Feature folders vs technical layers vs flat source tree vs framework/tool-driven layout.
@@ -368,7 +368,7 @@ Question kind:
 Fixed
 
 Source:
-/Users/eric_yiru/.codex/skills/codebti/python/questions/fixed-python.md
+../../python/questions/fixed-python.md
 
 Dimension:
 Test-first coverage vs integration confidence vs core-logic focus vs manual/log-driven iteration.
@@ -396,7 +396,7 @@ Question kind:
 Fixed
 
 Source:
-/Users/eric_yiru/.codex/skills/codebti/python/questions/fixed-python.md
+../../python/questions/fixed-python.md
 
 Dimension:
 Self-documenting code vs why-focused comments vs strict docstrings vs AI-facing context comments.
@@ -424,7 +424,7 @@ Question kind:
 Fixed
 
 Source:
-/Users/eric_yiru/.codex/skills/codebti/python/questions/fixed-python.md
+../../python/questions/fixed-python.md
 
 Dimension:
 Fast mainline commits vs conventional PR flow vs release branches vs linear history vs no Git preference.
@@ -453,7 +453,7 @@ Question kind:
 Fixed
 
 Source:
-/Users/eric_yiru/.codex/skills/codebti/python/questions/fixed-python.md
+../../python/questions/fixed-python.md
 
 Dimension:
 Standard pip/venv vs conda environments vs lockfile package managers vs newer Rust-based tooling.
@@ -831,11 +831,11 @@ Pattern and resource references:
 
 | Reference | Local path or URL | Why it matters |
 | --- | --- | --- |
-| Facade | /Users/eric_yiru/.codex/skills/codebti/python/patterns/python/facade.md | Encouraged as a thin `Calculator.evaluate()` boundary between GUI code and calculation internals. |
-| Strategy | /Users/eric_yiru/.codex/skills/codebti/python/patterns/python/strategy.md | Encouraged as a lightweight operation registry or callable mapping for calculator operations. |
-| Memento | /Users/eric_yiru/.codex/skills/codebti/python/patterns/python/memento.md | Allowed with caution for undo/history snapshots once that behavior exists. |
-| Command | /Users/eric_yiru/.codex/skills/codebti/python/patterns/python/command.md | Avoid by default for basic GUI button actions unless replay, queueing, or undo metadata is needed. |
-| Singleton | /Users/eric_yiru/.codex/skills/codebti/python/patterns/python/singleton.md | Avoid by default because mutable calculator state should not be hidden behind process-global access. |
+| Facade | ../../python/patterns/gof/facade.md | Encouraged as a thin `Calculator.evaluate()` boundary between GUI code and calculation internals. |
+| Strategy | ../../python/patterns/gof/strategy.md | Encouraged as a lightweight operation registry or callable mapping for calculator operations. |
+| Memento | ../../python/patterns/gof/memento.md | Allowed with caution for undo/history snapshots once that behavior exists. |
+| Command | ../../python/patterns/gof/command.md | Avoid by default for basic GUI button actions unless replay, queueing, or undo metadata is needed. |
+| Singleton | ../../python/patterns/gof/singleton.md | Avoid by default because mutable calculator state should not be hidden behind process-global access. |
 
 Contradictions or weak signals:
 
@@ -855,14 +855,14 @@ Profile name:
 Algorithm-First Minimalist with Object-Centered Boundary traits
 
 Profile taxonomy reference:
-[python-profile-taxonomy.md](/Users/eric_yiru/.codex/skills/codebti/python/profiles/python-profile-taxonomy.md)
+[python-profile-taxonomy.md](../../python/profiles/python-profile-taxonomy.md)
 
 Short explanation:
 The strongest signal is algorithm-first, low-ceremony Python: keep abstractions thin, test core calculation behavior, use a flat layout, and avoid unnecessary layers. Object-centered answers add one practical boundary: a small `Calculator` object should own expression behavior while GUI handlers stay thin.
 
 ## Generated Outputs
 
-- `CodeStyle.md`: Generated at [CodeStyle.md](/Users/eric_yiru/Desktop/Github/CodeBTI/example/CodeStyle.md). Used [CodeStyle.template.md](/Users/eric_yiru/.codex/skills/codebti/python/templates/CodeStyle.template.md).
+- `CodeStyle.md`: Generated at [CodeStyle.md](CodeStyle.md). Used [CodeStyle.template.md](../../python/templates/CodeStyle.template.md).
 - `SKILL.md`: Not generated; not requested.
 - `SPEC.md`: Not generated; not requested.
 

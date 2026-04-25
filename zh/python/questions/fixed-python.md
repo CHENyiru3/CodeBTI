@@ -77,9 +77,9 @@ def greet(user_payload: dict) -> str:
 - D：低仪式、速度优先、乐于使用脚本和直接模块流程。
 
 **模式信号：**
-- A：可能使用 [State](../patterns/python/state.md)、[Template Method](../patterns/python/template-method.md)、[Strategy](../patterns/python/strategy.md) 作为类。
-- B：可能使用 [Strategy](../patterns/python/strategy.md) 作为可调用对象、[Iterator](../patterns/python/iterator.md)/生成器流水线。
-- C：仅当数据构造复杂度增长时，才可能使用 [Builder](../patterns/python/builder.md) 或 [Factory Method](../patterns/python/factory-method.md)。
+- A：可能使用 [State](../../patterns/gof/state.md)、[Template Method](../../patterns/gof/template-method.md)、[Strategy](../../patterns/gof/strategy.md) 作为类。
+- B：可能使用 [Strategy](../../patterns/gof/strategy.md) 作为可调用对象、[Iterator](../../patterns/gof/iterator.md)/生成器流水线。
+- C：仅当数据构造复杂度增长时，才可能使用 [Builder](../../patterns/gof/builder.md) 或 [Factory Method](../../patterns/gof/factory-method.md)。
 - D：避免过早使用 GoF 模式；偏好小型辅助函数和清晰的模块。
 
 **CodeStyle 输出影响：**
@@ -164,8 +164,8 @@ def update_user_age(user_id, new_age):
 
 **模式信号：**
 - A：支持显式接口、协议、严格适配器。
-- B：支持在边界处使用 [Facade](../patterns/python/facade.md) 和 [Adapter](../patterns/python/adapter.md)，不在内部过度类型化。
-- C：支持数据优先建模、验证边界、复杂载荷的 [Builder](../patterns/python/builder.md)。
+- B：支持在边界处使用 [Facade](../../patterns/gof/facade.md) 和 [Adapter](../../patterns/gof/adapter.md)，不在内部过度类型化。
+- C：支持数据优先建模、验证边界、复杂载荷的 [Builder](../../patterns/gof/builder.md)。
 - D：除非项目风险要求，否则避免重量级接口模式。
 
 **CodeStyle 输出影响：**
@@ -244,9 +244,9 @@ def process_batch(transactions: list[dict]) -> list[float]:
 
 **模式信号：**
 - A：支持边界验证、严格 Facade、自定义异常层次结构。
-- B：支持宽容 [Adapter](../patterns/python/adapter.md)/[Facade](../patterns/python/facade.md) 行为，但需要明确的降级策略。
-- C：支持函数式风格、[Command](../patterns/python/command.md) 结果、显式工作流状态。
-- D：支持流水线风格、[Chain of Responsibility](../patterns/python/chain-of-responsibility.md)、隔离/死信工作流。
+- B：支持宽容 [Adapter](../../patterns/gof/adapter.md)/[Facade](../../patterns/gof/facade.md) 行为，但需要明确的降级策略。
+- C：支持函数式风格、[Command](../../patterns/gof/command.md) 结果、显式工作流状态。
+- D：支持流水线风格、[Chain of Responsibility](../../patterns/gof/chain-of-responsibility.md)、隔离/死信工作流。
 
 **CodeStyle 输出影响：**
 定义项目级错误策略，防止 Agent 随意混用静默默认值、异常、结果字典和隔离行为。
@@ -280,7 +280,7 @@ def process_batch(transactions: list[dict]) -> list[float]:
 - D：文档支撑命名、接受注释作为可读性的一部分。
 
 **模式信号：**
-- A：帮助显式 [Facade](../patterns/python/facade.md) 和边界 API。
+- A：帮助显式 [Facade](../../patterns/gof/facade.md) 和边界 API。
 - B：支持函数优先和脚本式风格。
 - C：支持领域模型、领域服务、清晰的通用语言。
 - D：支持注释引导的 Agent 工作流和更详细的生成文档。
@@ -319,10 +319,10 @@ Python 工具 vs 依赖注入 vs 可替换模式 vs 中央注册表 vs 算法优
 - E：性能和直接性优先、避免架构仪式。
 
 **模式信号：**
-- A：[Decorator](../patterns/python/decorator.md)、上下文管理器模式、[Proxy](../patterns/python/proxy.md) 式包装器。
-- B：[Adapter](../patterns/python/adapter.md)、[Facade](../patterns/python/facade.md)、依赖注入、测试替身。
-- C：[Strategy](../patterns/python/strategy.md)、[Factory Method](../patterns/python/factory-method.md)、[Abstract Factory](../patterns/python/abstract-factory.md)、[Bridge](../patterns/python/bridge.md)。
-- D：[Singleton](../patterns/python/singleton.md)/注册表、服务定位器注意。
+- A：[Decorator](../../patterns/gof/decorator.md)、上下文管理器模式、[Proxy](../../patterns/gof/proxy.md) 式包装器。
+- B：[Adapter](../../patterns/gof/adapter.md)、[Facade](../../patterns/gof/facade.md)、依赖注入、测试替身。
+- C：[Strategy](../../patterns/gof/strategy.md)、[Factory Method](../../patterns/gof/factory-method.md)、[Abstract Factory](../../patterns/gof/abstract-factory.md)、[Bridge](../../patterns/gof/bridge.md)。
+- D：[Singleton](../../patterns/gof/singleton.md)/注册表、服务定位器注意。
 - E：避免不必要的 GoF 结构；偏好清晰的函数和数据结构。
 
 **CodeStyle 输出影响：**
@@ -379,7 +379,7 @@ docs/
 - D：约定优先、重视与工具和生态系统期望的兼容性。
 
 **模式信号：**
-- A：支持有界上下文、每个特性的 [Facade](../patterns/python/facade.md)、本地适配器。
+- A：支持有界上下文、每个特性的 [Facade](../../patterns/gof/facade.md)、本地适配器。
 - B：支持服务层和 MVC 式组织。
 - C：支持过程式/函数优先代码和低抽象。
 - D：支持框架对齐设计和模板驱动结构。
@@ -417,7 +417,7 @@ docs/
 
 **模式信号：**
 - A：支持契约测试、适配器、严格接口。
-- B：支持 [Facade](../patterns/python/facade.md)/API 测试和集成边界。
+- B：支持 [Facade](../../patterns/gof/facade.md)/API 测试和集成边界。
 - C：支持算法优先和函数优先测试。
 - D：避免需要大量测试脚手架的重量级抽象。
 
