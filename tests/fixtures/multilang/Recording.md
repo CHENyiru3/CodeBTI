@@ -48,6 +48,9 @@ No real-time collaboration or plugin marketplace in the first pass.
 Open questions:
 API framework and UI framework are intentionally unspecified until feature planning.
 
+Missing opening fields:
+None.
+
 Initial SPEC draft:
 [SPEC.md](SPEC.md)
 
@@ -152,6 +155,13 @@ Profile taxonomy:
 | Q8 | B | Comments explain constraints. | None |
 | Q9 | B | Conventional branches. | None |
 | Q10 | C | Strict lockfile/workspace discipline. | None |
+
+## Language Override Decisions
+
+| Language | Shared project rule | Override | Reason | Validation required |
+| --- | --- | --- | --- | --- |
+| Python | Shared validation and recordkeeping apply to all changes. | None | Python answers align with project defaults. | Repository validation plus Python tests. |
+| TypeScript | Shared validation and recordkeeping apply to all changes. | None | TypeScript answers align with project defaults. | Repository validation plus TypeScript tests. |
 
 ## Adaptive Question Answers
 

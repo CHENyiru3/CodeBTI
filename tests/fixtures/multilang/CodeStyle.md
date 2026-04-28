@@ -6,6 +6,9 @@ Python + TypeScript task tracker fixture
 Generated from session record:
 [Recording.md](Recording.md)
 
+Generated from SPEC:
+[SPEC.md](SPEC.md)
+
 Primary CodeBTI profile:
 Controlled Multi-Language Maintainer with Review-Gated Integrator traits
 
@@ -37,6 +40,22 @@ Required gates:
 - Run language tests before behavior changes are considered complete.
 - Keep session evidence in `Recording.md` or an archived dated record.
 
+## Cross-Language Contracts
+
+Shared data contracts:
+Python owns API payload validation and TypeScript consumes those contracts through typed client boundaries.
+
+Ownership:
+Backend service contracts are canonical until generated schemas or shared contract artifacts are introduced.
+
+Validation boundaries:
+Validate at API/service and client response boundaries; keep internal feature code lighter.
+
+Failure and recovery:
+Use explicit result values for recoverable user-facing failures across both languages.
+
+## Language Sections
+
 ## Python Style Rules
 
 Default shape:
@@ -58,6 +77,23 @@ Validate API responses at the boundary before passing data into feature code.
 
 Dependencies:
 Use strict lockfile/workspace discipline. Prefer direct feature code until a boundary needs an adapter.
+
+## Conflict and Override Policy
+
+Shared rule:
+Project-level validation and recordkeeping apply to all language changes.
+
+Language override:
+None for this fixture.
+
+Reason:
+Python and TypeScript answers align with shared project defaults.
+
+Affected files or packages:
+Python service layer and TypeScript client packages.
+
+Validation required:
+Repository validation plus language behavior tests.
 
 ## Pattern Guidance
 

@@ -57,7 +57,7 @@ CodeBTI/
 11. Agent 使用 `project/profiles/project-profile-taxonomy.md` 分析项目级答案。
 12. Agent 使用每个语言的 Profile taxonomy 和 `patterns/gof/` 数据库分析语言答案。
 13. Agent 只选择对建议有实质影响的本地模式/资源引用。
-14. Agent 生成请求的指导：`CodeStyle.md`、可选 `ProjectStyle.md`、可选 `SKILL.md`、可选 `SPEC.md` 或更细的规范文件。
+14. Agent 生成请求的指导：单语言 `CodeStyle.md` 使用所选语言模板，多语言 `CodeStyle.md` 使用 `project/templates/MultiLanguageCodeStyle.template.md`，并按需生成可选 `ProjectStyle.md`、可选 `SKILL.md`、可选 `SPEC.md` 或更细规范文件。
 
 验证或讲解工作流时，使用英文 `docs/golden-path.md` 作为操作清单。
 
@@ -177,6 +177,8 @@ Recording.md
 - 审查清单，
 - 未来 Agent 行为说明，
 - 本地模式/资源页面引用。
+
+单语言项目使用该语言的 `templates/CodeStyle.template.md`。多语言项目使用 `project/templates/MultiLanguageCodeStyle.template.md`，以便共享规则、跨语言契约、语言章节和覆盖策略保存在同一份生成物中。
 
 需要时生成：
 

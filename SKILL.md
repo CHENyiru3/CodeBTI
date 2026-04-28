@@ -37,8 +37,8 @@ Use this skill when a user wants to establish consistent coding style, design-pa
     - TypeScript: `typescript/profiles/typescript-profile-taxonomy.md`, `typescript/patterns/gof/`
 13. Select only local pattern/resource references that materially affect the final recommendation.
 14. Generate the requested guidance:
-    - single-language project: use the language `templates/CodeStyle.template.md`;
-    - multi-language project: use shared project rules first, then language-specific sections;
+    - single-language project: use that language's `templates/CodeStyle.template.md`;
+    - multi-language project: use `project/templates/MultiLanguageCodeStyle.template.md` with shared project rules first, then language-specific sections;
     - project-level workflow summary: use `project/templates/ProjectStyle.template.md` when helpful;
     - optional `SKILL.md` or `SPEC.md`: use `shared/templates/SKILL.template.md` and `shared/templates/SPEC.template.md`.
 
@@ -49,6 +49,7 @@ Use this skill when a user wants to establish consistent coding style, design-pa
 | `project/questions/fixed-project.md` | 6 project-wide interview questions |
 | `project/profiles/project-profile-taxonomy.md` | Project-level workflow and governance profiles |
 | `project/templates/ProjectStyle.template.md` | Project-level style and workflow output template |
+| `project/templates/MultiLanguageCodeStyle.template.md` | Multi-language CodeStyle.md output template |
 | `python/questions/fixed-python.md` | 10 fixed Python interview questions |
 | `typescript/questions/fixed-typescript.md` | 10 fixed TypeScript interview questions |
 | `shared/questions/adaptive-question-guide.md` | Rules for 5 adaptive follow-up questions |
@@ -62,6 +63,7 @@ Use this skill when a user wants to establish consistent coding style, design-pa
 
 - Ask exactly one user-facing interview question per turn, including the opening prompt, project questions, language questions, and adaptive follow-ups.
 - Treat the opening prompt as a single SPEC-style intake question. Do not split it into multiple turns unless the user asks to proceed section by section.
+- If the opening answer omits requested SPEC fields, record missing fields under open questions instead of interrupting with multiple clarifications. Use adaptive questions later for the highest-risk gaps.
 - Show user-facing scenarios, instructions, code examples, and choices; keep scoring/signal notes hidden unless the user asks.
 - Save every question card in `Recording.md`, not just the answer.
 - Create or update `SPEC.md` immediately after the opening answer, then revise it after later replanning or feature work.

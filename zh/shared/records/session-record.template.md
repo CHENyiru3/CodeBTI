@@ -50,6 +50,9 @@ TODO
 开放问题：
 TODO
 
+缺失的开场字段：
+TODO：列出用户未回答的 SPEC 字段。后续用适应性问题解决高风险缺口。
+
 初始 SPEC 草稿：
 TODO：`SPEC.md` 路径，或说明为什么没有生成草稿。
 
@@ -171,6 +174,8 @@ Required scored snapshot blocks:
 
 每个所选语言创建一个小节。
 
+对于多语言会话，为每个选定语言复制下面的小节，例如 `Language: Python` 和 `Language: TypeScript`。保持各语言答案分开。不要用一个语言的答案表覆盖另一个语言的答案表。
+
 ### Language: TODO
 
 Source question file:
@@ -191,6 +196,14 @@ TODO
 | Q8 | TODO | TODO | TODO |
 | Q9 | TODO | TODO | TODO |
 | Q10 | TODO | TODO | TODO |
+
+## 语言覆盖决策
+
+记录任何覆盖共享项目规则的语言专属决策。语言遵循共享默认规则时写 `None`。
+
+| Language | Shared project rule | Override | Reason | Validation required |
+| --- | --- | --- | --- | --- |
+| TODO | TODO | TODO | TODO | TODO |
 
 ## 适应性问题答案
 

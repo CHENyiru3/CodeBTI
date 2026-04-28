@@ -57,7 +57,7 @@ The root `SKILL.md` is the installable skill entry point. It routes every CodeBT
 11. The agent analyzes project answers using `project/profiles/project-profile-taxonomy.md`.
 12. The agent analyzes language answers using each language's profile taxonomy and `patterns/gof/` database.
 13. The agent selects specific local pattern/resource references that materially affect the recommendation.
-14. The agent generates the requested guidance: `CodeStyle.md`, optional `ProjectStyle.md`, optional `SKILL.md`, optional `SPEC.md`, or narrower spec files.
+14. The agent generates the requested guidance: single-language `CodeStyle.md` from the selected language template, multi-language `CodeStyle.md` from `project/templates/MultiLanguageCodeStyle.template.md`, optional `ProjectStyle.md`, optional `SKILL.md`, optional `SPEC.md`, or narrower spec files.
 
 Use `docs/golden-path.md` as the operational checklist when validating or teaching the workflow.
 
@@ -177,6 +177,8 @@ A strong `CodeStyle.md` should define:
 - review checklist,
 - instructions for future agent behavior,
 - references to local pattern/resource pages.
+
+For a single-language project, use that language's `templates/CodeStyle.template.md`. For a multi-language project, use `project/templates/MultiLanguageCodeStyle.template.md` so shared rules, cross-language contracts, language sections, and override policy stay in one generated artifact.
 
 When useful, generate:
 

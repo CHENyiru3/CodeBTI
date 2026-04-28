@@ -16,6 +16,8 @@ Create or update `Recording.md` in the target project root using [../shared/reco
 
 Create or update an initial `SPEC.md` draft using [../shared/templates/SPEC.template.md](../shared/templates/SPEC.template.md). Capture what and why: mission, goals, audience, constraints, non-goals, likely tech stack, roadmap intent, and open questions. Leave implementation details to later feature specs unless the user named them as hard constraints.
 
+If the user answers casually and misses one or more SPEC fields, record the missing fields under `Open Questions`. Do not turn the opening into a long clarification interview; reserve the highest-risk gaps for adaptive follow-up questions.
+
 ## 2. Ask Project Questions
 
 Ask the 6 fixed project questions from [../project/questions/fixed-project.md](../project/questions/fixed-project.md).
@@ -77,7 +79,7 @@ Generate only the outputs requested by the user or clearly useful for the projec
 - `SPEC.md`: project requirements,
 - narrower specs such as `API_SPEC.md`, `TESTING_SPEC.md`, or `ARCHITECTURE_SPEC.md`.
 
-For multi-language projects, put shared project rules first, then language-specific sections. Cite only local pattern or profile pages that materially affected the guidance.
+For single-language projects, use that language's `CodeStyle.template.md`. For multi-language projects, use [../project/templates/MultiLanguageCodeStyle.template.md](../project/templates/MultiLanguageCodeStyle.template.md), put shared project rules first, then language-specific sections, and cite only local pattern or profile pages that materially affected the guidance.
 
 ## 7. Validate and Handoff
 

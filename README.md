@@ -26,7 +26,7 @@ For every project, CodeBTI now uses a controlled project-first flow:
 8. The agent rereads `Recording.md` and `SPEC.md` as the source of truth.
 9. The agent infers a project profile from [project/profiles/project-profile-taxonomy.md](project/profiles/project-profile-taxonomy.md) and language profiles from the selected language taxonomies.
 10. The agent selects only pattern/resource references that materially affect the guidance.
-11. The agent generates project guidance using the selected language templates, optional [project/templates/ProjectStyle.template.md](project/templates/ProjectStyle.template.md), and optional shared SKILL/SPEC templates.
+11. The agent generates project guidance using the selected language template for single-language projects, [project/templates/MultiLanguageCodeStyle.template.md](project/templates/MultiLanguageCodeStyle.template.md) for multi-language projects, optional [project/templates/ProjectStyle.template.md](project/templates/ProjectStyle.template.md), and optional shared SKILL/SPEC templates.
 
 For an operational step-by-step version, use the [golden path workflow](docs/golden-path.md).
 
@@ -40,6 +40,7 @@ For multi-language projects, the agent should:
 - Use project-wide answers as the default for Git workflow, validation gates, dependency governance, output shape, and change records.
 - Allow language-specific overrides only when the override is explicit and recorded.
 - Reference the same `shared/` interview resources for all rounds.
+- Use [project/templates/MultiLanguageCodeStyle.template.md](project/templates/MultiLanguageCodeStyle.template.md) only when more than one language pack is selected. Single-language projects keep using their language `CodeStyle.template.md`.
 
 ## Validation
 
@@ -108,6 +109,7 @@ CodeBTI/
 |----------|-------|---------|
 | Project fixed questions | Project-wide | `project/questions/fixed-project.md` |
 | Project profile taxonomy | Project-wide | `project/profiles/project-profile-taxonomy.md` |
+| Multi-language CodeStyle template | Project-wide | `project/templates/MultiLanguageCodeStyle.template.md` |
 | Fixed language questions | Per language | `python/questions/fixed-python.md`, `typescript/questions/fixed-typescript.md` |
 | Pattern pages | Per language | `python/patterns/gof/facade.md`, `typescript/patterns/gof/facade.md` |
 | Language profile taxonomy | Per language | `python/profiles/python-profile-taxonomy.md` |
@@ -147,7 +149,7 @@ The main output is a project-specific `CodeStyle.md`. When useful, the same resu
 - `SPEC.md` for project requirements,
 - narrower specs such as `API_SPEC.md`, `TESTING_SPEC.md`, or `ARCHITECTURE_SPEC.md`.
 
-For multi-language projects, a single `CodeStyle.md` can contain language-specific sections. Cross-cutting concerns apply to all languages unless a language section explicitly overrides them.
+For multi-language projects, generate a single `CodeStyle.md` from [project/templates/MultiLanguageCodeStyle.template.md](project/templates/MultiLanguageCodeStyle.template.md). Cross-cutting concerns apply to all languages unless a language section explicitly overrides them.
 
 The live interview evidence is kept in `Recording.md` during the session. It includes full question cards, answer log, feedback, hidden inference notes, and final evidence review.
 

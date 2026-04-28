@@ -47,6 +47,7 @@ Project-wide interview resources used before language-specific rounds.
 | `project/questions/fixed-project.md` | 6 fixed project questions for collaboration, validation, outputs, shared rules, dependencies, and records. |
 | `project/profiles/README.md` | Project profile inference guide. |
 | `project/profiles/project-profile-taxonomy.md` | Project-level workflow and governance profile families. |
+| `project/templates/MultiLanguageCodeStyle.template.md` | Multi-language CodeStyle.md template with shared rules, language sections, and override policy. |
 | `project/templates/ProjectStyle.template.md` | Project-level workflow and style output template. |
 
 ## Shared Layer (`shared/`)

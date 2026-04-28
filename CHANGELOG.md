@@ -22,6 +22,7 @@ Release-hardening baseline for the project-first CodeBTI workflow.
 - Language templates now expose shared project rules before language-specific guidance.
 - Documentation now treats `Recording.md` as the recoverable source of truth for every session.
 - Opening evidence now captures mission, goals, audience, constraints, stack targets, roadmap intent, non-goals, and open questions at the what/why level.
+- Opening recovery now records missing SPEC fields as open questions, and session records include explicit language override decisions.
 
 ### Validation
 

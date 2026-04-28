@@ -50,6 +50,9 @@ TODO
 Open questions:
 TODO
 
+Missing opening fields:
+TODO: list any requested SPEC fields the user did not answer. Use adaptive questions later for high-risk gaps.
+
 Initial SPEC draft:
 TODO: path to `SPEC.md`, or explain why no draft was generated.
 
@@ -171,6 +174,8 @@ Record all 6 project-wide answers. If the user changes an answer, keep the final
 
 Create one subsection per selected language.
 
+For multi-language sessions, duplicate the subsection below once per selected language, for example `Language: Python` and `Language: TypeScript`. Keep each language's answers separate. Do not overwrite one language's answer table with another language's answers.
+
 ### Language: TODO
 
 Source question file:
@@ -191,6 +196,14 @@ TODO
 | Q8 | TODO | TODO | TODO |
 | Q9 | TODO | TODO | TODO |
 | Q10 | TODO | TODO | TODO |
+
+## Language Override Decisions
+
+Record any language-specific decision that overrides a shared project rule. Leave `None` when a language follows the shared default.
+
+| Language | Shared project rule | Override | Reason | Validation required |
+| --- | --- | --- | --- | --- |
+| TODO | TODO | TODO | TODO | TODO |
 
 ## Adaptive Question Answers
 

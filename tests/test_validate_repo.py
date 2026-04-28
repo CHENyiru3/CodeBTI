@@ -59,6 +59,7 @@ def test_choices_have_matching_hidden_signal_labels() -> None:
 def test_templates_include_required_sections() -> None:
     assert "shared/templates/SKILL.template.md" in validate_repo.REQUIRED_TEMPLATE_SECTIONS
     assert "shared/templates/SPEC.template.md" in validate_repo.REQUIRED_TEMPLATE_SECTIONS
+    assert "project/templates/MultiLanguageCodeStyle.template.md" in validate_repo.REQUIRED_TEMPLATE_SECTIONS
     for path, headings in validate_repo.REQUIRED_TEMPLATE_SECTIONS.items():
         text = read(path)
         for heading in headings:
@@ -103,6 +104,8 @@ def test_opening_prompt_is_spec_style_and_recorded() -> None:
         assert OPENING_PROMPT_SNIPPET in text
         assert "mission, goals, target audience, constraints" in text
         assert "roadmap intent, non-goals, and open questions" in text
+    assert "Missing opening fields:" in record_template
+    assert "record the missing fields under `Open Questions`" in golden_path
 
     for heading in (
         "## Mission",
@@ -121,11 +124,14 @@ def test_multilanguage_fixture_is_complete() -> None:
     recording = read("tests/fixtures/multilang/Recording.md")
     code_style = read("tests/fixtures/multilang/CodeStyle.md")
     spec = read("tests/fixtures/multilang/SPEC.md")
+    multilang_template = read("project/templates/MultiLanguageCodeStyle.template.md")
 
     assert "## Opening SPEC Intake" in recording
+    assert "Missing opening fields" in recording
     assert "[SPEC.md](SPEC.md)" in recording
     assert "Roadmap intent" in recording
     assert "Open questions" in recording
+    assert "## Language Override Decisions" in recording
     for question in [f"P{i}" for i in range(1, 7)]:
         assert question in recording
     for language in ("Python", "TypeScript"):
@@ -137,6 +143,9 @@ def test_multilanguage_fixture_is_complete() -> None:
 
     for heading in (
         "## Shared Project Rules",
+        "## Cross-Language Contracts",
+        "## Language Sections",
+        "## Conflict and Override Policy",
         "## Evidence Summary",
         "## Python Style Rules",
         "## TypeScript Style Rules",
@@ -149,3 +158,11 @@ def test_multilanguage_fixture_is_complete() -> None:
 
     for heading in ("## Mission", "## Goals", "## Tech Stack", "## Roadmap", "## Open Questions"):
         assert heading in spec
+
+    for heading in (
+        "## Shared Project Rules",
+        "## Cross-Language Contracts",
+        "## Language Sections",
+        "## Conflict and Override Policy",
+    ):
+        assert heading in multilang_template

@@ -57,3 +57,4 @@ When updating English source files, check the "Translated" list above and update
 - 2026-04-28: Stabilized the shared layer as translated mirrors of English shared files and added validation coverage for mirror presence.
 - 2026-04-28: Added release-hardening docs and tightened shared/language output templates with matching Chinese mirrors where translated files already exist.
 - 2026-04-28: Updated the opening workflow to a SPEC-style intake and mirrored shared record/SPEC template changes in Chinese.
+- 2026-04-28: Added opening recovery and language override decision fields to English and Chinese session record templates.

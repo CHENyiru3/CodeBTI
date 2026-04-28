@@ -24,7 +24,7 @@ CodeBTI 现在使用更可控的项目优先流程：
 8. Agent 将 `Recording.md` 和 `SPEC.md` 作为事实来源重新阅读。
 9. Agent 根据 [project/profiles/project-profile-taxonomy.md](../project/profiles/project-profile-taxonomy.md) 推断项目 Profile，并根据所选语言 taxonomy 推断语言 Profile。
 10. Agent 只选择对最终指导有实质影响的模式/资源引用。
-11. Agent 使用所选语言模板、可选 [project/templates/ProjectStyle.template.md](../project/templates/ProjectStyle.template.md) 和可选共享 SKILL/SPEC 模板生成项目指导。
+11. Agent 对单语言项目使用所选语言模板，对多语言项目使用 [project/templates/MultiLanguageCodeStyle.template.md](../project/templates/MultiLanguageCodeStyle.template.md)，并按需使用可选 [project/templates/ProjectStyle.template.md](../project/templates/ProjectStyle.template.md) 和共享 SKILL/SPEC 模板生成项目指导。
 
 可执行的逐步流程见英文 [golden path workflow](../docs/golden-path.md)。
 
@@ -38,6 +38,7 @@ CodeBTI 现在使用更可控的项目优先流程：
 - 以项目级答案作为 Git 工作流、验证门禁、依赖治理、输出形态和变更记录的默认规则。
 - 只有在明确记录原因时，才允许语言专属章节覆盖项目级默认规则。
 - 所有轮次都引用同一套 `shared/` 访谈资源。
+- 仅当选择了多个语言包时使用 [project/templates/MultiLanguageCodeStyle.template.md](../project/templates/MultiLanguageCodeStyle.template.md)。单语言项目继续使用该语言的 `CodeStyle.template.md`。
 
 ## 验证
 
@@ -119,6 +120,7 @@ CodeBTI/
 |------|------|------|
 | 项目固定问题 | 项目级 | `project/questions/fixed-project.md` |
 | 项目 Profile 分类体系 | 项目级 | `project/profiles/project-profile-taxonomy.md` |
+| 多语言 CodeStyle 模板 | 项目级 | `project/templates/MultiLanguageCodeStyle.template.md` |
 | 语言固定问题 | 按语言 | `python/questions/fixed-python.md`、`typescript/questions/fixed-typescript.md` |
 | 模式页面 | 按语言 | `python/patterns/gof/facade.md`、`typescript/patterns/gof/facade.md` |
 | Profile 分类体系 | 按语言 | `python/profiles/python-profile-taxonomy.md` |
@@ -158,7 +160,7 @@ CodeBTI/
 - `SPEC.md`：项目需求文档，
 - 更细分的专项规范，如 `API_SPEC.md`、`TESTING_SPEC.md` 或 `ARCHITECTURE_SPEC.md`。
 
-对于多语言项目，单份 `CodeStyle.md` 可以包含语言专属章节。跨语言共同事项适用于所有语言，除非某个语言章节明确覆盖。
+对于多语言项目，使用 [project/templates/MultiLanguageCodeStyle.template.md](../project/templates/MultiLanguageCodeStyle.template.md) 生成单份 `CodeStyle.md`。跨语言共同事项适用于所有语言，除非某个语言章节明确覆盖。
 
 访谈中的实时证据保存在目标项目根目录的 `Recording.md` 中，包含完整题目卡、答案日志、反馈、隐藏推理笔记和最终证据审核。项目可保留原文件，或在输出生成后将其按日期重命名归档。
 
