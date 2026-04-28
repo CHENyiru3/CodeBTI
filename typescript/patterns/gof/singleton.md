@@ -54,7 +54,7 @@ Default to dependency injection or module-level constants. Use Singleton only wh
 
 ## Related Patterns
 
-[Abstract Factory](../abstract-factory.md), [Facade](../facade.md), [State](../state.md).
+[Abstract Factory](abstract-factory.md), [Facade](facade.md), [State](state.md).
 
 ## Source Reference
 

@@ -2,13 +2,14 @@
 
 Profiles summarize the user's CodeBTI answers into practical engineering guidance. A profile is a shorthand for coding preferences, not a judgment of skill or personality.
 
-Use profiles after the 10 fixed questions and 5 adaptive questions are complete.
+Use profiles after the project-wide round, Python fixed questions, and 5 adaptive questions are complete.
 
 ## Inference Inputs
 
 Use these inputs together:
 
 - fixed question answers from [questions/fixed-python.md](../questions/fixed-python.md),
+- project-level answers from [../../project/questions/fixed-project.md](../../project/questions/fixed-project.md),
 - adaptive answers from [../../shared/questions/adaptive-question-guide.md](../../shared/questions/adaptive-question-guide.md),
 - project context,
 - pattern signals from [patterns/](../patterns/README.md),

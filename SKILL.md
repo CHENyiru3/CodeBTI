@@ -1,55 +1,72 @@
 ---
 name: codebti
-description: Run CodeBTI interviews to infer coding style preferences and generate project-specific CodeStyle.md, SKILL.md, or SPEC.md for Python projects.
+description: Run CodeBTI interviews to infer project and language coding-style preferences and generate project-specific CodeStyle.md, SKILL.md, or SPEC.md guidance.
 ---
 
 # CodeBTI Skill
 
-Use this skill when a user wants to establish consistent coding style, design-pattern posture, testing policy, or collaboration workflow for a project. Trigger on: "run a CodeBTI interview", "define our coding style", "create a CodeStyle.md", "generate a SKILL.md", "create a SPEC.md", "what's our project style", or any explicit request to use CodeBTI.
+Use this skill when a user wants to establish consistent coding style, design-pattern posture, testing policy, dependency policy, or collaboration workflow for a project. Trigger on: "run a CodeBTI interview", "define our coding style", "create a CodeStyle.md", "generate a SKILL.md", "create a SPEC.md", "what's our project style", or any explicit request to use CodeBTI.
 
-## Workflow
+## Supported Packs
+
+| Pack | Purpose |
+|------|---------|
+| `project/` | Project-wide decisions: collaboration, output shape, validation gates, shared-vs-language rules, dependency governance, and change records. |
+| `python/` | Python-specific style, typing, error handling, folder structure, tests, comments, Git, and dependencies. |
+| `typescript/` | TypeScript-specific style, typing, interfaces/types, error handling, folder structure, tests, comments, Git, and dependencies. |
+| `shared/` | Language-neutral question format, adaptive question rules, templates, and session record structure. |
+
+## Router Workflow
 
 1. Ask the required opening prompt: "What kind of project do you want to build? Please describe shortly."
-2. Create or update a live `Recording.md` in the target project root using `shared/records/session-record.template.md` as the structure.
-3. Record the opening answer as the project summary. This opening prompt is not a scored fixed question.
-4. For each of the 10 fixed Python questions in `python/questions/fixed-python.md`, save the full user-facing question card in `Recording.md`, ask the question, then record the answer.
-5. After each user answer, update `Recording.md`, give a brief feedback response that reflects what the answer means for the project, then ask the next question.
-6. Ask exactly 5 adaptive follow-up questions using `shared/questions/adaptive-question-guide.md`; for each adaptive question, save the generated full question card before asking it.
-7. After each adaptive answer, update `Recording.md` with the answer, feedback, and hidden inference notes.
-8. After all 15 scored questions are answered, reread `Recording.md` and use it as the source of truth for profile inference.
-9. Infer the Python profile from `python/profiles/python-profile-taxonomy.md` and the pattern database in `python/patterns/gof/`.
-10. Select the local pattern/resource references that ground the final recommendation. Prefer specific files under `python/patterns/gof/` and include only references that affect the guidance.
-11. Generate `CodeStyle.md` from `python/templates/CodeStyle.template.md`, including a References section with local pattern links and one-sentence relevance notes.
-12. Optionally preserve or rename `Recording.md` as the final session record, and optionally distill the result into `SKILL.md` or `SPEC.md` using `shared/templates/SKILL.template.md` and `shared/templates/SPEC.template.md`.
+2. Identify the target language pack or packs from the user's answer. If the language is unclear, ask one concise clarification before starting scored questions.
+3. Create or update a live `Recording.md` in the target project root using `shared/records/session-record.template.md` as the structure.
+4. Record the opening answer as the project summary. This opening prompt is not scored.
+5. Ask the 6 fixed project questions from `project/questions/fixed-project.md`. Save the full user-facing question card in `Recording.md` before each question, then record the answer and feedback.
+6. For each selected language pack, ask that language's fixed questions:
+   - Python: `python/questions/fixed-python.md`
+   - TypeScript: `typescript/questions/fixed-typescript.md`
+7. Record each language answer set under its language target in `Recording.md`.
+8. Ask exactly 5 adaptive follow-up questions total for the whole session using `shared/questions/adaptive-question-guide.md`. The adaptive questions may target project-level ambiguity, one language, or a cross-language conflict.
+9. After all scored questions are answered, reread `Recording.md` and use it as the source of truth for profile inference.
+10. Infer the project-level profile from `project/profiles/project-profile-taxonomy.md`.
+11. Infer each language profile from its language taxonomy and pattern database:
+    - Python: `python/profiles/python-profile-taxonomy.md`, `python/patterns/gof/`
+    - TypeScript: `typescript/profiles/typescript-profile-taxonomy.md`, `typescript/patterns/gof/`
+12. Select only local pattern/resource references that materially affect the final recommendation.
+13. Generate the requested guidance:
+    - single-language project: use the language `templates/CodeStyle.template.md`;
+    - multi-language project: use shared project rules first, then language-specific sections;
+    - project-level workflow summary: use `project/templates/ProjectStyle.template.md` when helpful;
+    - optional `SKILL.md` or `SPEC.md`: use `shared/templates/SKILL.template.md` and `shared/templates/SPEC.template.md`.
 
 ## Reference Material
 
 | File | Purpose |
 |------|---------|
-| `python/questions/fixed-python.md` | 10 fixed interview questions with Python code examples |
-| `typescript/questions/fixed-typescript.md` | 10 fixed interview questions with TypeScript code examples |
-| `shared/questions/adaptive-question-guide.md` | Rules for 5 follow-up questions (shared across languages) |
-| `shared/questions/editorial-guide.md` | Editorial rules for questions (shared across languages) |
-| `shared/records/session-record.template.md` | Session recording template (shared) |
-| `shared/templates/SKILL.template.md` | SKILL.md output template (shared) |
-| `shared/templates/SPEC.template.md` | SPEC.md output template (shared) |
-| `python/profiles/python-profile-taxonomy.md` | Python profile inference rules |
-| `python/patterns/gof/` | 22 Python design-pattern pages (GoF + extras) |
-| `typescript/patterns/gof/` | 23 TypeScript design-pattern pages (GoF) |
-| `typescript/profiles/typescript-profile-taxonomy.md` | TypeScript profile inference rules |
-| `python/templates/CodeStyle.template.md` | CodeStyle.md output template (Python-specific sections) |
+| `project/questions/fixed-project.md` | 6 project-wide interview questions |
+| `project/profiles/project-profile-taxonomy.md` | Project-level workflow and governance profiles |
+| `project/templates/ProjectStyle.template.md` | Project-level style and workflow output template |
+| `python/questions/fixed-python.md` | 10 fixed Python interview questions |
+| `typescript/questions/fixed-typescript.md` | 10 fixed TypeScript interview questions |
+| `shared/questions/adaptive-question-guide.md` | Rules for 5 adaptive follow-up questions |
+| `shared/questions/editorial-guide.md` | Editorial rules for questions |
+| `shared/questions/question-format.md` | Standard question card format |
+| `shared/records/session-record.template.md` | Multi-round session recording template |
+| `shared/templates/SKILL.template.md` | SKILL.md output template |
+| `shared/templates/SPEC.template.md` | SPEC.md output template |
 
 ## Agent Rules
 
-- Ask exactly one user-facing interview question per turn, including the opening prompt, fixed questions, and adaptive follow-up questions.
+- Ask exactly one user-facing interview question per turn, including the opening prompt, project questions, language questions, and adaptive follow-ups.
 - Show user-facing scenarios, instructions, code examples, and choices; keep scoring/signal notes hidden unless the user asks.
-- Save every question card in `Recording.md`, not just the answer. A recoverable record includes the title, dimension, scenario, instruction, code example, choices, source path, user answer, feedback, and hidden inference notes.
-- After receiving each answer, respond with one or two sentences of project-specific feedback before the next question. Good feedback names the implication, such as "That points this project toward lightweight objects without strict type ceremony." Do not reveal hidden scoring tables.
-- Maintain `Recording.md` throughout the interview so answer history survives context loss. Update it after every answer before asking the next question.
-- At the end, reread `Recording.md` before generating `CodeStyle.md`, `SKILL.md`, or `SPEC.md`.
-- Ground final reports with references to relevant local pattern pages, for example `python/patterns/gof/facade.md`, plus useful resource links when a framework or library choice shaped the guidance.
-- In final reports, every cited pattern should explain whether it is encouraged, allowed with caution, or avoided for this project.
-- Allow the user to revise earlier answers at any time.
-- Do not mix typing styles, error policies, or naming conventions inconsistently in generated output.
+- Save every question card in `Recording.md`, not just the answer.
+- After receiving each answer, update `Recording.md`, give one or two sentences of project-specific feedback, then ask the next question.
+- Keep project-wide answers separate from language-specific answers.
+- For multi-language projects, shared project rules govern Git workflow, dependency governance, validation gates, output shape, and change records unless a language section explicitly overrides them.
+- At the end, reread `Recording.md` before generating `CodeStyle.md`, `ProjectStyle.md`, `SKILL.md`, or `SPEC.md`.
+- Ground final reports with relevant local pattern pages and profile references. Every cited pattern should explain whether it is encouraged, allowed with caution, or avoided for this project.
+- Allow the user to revise earlier answers at any time and record answer changes.
+- Do not mix typing styles, error policies, naming conventions, or validation expectations inconsistently in generated output.
 - Preserve session records as evidence for generated recommendations.
-- Prefer markdown output over scripts or tooling unless the user explicitly requests it.
+- Prefer Markdown output over scripts or tooling unless the user explicitly requests tooling.

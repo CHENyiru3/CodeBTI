@@ -1,18 +1,17 @@
 # CodeBTI 访谈框架
 
-本文件夹定义 CodeBTI 访谈系统。访谈帮助 Agent 将用户的项目目标和编码偏好转换为一个项目专属的 `CodeStyle.md`、`SKILL.md` 或 `SPEC.md`。
+本文件夹定义了 TypeScript 专属 CodeBTI 访谈轮次。该语言轮次在项目级轮次完成后，帮助 Agent 将 TypeScript 编码偏好转化为项目专属指导。
 
 ## 访谈流程
 
-1. 询问必选开场语："您想构建什么类型的项目？请简要描述。"
-2. 使用 [../../shared/records/session-record.template.md](../../shared/records/session-record.template.md) 创建或更新一份实时的 `Recording.md`。
-3. 每个问题之前，将完整的题目卡保存到 `Recording.md`。
-4. 从 [fixed-typescript.md](fixed-typescript.md) 提出 10 个固定 TypeScript 问题。
-5. 每次回答后，记录答案并给出简短的项目反馈。
-6. 使用 [../../shared/questions/adaptive-question-guide.md](../../shared/questions/adaptive-question-guide.md) 提出恰好 5 个适应性后续追问。
-7. 重新阅读 `Recording.md`，推断风格维度和模式倾向，然后生成项目专属的 `CodeStyle.md`。
+1. 先完成 [../../../project/questions/fixed-project.md](../../../project/questions/fixed-project.md) 中的项目级轮次。
+2. 每个 TypeScript 问题之前，将完整题目卡保存到 `Recording.md`。
+3. 从 [fixed-typescript.md](fixed-typescript.md) 提出 10 个固定 TypeScript 问题。
+4. 每次回答后，将答案记录在 `Language:TypeScript` 下，并给出简短项目反馈。
+5. 使用 [../../shared/questions/adaptive-question-guide.md](../../shared/questions/adaptive-question-guide.md) 在整个会话中总共提出恰好 5 个适应性后续追问。
+6. 重新阅读 `Recording.md`，推断 TypeScript 风格维度和模式倾向，然后在 `CodeStyle.md` 中生成 TypeScript 专属指导。
 
-开场项目描述提示是访谈前的上下文。将其记录为会话的 `项目摘要`；不计入 10 个固定问题。
+开场项目描述提示和项目级问题不属于此语言轮次。TypeScript 答案应与项目级答案及其他语言答案分开记录。
 
 每轮只问一个用户面对的访谈问题。这适用于开场语、每个固定问题和每个适应性追问。
 
@@ -32,7 +31,7 @@
 
 使用 [../../shared/questions/question-format.md](../../shared/questions/question-format.md) 了解所需的卡片结构。
 使用 [../../shared/questions/editorial-guide.md](../../shared/questions/editorial-guide.md) 将草稿问题改写为最终形式。
-使用 [../../records/README.md](../../records/README.md) 了解记录指导。
+使用 [../records/README.md](../records/README.md) 了解记录指导。
 
 ## 评分原则
 

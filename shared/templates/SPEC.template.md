@@ -1,57 +1,80 @@
 # Spec Title
 
 Project:
-TODO
+TODO: project name or short identifier.
 
 Source CodeBTI session:
-TODO
+TODO: path to `Recording.md` or archived record.
+
+Project profile:
+TODO: project profile and secondary traits.
+
+Language profile(s):
+TODO: selected language profile(s) that affect implementation.
+
+Evidence rule:
+Every requirement below must be traceable to the session record or listed under `Open Questions`.
 
 ## Summary
 
-TODO
+TODO: concise statement of the requested capability and why it matters.
 
 ## Requirements
 
-- TODO
+- TODO: requirement stated as observable behavior.
+
+## Shared Project Rules
+
+Output shape:
+TODO: generated files, expected specs, and where shared guidance belongs.
+
+Validation gate:
+TODO: commands or manual checks required before completion.
+
+Dependency governance:
+TODO: rules for adding, changing, or avoiding dependencies.
+
+Recordkeeping:
+TODO: required notes, changelog entries, or session evidence.
 
 ## Architecture Rules
 
 Default structure:
-TODO
+TODO: modules, layers, services, or package boundaries.
 
 Allowed abstractions:
-TODO
+TODO: abstractions that are justified by the session evidence.
 
 Disallowed patterns or styles:
-TODO
+TODO: patterns or structures future agents should avoid.
 
 ## Interfaces and Data
 
 Public APIs:
-TODO
+TODO: functions, commands, endpoints, components, or documents exposed to users or other modules.
 
 Data models:
-TODO
+TODO: records, schemas, DTOs, classes, or plain structures.
 
 Validation boundaries:
-TODO
+TODO: where input is checked, normalized, rejected, or trusted.
 
 ## Error Handling
 
-TODO
+TODO: expected failure behavior, reporting, retries, fallbacks, and logging.
 
 ## Testing
 
 Required scenarios:
-TODO
+TODO: tests or scenarios that must pass.
 
 Acceptance checks:
-TODO
+TODO: user-visible or agent-verifiable completion criteria.
 
 ## Agent Implementation Notes
 
-- TODO
+- TODO: concrete guidance for future implementing agents.
 
 ## Open Questions
 
-- TODO
+- TODO: unresolved decision that needs user input or implementation discovery.

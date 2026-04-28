@@ -1,6 +1,6 @@
 # Shared Architecture
 
-This folder contains language-neutral parts of the CodeBTI interview system. They are shared across all language packs so that interview flow, editorial guidelines, and output structure remain consistent while question content and pattern examples remain language-specific.
+This folder contains language-neutral parts of the CodeBTI interview system. They are shared across all packs so interview mechanics, editorial guidelines, and output structure remain consistent while project and language packs own their content.
 
 ## What Is Shared
 
@@ -9,54 +9,68 @@ This folder contains language-neutral parts of the CodeBTI interview system. The
 | `adaptive-question-guide.md` | Rules for selecting and asking 5 follow-up questions. Language-neutral. |
 | `editorial-guide.md` | Question-writing rules. Language-neutral. |
 | `question-format.md` | Standard card structure for every question. Language-neutral. |
-| `shared-architecture.md` | This file — explains the multi-language design. |
+| `shared-architecture.md` | This file explains the project/language pack design. |
 
 Shared templates and records are in `../templates/` and `../records/`.
 
-## Multi-Language Interview Model
+## Pack Model
 
-### Language-specific files
+### Project pack
+
+The `project/` pack owns cross-cutting interview content:
+
+- `project/questions/fixed-project.md` — project-wide questions.
+- `project/profiles/project-profile-taxonomy.md` — workflow and governance profile families.
+- `project/templates/ProjectStyle.template.md` — project-level output template.
+
+Project-wide answers control collaboration, validation gates, output shape, dependency governance, change records, and shared-vs-language boundaries.
+
+### Language packs
 
 Each language pack owns:
 
-- **`questions/fixed-<lang>.md`** — 10 fixed interview questions with code examples in that language. This is the core language-specific artifact.
-- **`patterns/<lang>/`** — design pattern pages adapted for that language ecosystem.
-- **`profiles/<lang>-profile-taxonomy.md`** — profile families for that language.
-- **`templates/CodeStyle.template.md`** — output template with language-specific sections (e.g., `interface` vs `type` for TypeScript, `dataclass` vs `pydantic` for Python).
+- `questions/fixed-<lang>.md` — fixed interview questions with examples in that language.
+- `patterns/gof/` — design pattern pages adapted for that language ecosystem.
+- `profiles/<lang>-profile-taxonomy.md` — profile families for that language.
+- `templates/CodeStyle.template.md` — output template with language-specific sections.
 
 ### Shared files
 
-All language packs share:
+All packs share:
 
 - `shared/questions/` — interview flow rules, question structure, editorial guidelines.
-- `shared/templates/` — SKILL and SPEC output templates (language-neutral).
+- `shared/templates/` — SKILL and SPEC output templates.
 - `shared/records/` — session recording template.
 
-### How the interview flows
+## How the Interview Flows
 
-1. Opening prompt (language-neutral).
-2. 10 fixed questions from the language's `questions/fixed-<lang>.md`.
-3. 5 adaptive follow-up questions — rules from `shared/questions/adaptive-question-guide.md`, content shaped by the fixed answers.
-4. Profile inference using `profiles/<lang>-profile-taxonomy.md` and `patterns/<lang>/`.
-5. Output generation using `templates/CodeStyle.template.md` and `shared/templates/SKILL.template.md` / `shared/templates/SPEC.template.md`.
+1. Opening prompt.
+2. Fixed project questions from `project/questions/fixed-project.md`.
+3. Fixed language questions from each selected language pack.
+4. Exactly 5 adaptive follow-up questions using `shared/questions/adaptive-question-guide.md`.
+5. Project profile inference using `project/profiles/project-profile-taxonomy.md`.
+6. Language profile inference using each language's profile taxonomy and `patterns/gof/` pages.
+7. Output generation using the relevant language `CodeStyle.template.md`, optional `project/templates/ProjectStyle.template.md`, and optional shared SKILL/SPEC templates.
 
-### Why this separation matters
+## Why This Separation Matters
 
-- Question content (scenarios, code examples, language idioms) is language-specific and must be maintained per language pack.
-- Interview mechanics (one question per turn, full card in recording, feedback after each answer) stay consistent across languages so agents behave the same way.
-- Output templates can be shared because `SKILL.md` and `SPEC.md` are language-neutral documents — the language-specific guidance goes into `CodeStyle.md`.
+- Project process decisions are asked once and reused across languages.
+- Question content, code examples, and language idioms stay language-specific.
+- Interview mechanics stay consistent, so agents behave the same way across packs.
+- Shared templates avoid duplicated SKILL/SPEC structure while language packs keep their own CodeStyle details.
 
-### Adding a new language pack
+## Adding a New Language Pack
 
-1. Create `<lang>/questions/fixed-<lang>.md` with 10 language-specific questions.
-2. Create `<lang>/patterns/<lang>/` with pattern pages in that language.
+1. Create `<lang>/questions/fixed-<lang>.md` with fixed language-specific questions.
+2. Create `<lang>/patterns/gof/` with pattern pages in that language.
 3. Create `<lang>/profiles/<lang>-profile-taxonomy.md`.
 4. Create `<lang>/templates/CodeStyle.template.md` with language-specific output sections.
-5. Copy `templates/SKILL.template.md` and `templates/SPEC.template.md` from `shared/templates/` (or reference them).
-6. The shared files in `shared/questions/` and `shared/records/` work out of the box.
+5. Reference `shared/` for adaptive guide, editorial rules, session record, and SKILL/SPEC templates. Do not copy shared files into the language pack.
+6. Update `README.md`, `AGENT.md`, and `MANIFEST.md`.
+7. Run `python3 scripts/validate_repo.py`.
 
 ## Agent Rules for Shared Files
 
-- Never modify `shared/questions/`, `shared/templates/`, or `shared/records/` in a language-specific way.
-- If a language pack needs to deviate from shared rules, raise the conflict in an issue rather than forking shared content.
-- When referencing shared files from within a language pack, use relative paths (e.g., `../../shared/questions/question-format.md`).
+- Never modify `shared/questions/`, `shared/templates/`, or `shared/records/` in a project- or language-specific way.
+- If a pack needs to deviate from shared rules, document the conflict in that pack rather than forking shared content.
+- When referencing shared files from within a pack, use relative paths such as `../../shared/questions/question-format.md`.

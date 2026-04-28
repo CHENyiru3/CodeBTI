@@ -44,7 +44,7 @@ class UKTaxiCalculatorLibraryAdapter implements TaxiCalculator {
 
 ## CodeBTI 信号
 
-用户接受显式的边界包装，可能更重视可测试性而非便利性。这与 [Facade](../facade.md) 结合使用非常适合复杂子系统集成。
+用户接受显式的边界包装，可能更重视可测试性而非便利性。这与 [Facade](facade.md) 结合使用非常适合复杂子系统集成。
 
 ## Agent 指导
 
@@ -52,7 +52,7 @@ class UKTaxiCalculatorLibraryAdapter implements TaxiCalculator {
 
 ## 相关模式
 
-[Facade](../facade.md), [Strategy](../strategy.md), [Proxy](../proxy.md).
+[Facade](facade.md), [Strategy](strategy.md), [Proxy](proxy.md).
 
 ## 来源引用
 

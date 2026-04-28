@@ -62,7 +62,7 @@ Use Composite for tree-like data structures. Keep the component interface minima
 
 ## Related Patterns
 
-[Decorator](../decorator.md), [Iterator](../iterator.md), [Visitor](../visitor.md) (often used together).
+[Decorator](decorator.md), [Iterator](iterator.md), [Visitor](visitor.md) (often used together).
 
 ## Source Reference
 

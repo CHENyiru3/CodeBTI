@@ -52,7 +52,7 @@ Use Factory Method for creation that genuinely needs to be overridden by subclas
 
 ## Related Patterns
 
-[Abstract Factory](../abstract-factory.md), [Builder](../builder.md), [Prototype](../prototype.md).
+[Abstract Factory](abstract-factory.md), [Builder](builder.md), [Prototype](prototype.md).
 
 ## Source Reference
 

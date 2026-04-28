@@ -1,57 +1,80 @@
-# Spec Title
+# Spec 标题
 
-Project:
-TODO
+项目：
+TODO：项目名称或简短标识。
 
-Source CodeBTI session:
-TODO
+来源 CodeBTI 会话：
+TODO：`Recording.md` 或归档记录路径。
 
-## Summary
+项目 Profile：
+TODO：项目 Profile 和次要特征。
 
-TODO
+语言 Profile：
+TODO：影响实现的选定语言 Profile。
 
-## Requirements
+证据规则：
+以下每条需求都必须能追溯到会话记录；证据不足的内容写入 `开放问题`。
 
-- TODO
+## 摘要
 
-## Architecture Rules
+TODO：简要说明请求的能力以及它为什么重要。
 
-Default structure:
-TODO
+## 需求
 
-Allowed abstractions:
-TODO
+- TODO：以可观察行为描述需求。
 
-Disallowed patterns or styles:
-TODO
+## 共享项目规则
 
-## Interfaces and Data
+输出形态：
+TODO：生成文件、预期 spec，以及共享指导应放在哪里。
 
-Public APIs:
-TODO
+验证门禁：
+TODO：完成前必需的命令或手动检查。
 
-Data models:
-TODO
+依赖治理：
+TODO：新增、变更或避免依赖的规则。
 
-Validation boundaries:
-TODO
+记录要求：
+TODO：必需的说明、changelog 条目或会话证据。
 
-## Error Handling
+## 架构规则
 
-TODO
+默认结构：
+TODO：模块、层、服务或包边界。
 
-## Testing
+允许的抽象：
+TODO：由会话证据支持的抽象。
 
-Required scenarios:
-TODO
+禁止的模式或风格：
+TODO：未来 Agent 应避免的模式或结构。
 
-Acceptance checks:
-TODO
+## 接口和数据
 
-## Agent Implementation Notes
+公共 API：
+TODO：暴露给用户或其他模块的函数、命令、端点、组件或文档。
 
-- TODO
+数据模型：
+TODO：记录、schema、DTO、类或普通结构。
 
-## Open Questions
+验证边界：
+TODO：输入在哪里被检查、归一化、拒绝或信任。
 
-- TODO
+## 错误处理
+
+TODO：预期失败行为、报告、重试、降级和日志。
+
+## 测试
+
+必需场景：
+TODO：必须通过的测试或场景。
+
+验收检查：
+TODO：用户可见或 Agent 可验证的完成标准。
+
+## Agent 实现说明
+
+- TODO：给未来实现 Agent 的具体指导。
+
+## 开放问题
+
+- TODO：需要用户输入或实现发现的未决决策。

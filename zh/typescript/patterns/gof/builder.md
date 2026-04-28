@@ -47,7 +47,7 @@ TypeScript 的 `class` 配合 fluent 方法链是惯用写法。使用 `Partial<
 
 ## CodeBTI 信号
 
-用户偏好逐步构建，可能有复杂的领域对象。当构建有多个阶段时，这与 [Factory Method](../factory-method.md) 配合使用效果良好。
+用户偏好逐步构建，可能有复杂的领域对象。当构建有多个阶段时，这与 [Factory Method](factory-method.md) 配合使用效果良好。
 
 ## Agent 指导
 
@@ -55,7 +55,7 @@ TypeScript 的 `class` 配合 fluent 方法链是惯用写法。使用 `Partial<
 
 ## 相关模式
 
-[Factory Method](../factory-method.md), [Abstract Factory](../abstract-factory.md), [Composite](../composite.md)（有时一起用于递归结构）。
+[Factory Method](factory-method.md), [Abstract Factory](abstract-factory.md), [Composite](composite.md)（有时一起用于递归结构）。
 
 ## 来源引用
 

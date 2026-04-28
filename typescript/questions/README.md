@@ -1,18 +1,17 @@
 # CodeBTI Question Framework
 
-This folder defines the CodeBTI interview system. The interview helps an agent convert a user's project goals and coding preferences into a project-specific `CodeStyle.md`, `SKILL.md`, or `SPEC.md`.
+This folder defines the TypeScript-specific CodeBTI interview round. The language round helps an agent convert TypeScript coding preferences into project-specific guidance after the project-wide round is complete.
 
 ## Interview Flow
 
-1. Ask the required opening prompt: "What kind of project do you want to build? Please describe shortly."
-2. Create or update a live `Recording.md` using [../../shared/records/session-record.template.md](../../shared/records/session-record.template.md).
-3. Before asking each question, save the full question card in `Recording.md`.
-4. Ask the 10 fixed TypeScript questions from [fixed-typescript.md](fixed-typescript.md).
-5. After each answer, record the answer and give brief project-specific feedback.
-6. Ask exactly 5 adaptive follow-up questions using [../../shared/questions/adaptive-question-guide.md](../../shared/questions/adaptive-question-guide.md).
-7. Reread `Recording.md`, infer style dimensions and pattern tendencies, then generate a project-specific `CodeStyle.md`.
+1. Start with the project-wide round in [../../project/questions/fixed-project.md](../../project/questions/fixed-project.md).
+2. Before asking each TypeScript question, save the full question card in `Recording.md`.
+3. Ask the 10 fixed TypeScript questions from [fixed-typescript.md](fixed-typescript.md).
+4. After each answer, record the answer under `Language:TypeScript` and give brief project-specific feedback.
+5. Ask exactly 5 adaptive follow-up questions total for the whole session using [../../shared/questions/adaptive-question-guide.md](../../shared/questions/adaptive-question-guide.md).
+6. Reread `Recording.md`, infer TypeScript style dimensions and pattern tendencies, then generate TypeScript-specific guidance inside `CodeStyle.md`.
 
-The opening project-description prompt is pre-interview context. Record it as the session `Project Summary`; do not count it as one of the 10 fixed questions.
+The opening project-description prompt and project-wide questions are outside this language round. Record TypeScript answers separately from project-wide answers and other language answers.
 
 Ask exactly one user-facing interview question per turn. This applies to the opening prompt, each fixed question, and each adaptive follow-up question.
 
@@ -32,7 +31,7 @@ Good questions:
 
 Use [../../shared/questions/question-format.md](../../shared/questions/question-format.md) for the required card structure.
 Use [../../shared/questions/editorial-guide.md](../../shared/questions/editorial-guide.md) when rewriting draft questions into final form.
-Use [../../records/README.md](../../records/README.md) for recording guidance.
+Use [../records/README.md](../records/README.md) for recording guidance.
 
 ## Scoring Principle
 

@@ -60,7 +60,7 @@ Prefer functional composition (wrapping functions) or class composition over exp
 
 ## Related Patterns
 
-[Chain of Responsibility](../chain-of-responsibility.md) (similar structure, different intent), [Strategy](../strategy.md), [Proxy](../proxy.md).
+[Chain of Responsibility](chain-of-responsibility.md) (similar structure, different intent), [Strategy](strategy.md), [Proxy](proxy.md).
 
 ## Source Reference
 

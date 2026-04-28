@@ -44,7 +44,7 @@ class UKTaxiCalculatorLibraryAdapter implements TaxiCalculator {
 
 ## CodeBTI Signals
 
-The user accepts explicit boundary wrapping and likely values testability over convenience. This pairs well with [Facade](../facade.md) for complex subsystem integration.
+The user accepts explicit boundary wrapping and likely values testability over convenience. This pairs well with [Facade](facade.md) for complex subsystem integration.
 
 ## Agent Guidance
 
@@ -52,7 +52,7 @@ Default to explicit interfaces at system boundaries. Use Adapter to wrap incompa
 
 ## Related Patterns
 
-[Facade](../facade.md), [Strategy](../strategy.md), [Proxy](../proxy.md).
+[Facade](facade.md), [Strategy](strategy.md), [Proxy](proxy.md).
 
 ## Source Reference
 

@@ -60,7 +60,7 @@ const component = new ConcreteDecoratorB(new ConcreteDecoratorA(new ConcreteComp
 
 ## 相关模式
 
-[Chain of Responsibility](../chain-of-responsibility.md)（结构相似，目的不同）, [Strategy](../strategy.md), [Proxy](../proxy.md).
+[Chain of Responsibility](chain-of-responsibility.md)（结构相似，目的不同）, [Strategy](strategy.md), [Proxy](proxy.md).
 
 ## 来源引用
 

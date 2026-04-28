@@ -61,7 +61,7 @@ class HtmlInvoiceFormatter extends InvoiceFormatter {
 
 ## 相关模式
 
-[Strategy](../strategy.md)（Strategy 重写整个算法，Template Method 只重写步骤）、[Factory Method](../factory-method.md)（常从模板方法中调用）。
+[Strategy](strategy.md)（Strategy 重写整个算法，Template Method 只重写步骤）、[Factory Method](factory-method.md)（常从模板方法中调用）。
 
 ## 来源引用
 

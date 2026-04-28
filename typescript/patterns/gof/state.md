@@ -65,7 +65,7 @@ Use State for complex state-dependent behavior. Keep state transitions explicit 
 
 ## Related Patterns
 
-[Flyweight](../flyweight.md) (shared intrinsic state), [Singleton](../singleton.md) (often used for shared state contexts), [Strategy](../strategy.md) (similar structure, different intent).
+[Flyweight](flyweight.md) (shared intrinsic state), [Singleton](singleton.md) (often used for shared state contexts), [Strategy](strategy.md) (similar structure, different intent).
 
 ## Source Reference
 

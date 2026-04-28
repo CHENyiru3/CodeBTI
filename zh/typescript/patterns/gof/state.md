@@ -65,7 +65,7 @@ class ConcreteStateB implements State {
 
 ## 相关模式
 
-[Flyweight](../flyweight.md)（共享内部状态）、[Singleton](../singleton.md)（常用于共享状态上下文）、[Strategy](../strategy.md)（结构相似，意图不同）。
+[Flyweight](flyweight.md)（共享内部状态）、[Singleton](singleton.md)（常用于共享状态上下文）、[Strategy](strategy.md)（结构相似，意图不同）。
 
 ## 来源引用
 

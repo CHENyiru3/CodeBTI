@@ -57,7 +57,7 @@ Use Prototype for cloning objects with complex initialization. Prefer `clone(): 
 
 ## Related Patterns
 
-[Abstract Factory](../abstract-factory.md) (can use Prototype for cloning), [Composite](../composite.md) (often cloned recursively), [Decorator](../decorator.md).
+[Abstract Factory](abstract-factory.md) (can use Prototype for cloning), [Composite](composite.md) (often cloned recursively), [Decorator](decorator.md).
 
 ## Source Reference
 

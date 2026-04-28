@@ -53,7 +53,7 @@ Use Command when the project needs explicit workflow steps, undo/redo, or action
 
 ## Related Patterns
 
-[Chain of Responsibility](../chain-of-responsibility.md), [Memento](../memento.md), [Strategy](../strategy.md).
+[Chain of Responsibility](chain-of-responsibility.md), [Memento](memento.md), [Strategy](strategy.md).
 
 ## Source Reference
 

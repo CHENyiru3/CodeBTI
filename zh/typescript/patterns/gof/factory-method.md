@@ -52,7 +52,7 @@ class ConcreteProduct1 implements Product {
 
 ## 相关模式
 
-[Abstract Factory](../abstract-factory.md)、[Builder](../builder.md)、[Prototype](../prototype.md)。
+[Abstract Factory](abstract-factory.md)、[Builder](builder.md)、[Prototype](prototype.md)。
 
 ## 来源引用
 

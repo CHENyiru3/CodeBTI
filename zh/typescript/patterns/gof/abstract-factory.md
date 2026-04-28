@@ -40,7 +40,7 @@ class ProdFactory implements EnvironmentFactory {
 
 ## CodeBTI 信号
 
-用户倾向于可切换的基础设施实现，可能正在构建多环境应用程序。这表明偏好在整个依赖图中使用类似 [Strategy](../strategy.md) 的灵活性。
+用户倾向于可切换的基础设施实现，可能正在构建多环境应用程序。这表明偏好在整个依赖图中使用类似 [Strategy](strategy.md) 的灵活性。
 
 ## Agent 指导
 
@@ -48,7 +48,7 @@ class ProdFactory implements EnvironmentFactory {
 
 ## 相关模式
 
-[Factory Method](../factory-method.md), [Strategy](../strategy.md), [Facade](../facade.md).
+[Factory Method](factory-method.md), [Strategy](strategy.md), [Facade](facade.md).
 
 ## 来源引用
 

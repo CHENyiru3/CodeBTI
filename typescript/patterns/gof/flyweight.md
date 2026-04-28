@@ -61,7 +61,7 @@ Use Flyweight for rendering, simulation, or document-processing systems with man
 
 ## Related Patterns
 
-[Composite](../composite.md) (can use flyweight for child nodes), [State](../state.md), [Strategy](../strategy.md).
+[Composite](composite.md) (can use flyweight for child nodes), [State](state.md), [Strategy](strategy.md).
 
 ## Source Reference
 

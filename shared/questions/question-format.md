@@ -5,6 +5,12 @@ Use this format for fixed and adaptive CodeBTI questions.
 ````md
 ## QN. Placeholder Title
 
+Question ID:
+Stable identifier such as `project.validation.gate`, `python.error.policy`, or `typescript.type.boundary`.
+
+Scope:
+Project, Language:<name>, or Cross-language.
+
 Dimension:
 The primary CodeBTI dimension this question probes.
 
@@ -15,8 +21,8 @@ User-facing instruction:
 Choose the style you would most naturally want to maintain. You can revise earlier answers at any time.
 
 Code example:
-```python
-# Optional. Keep this short and focused.
+```text
+Optional. Use the target language when code makes the tradeoff easier to judge.
 ```
 
 Choices:
@@ -40,17 +46,18 @@ How the answer should affect generated project guidance.
 
 ## Code Example Rules
 
-- Use Python in the initial version.
+- Use the target language for language-specific questions.
+- Use text examples or file-tree examples for project-level process questions.
 - Keep snippets small enough to compare quickly.
 - Show the same problem solved in different styles when possible.
-- Prefer real project situations: configuration, data loading, validation, services, commands, plugins, tests, and error handling.
+- Prefer real project situations: configuration, data loading, validation, services, commands, plugins, tests, workflows, outputs, dependencies, and error handling.
 - Avoid examples that require external libraries unless the question is about dependency tolerance.
 - Do not make one choice obviously wrong.
 - Do not ask users to identify a named design pattern.
 
 ## Choice Rules
 
-- Use 2-4 choices.
+- Use 2-5 choices.
 - Make every choice plausible for some project.
 - Describe what the user would maintain, not what is academically "correct".
 - Keep labels neutral and concrete.
@@ -61,7 +68,7 @@ How the answer should affect generated project guidance.
 ## Recording Rules
 
 - Before asking a question, save the full user-facing card in `Recording.md`.
-- Record the title, dimension, scenario, instruction, code example if present, choices, and source path.
+- Record the title, question ID if present, scope, dimension, scenario, instruction, code example if present, choices, and source path.
 - For adaptive questions, record the generated question text exactly enough that another agent can understand what the user answered without chat history.
 - After the answer, record the selected choice, user note, feedback given, and hidden inference notes.
 
@@ -69,6 +76,12 @@ How the answer should affect generated project guidance.
 
 Score answers on style dimensions before pattern names. Useful dimensions include:
 
+- project control model,
+- output shape,
+- validation gate,
+- shared-vs-language boundary,
+- dependency governance,
+- change record policy,
 - abstraction depth,
 - typing posture,
 - data modeling preference,

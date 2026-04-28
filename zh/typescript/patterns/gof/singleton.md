@@ -54,7 +54,7 @@ console.assert(s1 === s2); // true
 
 ## 相关模式
 
-[Abstract Factory](../abstract-factory.md)、[Facade](../facade.md)、[State](../state.md)。
+[Abstract Factory](abstract-factory.md)、[Facade](facade.md)、[State](state.md)。
 
 ## 来源引用
 

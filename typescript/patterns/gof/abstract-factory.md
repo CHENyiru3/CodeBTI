@@ -40,7 +40,7 @@ class ProdFactory implements EnvironmentFactory {
 
 ## CodeBTI Signals
 
-The user prefers swappable infrastructure implementations and may be building multi-environment applications. This suggests a preference for [Strategy](../strategy.md)-like flexibility across the whole dependency graph.
+The user prefers swappable infrastructure implementations and may be building multi-environment applications. This suggests a preference for [Strategy](strategy.md)-like flexibility across the whole dependency graph.
 
 ## Agent Guidance
 
@@ -48,7 +48,7 @@ Default to dependency injection with explicit interfaces. Use Abstract Factory w
 
 ## Related Patterns
 
-[Factory Method](../factory-method.md), [Strategy](../strategy.md), [Facade](../facade.md).
+[Factory Method](factory-method.md), [Strategy](strategy.md), [Facade](facade.md).
 
 ## Source Reference
 

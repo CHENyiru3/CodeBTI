@@ -61,7 +61,7 @@ ctx.doSomeBusinessLogic();
 
 ## 相关模式
 
-[Bridge](../bridge.md)（结构相似，意图不同）、[State](../state.md)、[Template Method](../template-method.md)。
+[Bridge](bridge.md)（结构相似，意图不同）、[State](state.md)、[Template Method](template-method.md)。
 
 ## 来源引用
 

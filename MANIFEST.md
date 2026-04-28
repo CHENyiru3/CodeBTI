@@ -1,20 +1,56 @@
 # CodeBTI Repository Manifest
 
-This file lists every file in the repository with a one-line description.
+This file lists repository source files with one-line descriptions. High-volume translated GoF pattern catalogs may be represented by explicit directory entries.
 
 ## Root Files
 
 | File | Description |
 |------|-------------|
+| `.gitignore` | Local generated artifact ignore rules. |
 | `AGENT.md` | Agent guide and workflow reference. |
+| `CHANGELOG.md` | Release notes and validation baseline. |
+| `CONTRIBUTING.md` | Contribution rules and validation expectations. |
 | `LICENSE` | MIT license. |
 | `MANIFEST.md` | This file — repository file inventory. |
+| `pyproject.toml` | Python test configuration and pytest optional dependency. |
 | `README.md` | Human entry point and project overview. |
 | `SKILL.md` | Installable Codex skill entry point. |
 
+## Documentation (`docs/`)
+
+Operational guides that explain how to run or review the workflow.
+
+| File | Description |
+|------|-------------|
+| `docs/golden-path.md` | End-to-end CodeBTI session workflow from kickoff through validation and handoff. |
+
+## Validation and Automation
+
+Lightweight gates that keep the Markdown-first repository stable.
+
+| File | Description |
+|------|-------------|
+| `.github/workflows/validate.yml` | GitHub Actions workflow that runs repository validation. |
+| `scripts/validate_repo.py` | Standard-library validation script for links, pack structure, question quality, template sections, shared mirrors, and manifest drift. |
+| `tests/test_validate_repo.py` | Pytest checks for validator behavior, release-hardening docs, templates, and fixtures. |
+| `tests/fixtures/multilang/CodeStyle.md` | Multi-language generated guidance fixture. |
+| `tests/fixtures/multilang/Recording.md` | Multi-language interview record fixture. |
+
+## Project Pack (`project/`)
+
+Project-wide interview resources used before language-specific rounds.
+
+| File | Description |
+|------|-------------|
+| `project/questions/README.md` | Project-wide interview flow guide. |
+| `project/questions/fixed-project.md` | 6 fixed project questions for collaboration, validation, outputs, shared rules, dependencies, and records. |
+| `project/profiles/README.md` | Project profile inference guide. |
+| `project/profiles/project-profile-taxonomy.md` | Project-level workflow and governance profile families. |
+| `project/templates/ProjectStyle.template.md` | Project-level workflow and style output template. |
+
 ## Shared Layer (`shared/`)
 
-Language-neutral interview resources used by all language packs.
+Language-neutral interview resources used by all project and language packs.
 
 | File | Description |
 |------|-------------|
@@ -151,7 +187,7 @@ Language-neutral interview resources used by all language packs.
 
 ## Chinese Translation (`zh/`)
 
-Simplified Chinese translation of the English documentation. Mirrors the root structure: shared layer is used directly, Python and TypeScript language packs are fully translated.
+Simplified Chinese translation of the English documentation. Shared layer files are translated mirrors, and Python and TypeScript language packs are translated. The project pack remains English-only in this baseline.
 
 ### Root-level translated files
 
@@ -160,19 +196,19 @@ Simplified Chinese translation of the English documentation. Mirrors the root st
 | `zh/AGENT.md` | Chinese agent guide. |
 | `zh/README.md` | Chinese entry point and overview. |
 | `zh/SKILL.md` | Chinese skill entry point. |
-| `zh/TRANSLATION_STATUS.md` | Translation maintenance guide — which files are shared vs independently translated. |
+| `zh/TRANSLATION_STATUS.md` | Translation maintenance guide for translated files and shared mirrors. |
 
-### Shared layer (mirrors `shared/`)
+### Shared layer (translated mirrors of `shared/`)
 
 | File | Description |
 |------|-------------|
-| `zh/shared/questions/adaptive-question-guide.md` | Shared — mirror of `shared/questions/`. |
-| `zh/shared/questions/editorial-guide.md` | Shared — mirror of `shared/questions/`. |
-| `zh/shared/questions/question-format.md` | Shared — mirror of `shared/questions/`. |
-| `zh/shared/questions/shared-architecture.md` | Reference `../../shared/questions/shared-architecture.md`. |
-| `zh/shared/records/session-record.template.md` | Shared — mirror of `shared/records/`. |
-| `zh/shared/templates/SKILL.template.md` | Shared — mirror of `shared/templates/`. |
-| `zh/shared/templates/SPEC.template.md` | Shared — mirror of `shared/templates/`. |
+| `zh/shared/questions/adaptive-question-guide.md` | Chinese mirror of `shared/questions/adaptive-question-guide.md`. |
+| `zh/shared/questions/editorial-guide.md` | Chinese mirror of `shared/questions/editorial-guide.md`. |
+| `zh/shared/questions/question-format.md` | Chinese mirror of `shared/questions/question-format.md`. |
+| `zh/shared/questions/shared-architecture.md` | Chinese mirror of `shared/questions/shared-architecture.md`. |
+| `zh/shared/records/session-record.template.md` | Chinese mirror of `shared/records/session-record.template.md`. |
+| `zh/shared/templates/SKILL.template.md` | Chinese mirror of `shared/templates/SKILL.template.md`. |
+| `zh/shared/templates/SPEC.template.md` | Chinese mirror of `shared/templates/SPEC.template.md`. |
 
 ### Chinese Python language pack (`zh/python/`)
 

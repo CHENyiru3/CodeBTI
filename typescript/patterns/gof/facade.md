@@ -58,7 +58,7 @@ Default to simple facades over complex subsystems. Each facade should have a foc
 
 ## Related Patterns
 
-[Abstract Factory](../abstract-factory.md) (can create facades), [Adapter](../adapter.md), [Mediator](../mediator.md).
+[Abstract Factory](abstract-factory.md) (can create facades), [Adapter](adapter.md), [Mediator](mediator.md).
 
 ## Source Reference
 

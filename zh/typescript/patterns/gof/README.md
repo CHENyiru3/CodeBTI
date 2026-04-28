@@ -1,6 +1,6 @@
 # TypeScript 设计模式
 
-所有 23 个 GoF 设计模式，针对 TypeScript 惯用法和 CodeBTI 风格推断系统进行了适配。
+所有 22 个 GoF 设计模式，针对 TypeScript 惯用法和 CodeBTI 风格推断系统进行了适配。
 
 ## 创建型模式
 

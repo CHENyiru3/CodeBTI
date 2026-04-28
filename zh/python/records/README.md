@@ -50,4 +50,4 @@ YYYY-MM-DD-project-slug.md
 - 未解决的假设，
 - 生成的输出文件。
 
-使用 [session-record.template.md](session-record.template.md) 作为起点。
+使用 [../../shared/records/session-record.template.md](../../shared/records/session-record.template.md) 作为起点。

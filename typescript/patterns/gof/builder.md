@@ -47,7 +47,7 @@ TypeScript's `class` with fluent method chaining is idiomatic. Generic builders 
 
 ## CodeBTI Signals
 
-The user prefers step-by-step construction and may have complex domain objects. This pairs with [Factory Method](../factory-method.md) when construction has multiple stages.
+The user prefers step-by-step construction and may have complex domain objects. This pairs with [Factory Method](factory-method.md) when construction has multiple stages.
 
 ## Agent Guidance
 
@@ -55,7 +55,7 @@ Use Builder for objects with complex initialization. Prefer TypeScript's fluent 
 
 ## Related Patterns
 
-[Factory Method](../factory-method.md), [Abstract Factory](../abstract-factory.md), [Composite](../composite.md) (sometimes used together for recursive structures).
+[Factory Method](factory-method.md), [Abstract Factory](abstract-factory.md), [Composite](composite.md) (sometimes used together for recursive structures).
 
 ## Source Reference
 

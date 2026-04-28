@@ -71,16 +71,16 @@ See References below for the local CodeBTI pattern pages that shaped this guidan
 
 Design pattern references:
 
-- Encouraged: [Facade](../../python/patterns/gof/facade.md). Supports a small `Calculator.evaluate()` boundary between GUI code and calculation internals.
-- Encouraged: [Strategy](../../python/patterns/gof/strategy.md). Supports the operation registry as a simple callable mapping without requiring class-heavy strategy objects.
-- Allowed with caution: [Memento](../../python/patterns/gof/memento.md). Supports snapshot history for undo/recent calculations, but only after the feature is real.
-- Avoid by default: [Command](../../python/patterns/gof/command.md). Basic GUI button actions should stay direct unless actions need replay, queuing, or undo metadata.
-- Avoid by default: [Singleton](../../python/patterns/gof/singleton.md). Mutable calculator state should not be hidden behind process-global access.
+- Encouraged: [Facade](../python/patterns/gof/facade.md). Supports a small `Calculator.evaluate()` boundary between GUI code and calculation internals.
+- Encouraged: [Strategy](../python/patterns/gof/strategy.md). Supports the operation registry as a simple callable mapping without requiring class-heavy strategy objects.
+- Allowed with caution: [Memento](../python/patterns/gof/memento.md). Supports snapshot history for undo/recent calculations, but only after the feature is real.
+- Avoid by default: [Command](../python/patterns/gof/command.md). Basic GUI button actions should stay direct unless actions need replay, queuing, or undo metadata.
+- Avoid by default: [Singleton](../python/patterns/gof/singleton.md). Mutable calculator state should not be hidden behind process-global access.
 
 Useful project resources:
 
-- [Python profile taxonomy](../../python/profiles/python-profile-taxonomy.md). The final profile combines Algorithm-First Minimalist with object-centered boundary traits.
-- [CodeStyle template](../../python/templates/CodeStyle.template.md). This file follows the required CodeBTI output structure.
+- [Python profile taxonomy](../python/profiles/python-profile-taxonomy.md). The final profile combines Algorithm-First Minimalist with object-centered boundary traits.
+- [CodeStyle template](../python/templates/CodeStyle.template.md). This file follows the required CodeBTI output structure.
 
 ## Testing Policy
 

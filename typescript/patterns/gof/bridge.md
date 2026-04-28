@@ -67,7 +67,7 @@ Use Bridge when the project has two genuine axes of variation. Prefer simpler co
 
 ## Related Patterns
 
-[Abstract Factory](../abstract-factory.md), [Adapter](../adapter.md), [Strategy](../strategy.md).
+[Abstract Factory](abstract-factory.md), [Adapter](adapter.md), [Strategy](strategy.md).
 
 ## Source Reference
 

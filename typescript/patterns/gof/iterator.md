@@ -68,7 +68,7 @@ Prefer built-in TypeScript iteration (`for...of`, generators) over implementing 
 
 ## Related Patterns
 
-[Composite](../composite.md) (traversed recursively), [Factory Method](../factory-method.md), [Memento](../memento.md) (used with iterator state).
+[Composite](composite.md) (traversed recursively), [Factory Method](factory-method.md), [Memento](memento.md) (used with iterator state).
 
 ## Source Reference
 

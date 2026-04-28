@@ -58,7 +58,7 @@ class Facade {
 
 ## 相关模式
 
-[Abstract Factory](../abstract-factory.md)（可用于创建 Facade）、[Adapter](../adapter.md)、[Mediator](../mediator.md)。
+[Abstract Factory](abstract-factory.md)（可用于创建 Facade）、[Adapter](adapter.md)、[Mediator](mediator.md)。
 
 ## 来源引用
 

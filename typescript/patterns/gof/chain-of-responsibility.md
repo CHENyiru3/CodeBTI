@@ -56,7 +56,7 @@ Use Chain of Responsibility for processing pipelines where handlers may be added
 
 ## Related Patterns
 
-[Command](../command.md), [Decorator](../decorator.md) (can build chains too), [Strategy](../strategy.md).
+[Command](command.md), [Decorator](decorator.md) (can build chains too), [Strategy](strategy.md).
 
 ## Source Reference
 

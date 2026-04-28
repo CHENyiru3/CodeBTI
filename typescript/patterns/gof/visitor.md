@@ -65,7 +65,7 @@ Use Visitor for operations on closed type hierarchies. Prefer simple functions o
 
 ## Related Patterns
 
-[Composite](../composite.md) (often traversed by Visitor).
+[Composite](composite.md) (often traversed by Visitor).
 
 ## Source Reference
 

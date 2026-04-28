@@ -6,6 +6,12 @@ Users can revise earlier answers at any time. During an interview, show the user
 
 ## Q1. General Purpose and Paradigm
 
+Question ID:
+typescript.default.shape
+
+Scope:
+Language:TypeScript
+
 Dimension:
 Class-based vs interface-based vs functional vs flat procedural organization.
 
@@ -81,6 +87,12 @@ CodeStyle output implications:
 Use this answer to set the default project shape: class-centered, interface-first, type-alias data-model, or function-first. Future guidance should explain when the project may deviate from that default.
 
 ## Q2. Defensive Coding and Type Boundaries
+
+Question ID:
+typescript.typing.boundaries
+
+Scope:
+Language:TypeScript
 
 Dimension:
 Strict static typing vs boundary typing vs runtime validation vs flexible duck typing.
@@ -167,6 +179,12 @@ CodeStyle output implications:
 Set the typing policy, validation strategy, and where agents should add checks. This answer should prevent future code from mixing strict type-heavy style with casual untyped style without a clear boundary.
 
 ## Q3. Error Handling and Recovery
+
+Question ID:
+typescript.error.recovery
+
+Scope:
+Language:TypeScript
 
 Dimension:
 Fail-fast exceptions vs safe fallback vs explicit result objects vs batch quarantine.
@@ -261,6 +279,12 @@ Define the project-wide error policy so agents do not mix silent defaults, excep
 
 ## Q4. Naming and Readability
 
+Question ID:
+typescript.naming.readability
+
+Scope:
+Language:TypeScript
+
 Dimension:
 Explicit names vs concise idioms vs domain vocabulary vs comment-supported naming.
 
@@ -295,6 +319,12 @@ CodeStyle output implications:
 Set naming rules for functions, classes, interfaces, types, modules, variables, and review comments. The generated `CodeStyle.md` should include allowed abbreviations and discouraged generic names.
 
 ## Q5. Architecture and Wiring Style
+
+Question ID:
+typescript.architecture.wiring
+
+Scope:
+Language:TypeScript
 
 Dimension:
 Class composition vs dependency injection vs factory patterns vs central registry vs direct module imports.
@@ -333,6 +363,12 @@ CodeStyle output implications:
 Set the default wiring rule: decorators, dependency injection, explicit interfaces, central registry, or direct module imports. Include caution rules for hidden state and over-abstraction.
 
 ## Q6. Folder Structure
+
+Question ID:
+typescript.folder.structure
+
+Scope:
+Language:TypeScript
 
 Dimension:
 Feature folders vs technical layers vs flat source tree vs framework/tool-driven layout.
@@ -394,6 +430,12 @@ Define where agents should create new modules and when they may introduce subfol
 
 ## Q7. Testing Philosophy
 
+Question ID:
+typescript.testing.philosophy
+
+Scope:
+Language:TypeScript
+
 Dimension:
 Test-first coverage vs integration confidence vs core-logic focus vs manual/log-driven iteration.
 
@@ -429,6 +471,12 @@ Set minimum test requirements for generated code and future agent edits. Define 
 
 ## Q8. Comments and Docstrings
 
+Question ID:
+typescript.comments.docstrings
+
+Scope:
+Language:TypeScript
+
 Dimension:
 Self-documenting code vs why-focused comments vs strict JSDoc vs AI-facing context comments.
 
@@ -463,6 +511,12 @@ CodeStyle output implications:
 Define when agents should add comments, JSDoc, planning notes, and context markers. Also define what kinds of comments should be removed during cleanup.
 
 ## Q9. Git History and Collaboration
+
+Question ID:
+typescript.git.collaboration
+
+Scope:
+Language:TypeScript
 
 Dimension:
 Fast mainline commits vs conventional PR flow vs release branches vs linear history vs no Git preference.
@@ -501,6 +555,12 @@ CodeStyle output implications:
 Set commit-message, branch, PR, and history expectations for future agent work. If E is chosen, keep Git guidance minimal.
 
 ## Q10. Dependencies and Environments
+
+Question ID:
+typescript.dependencies.environments
+
+Scope:
+Language:TypeScript
 
 Dimension:
 Standard npm vs pnpm/yarn vs lockfile discipline vs newer fast tooling.

@@ -68,7 +68,7 @@ Use Proxy for caching, lazy initialization, and access logging. Keep the proxy f
 
 ## Related Patterns
 
-[Decorator](../decorator.md) (similar structure, different intent), [Adapter](../adapter.md) (provides a different interface, Proxy preserves it).
+[Decorator](decorator.md) (similar structure, different intent), [Adapter](adapter.md) (provides a different interface, Proxy preserves it).
 
 ## Source Reference
 

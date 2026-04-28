@@ -1,77 +1,118 @@
 # CodeStyle
 
 Project:
-TODO
+TODO: project name or short identifier.
 
 Generated from session record:
-TODO
+TODO: path to `Recording.md` or archived record.
 
-Primary CodeBTI profile:
-TODO
+Project CodeBTI profile:
+TODO: project profile from `project/profiles/project-profile-taxonomy.md`.
 
-Secondary traits:
-TODO
+TypeScript CodeBTI profile:
+TODO: primary TypeScript profile plus any secondary traits.
+
+Evidence rule:
+Every rule below must be traceable to the session record. If evidence is missing, write it under `Open Assumptions` instead of inventing a rule.
 
 ## Project Intent
 
-TODO
+Purpose:
+TODO: one paragraph describing the project and why this style guide exists.
+
+Primary constraints:
+TODO: user-facing constraints such as correctness, speed, maintainability, learning, or delivery pressure.
+
+Success signal:
+TODO: how future agents should know a TypeScript change fits the project.
+
+## Evidence Summary
+
+Project answers used:
+TODO: summarize the P1-P6 decisions that control shared behavior.
+
+TypeScript answers used:
+TODO: summarize Q1-Q10 decisions that shape TypeScript style.
+
+Adaptive answers used:
+TODO: summarize adaptive answers that changed or clarified the guidance.
+
+## Shared Project Rules
+
+Output shape:
+TODO: required final artifacts and whether this file is single-language or part of a multi-language guide.
+
+Git and collaboration:
+TODO: branching, review, commit, and handoff expectations from project answers.
+
+Validation gate:
+TODO: exact commands or manual checks required before a change is complete.
+
+Dependency governance:
+TODO: when TypeScript dependencies may be added, replaced, or avoided.
+
+Recordkeeping:
+TODO: what must be preserved in `Recording.md`, changelog, release notes, or review notes.
+
+Language override policy:
+TODO: state whether TypeScript follows shared defaults or explicitly overrides them.
 
 ## Default Code Shape
 
 Preferred organization:
-TODO
+TODO: module/package structure and where new code should live.
 
 Module and folder rules:
-TODO
+TODO: naming, boundary, and import rules.
 
 When to add abstraction:
-TODO
+TODO: evidence-backed triggers for interfaces, classes, functions, services, factories, or helpers.
 
 When to keep code direct:
-TODO
+TODO: cases where plain functions, local types, or direct composition are preferred.
 
 ## TypeScript Style Rules
 
 Naming:
-TODO
+TODO: naming conventions and exceptions.
 
 Typing:
-TODO
+TODO: strictness, boundary typing, runtime validation, or flexible style.
 
 Interfaces vs type aliases:
-TODO
+TODO: when to use `interface`, `type`, classes, discriminated unions, or generics.
 
 Data modeling:
-TODO
+TODO: schema libraries, DTOs, plain objects, domain classes, or inferred types.
 
 Error handling:
-TODO
+TODO: exception, result, fallback, and logging policy.
 
 Async patterns:
-TODO
+TODO: promises, cancellation, retries, concurrency, and failure handling.
 
 State management:
-TODO
+TODO: rules for mutable state, stores, context, singletons, and configuration.
 
 Dependency management:
-TODO
+TODO: dependency policy specific to TypeScript tools and packages.
 
 Comments and docstrings:
-TODO
+TODO: where comments/JSDoc are required, optional, or discouraged.
 
 ## Pattern Guidance
 
 Encouraged patterns:
-TODO
+TODO: local pattern pages to use and the concrete reason each applies.
 
 Allowed with caution:
-TODO
+TODO: pattern pages that are acceptable only under stated constraints.
 
 Avoid by default:
-TODO
+TODO: pattern pages to avoid and the project-specific reason.
 
 Pattern references:
-TODO
+TODO: curated links to the relevant local pages in `typescript/patterns/gof/`.
 
 ## References
 
@@ -96,50 +137,50 @@ Reference rules:
 ## Testing Policy
 
 Required tests:
-TODO
+TODO: exact TypeScript test types or commands expected before handoff.
 
 Optional tests:
-TODO
+TODO: tests that are useful when risk or scope increases.
 
 Manual verification:
-TODO
+TODO: manual checks required when automated coverage is insufficient.
 
 ## Git and Collaboration
 
 Branching:
-TODO
+TODO: branch or checkpoint policy for TypeScript changes.
 
 Commit messages:
-TODO
+TODO: message style and required evidence.
 
 Review checklist:
-TODO
+TODO: review questions future agents should apply to TypeScript changes.
 
 ## Agent Behavior
 
 When writing code:
-TODO
+TODO: concrete instructions for future coding agents.
 
 When reviewing code:
-TODO
+TODO: concrete review posture and common risks.
 
 When uncertain:
-TODO
+TODO: when to ask the user, record an assumption, or choose the project default.
 
 ## Examples
 
 Preferred code shape:
 
 ```typescript
-// TODO
+// TODO: minimal example that demonstrates the preferred TypeScript style.
 ```
 
 Avoided code shape:
 
 ```typescript
-// TODO
+// TODO: minimal example that shows what future agents should avoid.
 ```
 
 ## Open Assumptions
 
-- TODO
+- TODO: unresolved or weakly evidenced assumption.

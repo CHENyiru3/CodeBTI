@@ -57,7 +57,7 @@ const cloned = doc.clone();
 
 ## 相关模式
 
-[Abstract Factory](../abstract-factory.md)（可使用 Prototype 进行克隆）、[Composite](../composite.md)（通常递归克隆）、[Decorator](../decorator.md)。
+[Abstract Factory](abstract-factory.md)（可使用 Prototype 进行克隆）、[Composite](composite.md)（通常递归克隆）、[Decorator](decorator.md)。
 
 ## 来源引用
 

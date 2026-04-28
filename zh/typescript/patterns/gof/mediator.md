@@ -63,7 +63,7 @@ class User {
 
 ## 相关模式
 
-[Facade](../facade.md)、[Observer](../observer.md)（Observer 可用于实现 Mediator）、[Command](../command.md)。
+[Facade](facade.md)、[Observer](observer.md)（Observer 可用于实现 Mediator）、[Command](command.md)。
 
 ## 来源引用
 

@@ -61,7 +61,7 @@ car.operation('CL234IR'); // plate is extrinsic, 'Car' is intrinsic
 
 ## 相关模式
 
-[Composite](../composite.md)（可用于 Flyweight 管理子节点）、[State](../state.md)、[Strategy](../strategy.md)。
+[Composite](composite.md)（可用于 Flyweight 管理子节点）、[State](state.md)、[Strategy](strategy.md)。
 
 ## 来源引用
 

@@ -79,7 +79,7 @@ Use Memento for undo/redo or checkpointing. Prefer TypeScript's `readonly` and i
 
 ## Related Patterns
 
-[Command](../command.md) (uses Memento for undo), [Iterator](../iterator.md) (Memento can store iterator state).
+[Command](command.md) (uses Memento for undo), [Iterator](iterator.md) (Memento can store iterator state).
 
 ## Source Reference
 

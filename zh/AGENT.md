@@ -1,320 +1,285 @@
 # CodeBTI Agent 指南
 
-## 项目概述
+## 项目摘要
 
-CodeBTI 是 MBTI 的代码风格版本。MBTI 描述人格偏好；CodeBTI 描述一个项目或通用工程身份的编码和设计偏好。
+CodeBTI 是 MBTI 的代码风格对应物。MBTI 描述人格偏好；CodeBTI 描述一个项目或工程上下文中的编码与设计偏好。
 
-目标不是制作一个玩具式的人格测验。目标是帮助 AI Agent 和人类开发者明确选择贯穿整个项目的编码风格、架构边界、设计模式和审查标准。最终结果应足够实用，可以成为 `SKILL.md`、项目 `SPEC.md` 或可复用的 `CodeStyle.md`。
+目标不是创建玩具人格测试，而是帮助 AI Agent 和人类开发者明确选择项目工作流、架构边界、设计模式、审查标准、测试策略、依赖策略和语言特定编码风格，使这些规则在整个项目中保持一致。
 
-当前版本支持 Python 和 TypeScript。仓库的组织方式使后续添加其他语言时无需更改核心工作流。
+本仓库是 Markdown-first 且面向 Agent 的。AI 编码 Agent 应能直接阅读它，理解如何运行访谈、记录答案、推断 Profile，并生成项目指导。
 
-## 目标受众
+## 仓库形态
 
-本仓库面向 Agent。AI 编码 Agent 应能直接阅读并理解：
-
-- CodeBTI 是什么，
-- 如何进行用户访谈，
-- 如何记录答案，
-- 如何推断编码风格 Profile，
-- 如何生成项目专属的 `CodeStyle.md`，
-- 如何用新语言或设计模式示例扩展系统。
-
-所有主要内容包括纯 markdown。初始版本避免运行时依赖、Web 应用、二进制资源和工具专属格式。
-
-## 仓库结构
-
-```
+```text
 CodeBTI/
-├── SKILL.md              # 可安装技能入口
-├── AGENT.md              # Agent 指南和工作流参考
-├── README.md             # 人类入口
-├── MANIFEST.md           # 文件清单
-│
-├── shared/               # 语言中立资源，所有语言包共享
-│   ├── questions/
-│   │   ├── adaptive-question-guide.md
-│   │   ├── editorial-guide.md
-│   │   ├── question-format.md
-│   │   └── shared-architecture.md
-│   ├── records/
-│   │   └── session-record.template.md
-│   └── templates/
-│       ├── SKILL.template.md
-│       └── SPEC.template.md
-│
-├── python/               # Python 语言包
-│   ├── questions/
-│   │   ├── README.md
-│   │   └── fixed-python.md
-│   ├── patterns/
-│   │   ├── README.md
-│   │   └── gof/          # 22 个 GoF 模式页面
-│   │       ├── README.md
-│   │       └── [22 pattern files]
-│   ├── profiles/
-│   │   ├── README.md
-│   │   └── python-profile-taxonomy.md
-│   ├── records/
-│   │   └── README.md
-│   └── templates/
-│       ├── README.md
-│       └── CodeStyle.template.md
-│
-├── typescript/           # TypeScript 语言包
-│   ├── questions/
-│   │   ├── README.md
-│   │   └── fixed-typescript.md
-│   ├── patterns/
-│   │   ├── README.md
-│   │   └── gof/          # 22 个 GoF 模式页面
-│   │       ├── README.md
-│   │       └── [22 pattern files]
-│   ├── profiles/
-│   │   ├── README.md
-│   │   └── python-profile-taxonomy.md
-│   ├── records/
-│   │   └── README.md
-│   └── templates/
-│       ├── README.md
-│       └── CodeStyle.template.md
-│
-├── examples/             # 已完成的 Python GUI 计算器示例
-└── zh/                    # 简体中文翻译
-    ├── AGENT.md
-    ├── README.md
-    ├── SKILL.md
-    ├── TRANSLATION_STATUS.md
-    ├── shared/           # 镜像英文 shared/ 层
-    ├── python/            # 翻译版 Python 语言包
-    └── examples/           # 翻译版示例
+  SKILL.md              # 可安装 skill 入口和路由器
+  AGENT.md              # Agent 指南和工作流参考
+  README.md             # 人类入口
+  MANIFEST.md           # 文件清单
+  project/              # 项目级访谈包
+    questions/fixed-project.md
+    profiles/project-profile-taxonomy.md
+    templates/ProjectStyle.template.md
+  shared/               # 语言中立访谈资源
+    questions/
+      adaptive-question-guide.md
+      editorial-guide.md
+      question-format.md
+      shared-architecture.md
+    templates/
+      SKILL.template.md
+      SPEC.template.md
+    records/
+      session-record.template.md
+  python/               # Python 语言包
+  typescript/           # TypeScript 语言包
+  scripts/              # 验证工具
+  .github/workflows/    # CI 验证
+  docs/                 # 操作工作流指南
+  examples/             # 已完成的单语言示例
+  zh/                   # 简体中文翻译
 ```
 
-`zh/` 目录是简体中文翻译包，结构与根目录平行。所有文件名保持英文，以便内部路径引用保持一致。`zh/SKILL.md` 和 `zh/AGENT.md` 是中文 Agent 的主要入口。
+根目录 `SKILL.md` 是可安装 skill 入口。它将每个 CodeBTI 会话先路由到项目包，然后进入一个或多个语言包。
 
 ## 核心工作流
 
-1. 用户描述想构建的内容和主要语言。
-2. Agent 在目标项目中创建或更新实时的 `Recording.md`。
-3. Agent 提出目标语言 `questions/fixed-<lang>.md` 中的 10 个固定问题。
-4. 每个问题之前，Agent 将完整题目卡保存到 `Recording.md`；每次回答后，更新答案日志并给出简短项目反馈，再问下一个问题。
-5. Agent 使用 `shared/questions/adaptive-question-guide.md` 提出恰好 5 个适应性后续追问。
-6. Agent 重新阅读 `Recording.md` 并将其作为事实来源。
-7. Agent 使用该语言的 `profiles/<lang>-profile-taxonomy.md` 和 `patterns/gof/` 中的模式数据库分析答案。
-8. Agent 选择支撑建议的具体本地模式/资源引用。
-9. Agent 从语言包的 `templates/CodeStyle.template.md` 生成详细的项目 `CodeStyle.md`，包含引用和每句一句的相关性说明。
-10. 如适用，Agent 将 `Recording.md` 保存为最终会话记录，并使用 `shared/templates/SKILL.template.md` 和 `shared/templates/SPEC.template.md` 将风格指导提炼为 `SKILL.md` 或 `SPEC.md`。
+1. 用户描述想构建什么。
+2. Agent 识别目标语言包。如果不明确，在计分问题前提出一个简短澄清问题。
+3. Agent 在目标项目中创建或更新实时 `Recording.md`。
+4. Agent 询问 `project/questions/fixed-project.md` 中的 6 个固定项目问题。
+5. Agent 对每个所选语言包询问固定问题，例如 Python 或 TypeScript。
+6. 每个计分问题之前，Agent 将完整题目卡保存到 `Recording.md`。
+7. 每次回答后，Agent 更新答案日志，并在下一个问题前给出简短项目反馈。
+8. Agent 使用 `shared/questions/adaptive-question-guide.md` 在整个会话中总共提出恰好 5 个适应性后续追问。
+9. Agent 重新阅读 `Recording.md`，并将其作为事实来源。
+10. Agent 使用 `project/profiles/project-profile-taxonomy.md` 分析项目级答案。
+11. Agent 使用每个语言的 Profile taxonomy 和 `patterns/gof/` 数据库分析语言答案。
+12. Agent 只选择对建议有实质影响的本地模式/资源引用。
+13. Agent 生成请求的指导：`CodeStyle.md`、可选 `ProjectStyle.md`、可选 `SKILL.md`、可选 `SPEC.md` 或更细的规范文件。
 
-**多语言项目**：第一轮完成后，可以为其他语言运行较短的访谈。在 `Recording.md` 中分语言记录各组答案，合并为一份项目级 `CodeStyle.md`。
+验证或讲解工作流时，使用英文 `docs/golden-path.md` 作为操作清单。
 
 ## 当前状态
 
-Python 和 TypeScript 语言包已实现，带有共享层：
+项目包、Python 包和 TypeScript 包已经实现，并共享同一层共享资源。
 
-- 人类入口：`README.md`，
-- Agent 指南：`AGENT.md`，
-- 可安装技能入口：`SKILL.md`，
-- 共享面试资源：`shared/questions/`、`shared/templates/`、`shared/records/`，
-- Python 固定问题集：`python/questions/fixed-python.md`，
-- TypeScript 固定问题集：`typescript/questions/fixed-typescript.md`，
-- 22 页 Python 设计模式数据库：`python/patterns/gof/`，
-- 22 页 TypeScript 设计模式数据库：`typescript/patterns/gof/`，
-- Python Profile 分类体系：`python/profiles/python-profile-taxonomy.md`，
-- TypeScript Profile 分类体系：`typescript/profiles/typescript-profile-taxonomy.md`，
-- Python `CodeStyle.md` 模板：`python/templates/CodeStyle.template.md`，
-- TypeScript `CodeStyle.md` 模板：`typescript/templates/CodeStyle.template.md`，
-- 共享 SKILL 和 SPEC 模板：`shared/templates/`，
-- 共享会话记录模板：`shared/records/session-record.template.md`，
-- 已完成示例：`examples/`。
+- 人类入口：`README.md`
+- 发布说明：`CHANGELOG.md`
+- golden path 指南：`docs/golden-path.md`
+- Agent/路由入口：`SKILL.md`
+- Agent 指南：`AGENT.md`
+- 项目级问题：`project/questions/fixed-project.md`
+- 项目 Profile taxonomy：`project/profiles/project-profile-taxonomy.md`
+- 共享访谈资源：`shared/questions/`、`shared/templates/`、`shared/records/`
+- Python 固定问题表：`python/questions/fixed-python.md`
+- TypeScript 固定问题表：`typescript/questions/fixed-typescript.md`
+- Python 22 页设计模式数据库：`python/patterns/gof/`
+- TypeScript 22 页设计模式数据库：`typescript/patterns/gof/`
+- 验证脚本：`scripts/validate_repo.py`
+- 质量测试：`tests/`
+- CI 工作流：`.github/workflows/validate.yml`
+- 简体中文翻译：`zh/`
 
-当前版本无自动化脚本、CLI、Web 应用或 CI 系统。
+当前版本不包含运行时访谈应用。
 
-## 文件类型职责
+## 文件职责
 
 ### 入口文件
 
-入口文件给 Agent 提供继续所需的最小上下文。`SKILL.md` 是可安装技能入口。`AGENT.md` 提供额外的工作流指导。`README.md` 向人类解释 CodeBTI 并链接到主工作流。
+入口文件给 Agent 提供继续工作的最小上下文。`SKILL.md` 应保持可执行且简洁。`README.md` 面向人类解释 CodeBTI。`AGENT.md` 定义仓库维护预期。
 
-入口文件应简洁、可操作且稳定。避免将重要说明埋在长篇论述中。
+### 项目包
+
+项目包包含跨项目问题和 Profile 指导，控制：
+
+- 协作工作流，
+- 输出形态，
+- 验证门禁，
+- 共享规则与语言规则边界，
+- 依赖治理，
+- 变更记录政策。
+
+语言包不应重复这些决策，除非语言特定覆盖是必要的并已记录。
+
+### 语言包
+
+每个语言包拥有自己的固定问题、模式页面、Profile taxonomy、记录指南和 `CodeStyle.md` 模板。语言包应使用共享访谈机制和共享输出模板，而不是复制它们。
+
+### 共享层
+
+共享文件必须保持项目和语言中立。它们用于问题格式、适应性追问规则、编辑规则、会话记录结构，以及语言中立的 SKILL/SPEC 模板。
+
+如果某个包需要偏离共享规则，在该包中记录冲突。不要把共享文件 fork 到语言包中。
 
 ### 设计模式示例
 
-模式文件描述真实的工程偏好。不应简单罗列抽象模式。每个文件应说明：
+模式文件描述真实工程偏好。每个文件应解释：
 
-- 该风格选择，
+- 风格选择，
 - 何时有用，
-- 何时变得有害，
-- 在 Python 中的样子，
-- 用户答案中哪些信号暗示这种偏好，
-- 生成的代码或审查评论中应如何体现该偏好。
+- 何时有害，
+- 在目标语言中是什么样子，
+- 用户答案中的哪些信号暗示该偏好，
+- 以及该偏好应如何出现在生成代码或审查意见中。
 
-模式示例是通用参考资料。生成的 `CodeStyle.md` 应针对具体项目。当前的 Python 模式数据库采用经典 GoF 目录结构，并在每个模式页面引用 RefactoringGuru 来源。
-
-### 问答表
-
-固定的 Python 问答表包含 10 个基于示例的问题，涵盖：
-
-- 通用目的和范式，
-- 防御性编程和类型边界，
-- 错误处理和恢复，
-- 命名和可读性，
-- 架构和接线风格，
-- 文件夹结构，
-- 测试理念，
-- 注释和文档字符串，
-- Git 历史和协作，
-- 依赖和环境。
-
-适应性追问指南指导 Agent 根据模糊、矛盾、项目风险、强烈信号和可能的模式误用提出恰好 5 个后续追问。
+生成的 `CodeStyle.md` 应是项目特定的。只引用真实影响建议的模式页面。
 
 ### 记录
 
-每次访谈应在访谈进行时增量记录。默认实时文件名：
+每个会话都应在访谈进行时增量记录。默认实时文件名是：
 
 ```text
 Recording.md
 ```
 
-实时记录应放在目标项目根目录，以便另一个 Agent 在上下文丢失时能恢复访谈状态。访谈结束后，可保留为 `Recording.md` 或复制到语言包的 `records/` 目录，使用带日期戳的文件名，例如：
-
-```text
-python/records/2026-04-22-my-python-cli.md
-```
+实时记录应放在目标项目根目录，以便另一个 Agent 在上下文丢失时恢复访谈状态。使用 `shared/records/session-record.template.md` 作为起点。
 
 会话记录应包含：
 
 - 项目摘要，
+- 语言目标，
 - 访谈进度，
 - 完整题目卡快照，
 - 按时间顺序的答案日志，
-- 固定问题和答案，
-- 适应性问题及答案，
-- 每次回答后的简短反馈，
-- Agent 观察，
-- 推断的 CodeBTI Profile，
+- 项目固定答案，
+- 语言固定答案，
+- 适应性答案，
+- 每次回答后的反馈，
+- 隐藏推理笔记，
+- 推断出的项目和语言 Profile，
 - 生成的输出文件，
-- 未解决的假设。
+- 验证结果，
+- 未解决假设。
 
-不记录秘密、私人凭证或无关个人信息。
+不要记录秘密、私有凭证或无关个人信息。
 
-### 生成输出
+## 生成输出
 
-主要生成产物是 `CodeStyle.md`。它应足够具体，使 Agent 在实现和审查时都能使用。
+主要生成物是 `CodeStyle.md`。它应足够具体，使 Agent 能在实现和审查时直接使用。
 
-一份强有力的 `CodeStyle.md` 应定义：
+强 `CodeStyle.md` 应定义：
 
 - 项目意图，
+- 共享项目规则，
 - 首选架构，
 - 模块边界，
-- 命名约定，
+- 语言特定风格规则，
 - 类型策略，
 - 错误处理策略，
 - 依赖策略，
 - 测试策略，
 - 文档策略，
-- 首选代码示例，
-- 避免的代码示例，
+- 推荐代码示例，
+- 避免代码示例，
 - 审查清单，
-- 未来 Agent 行为说明。
-- 支撑建议的本地模式/资源页面引用。
+- 未来 Agent 行为说明，
+- 本地模式/资源页面引用。
 
-需要时，相同指导可提炼为：
+需要时生成：
 
-- `SKILL.md`（可复用的 Agent 行为），
-- `SPEC.md`（项目需求），
-- 或更窄的专项规范，如 `API_SPEC.md`、`TESTING_SPEC.md`、`ARCHITECTURE_SPEC.md`。
+- `ProjectStyle.md`：项目工作流和治理，
+- `SKILL.md`：可复用 Agent 行为，
+- `SPEC.md`：项目专属需求，
+- `API_SPEC.md`、`TESTING_SPEC.md` 或 `ARCHITECTURE_SPEC.md` 等更细规范。
 
 ## Profile 概念
 
-CodeBTI 应产生令人难忘的 Profile 名称，但 Profile 必须保持工程基础。Profile 是一组设计偏好的简写，而非详细指导的替代品。
+CodeBTI Profile 是工程简写，不是能力或人格评判。
 
-每种语言包的分类体系在以下实用轴上定义 Profile：
+项目 Profile 描述工作流和治理偏好，例如：
 
-- **抽象**：本地具体 vs 分层泛化。
-- **类型纪律**：动态实用 vs 严格显式。
-- **状态模型**：可变工作流 vs 不可变转换。
-- **错误模型**：异常、结果对象、前置验证或快速失败。
-- **依赖姿态**：标准库优先 vs 生态友好。
-- **测试风格**：行为优先、单元优先、属性优先、集成优先或冒烟测试优先。
+- `Controlled Multi-Language Maintainer`
+- `Lightweight Prototype Collaborator`
+- `Review-Gated Integrator`
+- `Release-Managed Steward`
 
-当前 Python 分类体系定义了 7 个实用的 Profile 系列：
+语言 Profile 描述编码风格偏好，例如：
 
-- `对象中心边界守护者 (Object-Centered Boundary Keeper)`
-- `函数优先流水线构建者 (Function-First Pipeline Builder)`
-- `数据优先验证者 (Data-First Validator)`
-- `务实的脚本构建者 (Pragmatic Script Builder)`
-- `测试优先集成者 (Test-First Integrator)`
-- `框架对齐构建者 (Framework-Aligned Builder)`
-- `算法优先极简主义者 (Algorithm-First Minimalist)`
+- Python `Object-Centered Boundary Keeper`
+- Python `Data-First Validator`
+- TypeScript `Interface-First Boundary Keeper`
+- TypeScript `Functional Pipeline Builder`
 
-当前 TypeScript 分类体系定义了 7 个 TypeScript 专属的 Profile 系列：
-
-- `接口优先边界守护者 (Interface-First Boundary Keeper)`
-- `类中心状态架构师 (Class-Centered State Architect)`
-- `数据模型类型别名者 (Data-Model Type Aliaser)`
-- `函数式流水线构建者 (Functional Pipeline Builder)`
-- `框架对齐构建者 (Framework-Aligned Builder)`
-- `测试优先集成者 (Test-First Integrator)`
-- `算法优先极简主义者 (Algorithm-First Minimalist)`
-
-## 语言包范围
-
-每种语言包的指导应至少覆盖：
-
-- 项目布局，
-- 导入和模块结构，
-- 类型策略（Python：类型注解 vs 鸭子类型；TypeScript：`interface` vs `type` 别名），
-- 数据模型（Python：dataclass、pydantic；TypeScript：interface、type、class），
-- 错误处理和异常模型，
-- 日志和配置，
-- 依赖管理，
-- 测试策略，
-- 脚本和 CLI（Python：argparse、click；TypeScript：commander、yargs），
-- 文档字符串和注释规范，
-- 审查期望。
-
-不要将系统过度适配单一框架。框架专属指导应作为可选扩展添加。
+混合结果应表达为组合 Profile，而不是强行归入单一干净标签。
 
 ## 扩展模型
 
-未来语言应作为同级目录添加。每种语言包拥有其固定问题、模式页面、Profile 分类体系和 `CodeStyle.md` 模板。`shared/` 中的共享面试资源供所有语言包使用，无需修改。
+未来语言应作为同级目录添加。每个语言包拥有自己的固定问题、模式页面、Profile taxonomy、记录指南和 `CodeStyle.md` 模板。`shared/` 中的共享访谈资源由所有包使用，不做修改。
 
-```
+```text
 CodeBTI/
-  shared/               # 所有语言包共享
+  shared/
+  project/
   python/
   typescript/
-  rust/                 # 新语言包
+  rust/
     questions/fixed-rust.md
     patterns/gof/
     profiles/rust-profile-taxonomy.md
+    records/README.md
     templates/CodeStyle.template.md
 ```
 
-通用工作流应保持语言中立。语言目录应持有语言专属的示例、问题和分类细节。
+添加或修改包后，更新 `README.md`、`AGENT.md` 和 `MANIFEST.md`，然后运行：
+
+```sh
+python3 scripts/validate_repo.py
+python3 -m pytest
+```
+
+## 验证门禁
+
+仓库有轻量验证门禁，检查：
+
+- 本地 Markdown 链接，
+- 必需包文件，
+- 固定问题数量和必需章节，
+- 固定问题 ID/范围质量，
+- 选项、评分和模式信号标签是否一致，
+- 必需模板章节，
+- 中文共享镜像覆盖，
+- manifest 漂移。
+
+提交前运行：
+
+```sh
+python3 scripts/validate_repo.py
+python3 -m pytest
+```
+
+GitHub Actions 会在 pull request 和 push 上运行同一命令。
+
+发布加固类变更还应运行：
+
+```sh
+git diff --check
+PYTHONPYCACHEPREFIX=/tmp/codebti_pycache python3 -m py_compile scripts/validate_repo.py
+```
 
 ## Agent 行为规则
 
 当 Agent 在本仓库工作时：
 
-- 除非用户明确要求工具化，否则优先使用 markdown 文件而非代码。
-- 保持源文件对人类和 Agent 都可读。
-- 生成的模板应结构清晰、易于填充。
+- 除非用户明确要求工具，否则优先修改 Markdown。
+- 保持源文件同时适合人类和 Agent 阅读。
+- 保持 `shared/` 语言中立。
+- 将项目级工作流决策放在 `project/`。
+- 将语言特定示例、模式和 Profile 规则放在语言包内。
 - 避免无法指导实现的模糊风格建议。
-- 包含权衡，而非仅是规则。
+- 包含权衡，而不仅是规则。
 - 保留会话记录作为生成建议的证据。
 - 将 CodeBTI 结果视为项目指导，而非个人评判。
-- 支持多语言项目——第一语言确立默认值，后续语言补充或覆盖。
+- 在结构、链接、问题、模板或 manifest 变更后运行 `python3 scripts/validate_repo.py`。
 
 ## 完成定义
 
-语言包在包含以下内容时即为就绪：
+一次变更准备就绪时应满足：
 
-- `questions/fixed-<lang>.md` — 10 个固定问题，
-- `patterns/README.md` — 模式索引，
-- `patterns/gof/` — 22 个 GoF 模式页面，
-- `profiles/<lang>-profile-taxonomy.md` — Profile 分类体系草案，
-- `templates/CodeStyle.template.md` — `CodeStyle.md` 输出模板。
-
-`shared/` 中的共享资源不需按语言复制——它是共享的，不需要每个语言包维护一份。
-
-具备这些文件后，用户可以请求 AI Agent 运行 CodeBTI 访谈，并收到实用的项目专属 `CodeStyle.md`。
+- 文档描述同一个一致工作流，
+- 相关问题/Profile/模板文件一起更新，
+- 共享文件变化时同步更新中文镜像，
+- `MANIFEST.md` 反映新增文件或目录，
+- `python3 scripts/validate_repo.py` 通过，
+- `python3 -m pytest` 通过，
+- 发布加固类变更还通过 `git diff --check` 和 `py_compile`。

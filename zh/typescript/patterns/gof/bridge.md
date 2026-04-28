@@ -67,7 +67,7 @@ class PostContentType implements ContentTypeImplementation {
 
 ## 相关模式
 
-[Abstract Factory](../abstract-factory.md), [Adapter](../adapter.md), [Strategy](../strategy.md).
+[Abstract Factory](abstract-factory.md), [Adapter](adapter.md), [Strategy](strategy.md).
 
 ## 来源引用
 

@@ -63,7 +63,7 @@ Use Mediator to centralize communication between tightly coupled components. Kee
 
 ## Related Patterns
 
-[Facade](../facade.md), [Observer](../observer.md) (Observer can be used to implement Mediator), [Command](../command.md).
+[Facade](facade.md), [Observer](observer.md) (Observer can be used to implement Mediator), [Command](command.md).
 
 ## Source Reference
 

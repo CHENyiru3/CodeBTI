@@ -68,7 +68,7 @@ class ProxyWeatherService implements WeatherService {
 
 ## 相关模式
 
-[Decorator](../decorator.md)（结构相似，意图不同）、[Adapter](../adapter.md)（提供不同的接口，Proxy 则保留原接口）。
+[Decorator](decorator.md)（结构相似，意图不同）、[Adapter](adapter.md)（提供不同的接口，Proxy 则保留原接口）。
 
 ## 来源引用
 

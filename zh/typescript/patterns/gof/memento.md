@@ -79,7 +79,7 @@ class EmployeeCaretaker {
 
 ## 相关模式
 
-[Command](../command.md)（使用 Memento 实现撤销）、[Iterator](../iterator.md)（Memento 可用于保存迭代器状态）。
+[Command](command.md)（使用 Memento 实现撤销）、[Iterator](iterator.md)（Memento 可用于保存迭代器状态）。
 
 ## 来源引用
 

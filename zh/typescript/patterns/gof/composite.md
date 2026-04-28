@@ -62,7 +62,7 @@ class Composite extends Component {
 
 ## 相关模式
 
-[Decorator](../decorator.md), [Iterator](../iterator.md), [Visitor](../visitor.md)（经常一起使用）。
+[Decorator](decorator.md), [Iterator](iterator.md), [Visitor](visitor.md)（经常一起使用）。
 
 ## 来源引用
 

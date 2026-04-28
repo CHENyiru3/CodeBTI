@@ -56,7 +56,7 @@ class MonkeyHandler extends AbstractHandler {
 
 ## 相关模式
 
-[Command](../command.md), [Decorator](../decorator.md)（也可以构建链）, [Strategy](../strategy.md).
+[Command](command.md), [Decorator](decorator.md)（也可以构建链）, [Strategy](strategy.md).
 
 ## 来源引用
 

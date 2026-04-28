@@ -1,8 +1,8 @@
 # Session Records
 
-This folder stores CodeBTI interview records. A record preserves the user's project description, full question cards, fixed answers, adaptive answers, answer-by-answer feedback, agent observations, and final style inference.
+This folder stores Python CodeBTI interview records or archived project records that include a Python language round. A record preserves the user's project description, full question cards, project answers, language answers, adaptive answers, feedback, agent observations, and final style inference.
 
-During an interview, maintain a live `Recording.md` in the target project root. Update it after every answer before asking the next question. At the end, reread `Recording.md` before generating `CodeStyle.md`, `SKILL.md`, or `SPEC.md`.
+During an interview, maintain a live `Recording.md` in the target project root. Update it after every answer before asking the next question. At the end, reread `Recording.md` before generating `CodeStyle.md`, `ProjectStyle.md`, `SKILL.md`, or `SPEC.md`.
 
 After the interview, either keep `Recording.md` in the project or copy it into this folder with one markdown file per interview session.
 
@@ -37,11 +37,11 @@ Each session should include:
 
 - project summary,
 - interview date,
-- language target,
+- language targets,
 - interview progress,
 - full question card snapshots,
 - chronological QA history,
-- fixed question answers,
+- project and language fixed question answers,
 - adaptive question answers,
 - brief feedback given to the user,
 - answer changes,

@@ -2,33 +2,24 @@
 
 ## Project Summary
 
-CodeBTI is a code-style counterpart to MBTI. MBTI describes personality preferences; CodeBTI describes coding and design preferences for a project or a general engineering identity.
+CodeBTI is a code-style counterpart to MBTI. MBTI describes personality preferences; CodeBTI describes coding and design preferences for a project or engineering context.
 
-The goal is not to create a toy personality quiz. The goal is to help an AI agent and a human developer explicitly choose the coding style, architectural boundaries, design patterns, and review standards that should remain consistent throughout a project. The final result should be practical enough to become a `SKILL.md`, a project `SPEC.md`, or a reusable `CodeStyle.md`.
+The goal is not to create a toy personality quiz. The goal is to help an AI agent and a human developer explicitly choose the project workflow, architectural boundaries, design patterns, review standards, testing policy, dependency policy, and language-specific coding style that should remain consistent throughout a project.
 
-The current version focuses on Python. The repository is organized so that other languages can be added later without changing the core workflow.
-
-## Audience
-
-This repository is face-to-agent. AI coding agents should be able to read it directly and understand:
-
-- what CodeBTI is,
-- how to interview a user,
-- how to record answers,
-- how to infer a coding-style profile,
-- how to generate a project-specific `CodeStyle.md`,
-- and how to extend the system with new languages or design-pattern examples.
-
-All primary content should be plain markdown. Avoid runtime dependencies, web apps, binary assets, and tool-specific formats in the initial version.
+The repository is Markdown-first and agent-facing. AI coding agents should be able to read it directly and understand how to run an interview, record answers, infer profiles, and generate project guidance.
 
 ## Repository Shape
 
-```
+```text
 CodeBTI/
-  SKILL.md              # installable skill entry point
+  SKILL.md              # installable skill entry point and router
   AGENT.md              # agent guide and workflow reference
   README.md             # human entry point
   MANIFEST.md           # file inventory
+  project/              # project-wide interview pack
+    questions/fixed-project.md
+    profiles/project-profile-taxonomy.md
+    templates/ProjectStyle.template.md
   shared/               # language-neutral interview resources
     questions/
       adaptive-question-guide.md
@@ -40,160 +31,99 @@ CodeBTI/
       SPEC.template.md
     records/
       session-record.template.md
-  python/
-    questions/
-      README.md
-      fixed-python.md
-    patterns/
-      README.md
-      gof/               # GoF pattern pages for Python
-        README.md
-        abstract-factory.md
-        adapter.md
-        bridge.md
-        builder.md
-        chain-of-responsibility.md
-        command.md
-        composite.md
-        decorator.md
-        facade.md
-        factory-method.md
-        flyweight.md
-        iterator.md
-        mediator.md
-        memento.md
-        observer.md
-        prototype.md
-        proxy.md
-        singleton.md
-        state.md
-        strategy.md
-        template-method.md
-        visitor.md
-    profiles/
-      README.md
-      python-profile-taxonomy.md
-    records/
-      README.md
-    templates/
-      README.md
-      CodeStyle.template.md
-  typescript/
-    questions/
-      README.md
-      fixed-typescript.md
-    patterns/
-      README.md
-      gof/               # GoF pattern pages for TypeScript
-        README.md
-        abstract-factory.md
-        adapter.md
-        bridge.md
-        builder.md
-        chain-of-responsibility.md
-        command.md
-        composite.md
-        decorator.md
-        facade.md
-        factory-method.md
-        flyweight.md
-        iterator.md
-        mediator.md
-        memento.md
-        observer.md
-        prototype.md
-        proxy.md
-        singleton.md
-        state.md
-        strategy.md
-        template-method.md
-        visitor.md
-    profiles/
-      README.md
-      typescript-profile-taxonomy.md
-    records/
-      README.md
-    templates/
-      README.md
-      CodeStyle.template.md
-  examples/              # completed CodeBTI run (Python GUI calculator)
-  zh/                    # Simplified Chinese translation
+  python/               # Python language pack
+  typescript/           # TypeScript language pack
+  scripts/              # validation tooling
+  .github/workflows/    # CI validation
+  docs/                 # operational workflow guides
+  examples/             # completed single-language example
+  zh/                   # Simplified Chinese translation
 ```
 
-The root `SKILL.md` is the installable skill entry point. `AGENT.md` and `README.md` provide additional context for humans and non-skill agents.
+The root `SKILL.md` is the installable skill entry point. It routes every CodeBTI session through the project pack first, then through one or more language packs.
 
 ## Core Workflow
 
 1. The user describes what they want to build.
-2. The agent creates or updates a live `Recording.md` in the target project.
-3. The agent asks the 10 fixed questions in the target language's `questions/fixed-<lang>.md`.
-4. Before every question, the agent saves the full question card in `Recording.md`; after every answer, it updates the answer log and gives brief project-specific feedback before asking the next question.
-5. The agent asks exactly 5 adaptive follow-up questions using `shared/questions/adaptive-question-guide.md`.
-6. The agent rereads `Recording.md` and treats it as the source of truth for final inference.
-7. The agent analyzes the answers using the language's `profiles/<lang>-profile-taxonomy.md` and pattern database in `patterns/gof/`.
-8. The agent selects specific local pattern/resource references that ground the recommendation.
-9. The agent generates a detailed project `CodeStyle.md` from `templates/CodeStyle.template.md`, including references and one-sentence relevance notes.
-10. If appropriate, the agent preserves or renames `Recording.md` as the final session record and distills the style guidance into `SKILL.md` or `SPEC.md` using `shared/templates/SKILL.template.md` and `shared/templates/SPEC.template.md`.
+2. The agent identifies target language packs. If unclear, ask one concise clarification before scored questions.
+3. The agent creates or updates a live `Recording.md` in the target project.
+4. The agent asks the 6 fixed project questions in `project/questions/fixed-project.md`.
+5. The agent asks fixed questions for each selected language pack, such as Python or TypeScript.
+6. Before every scored question, the agent saves the full question card in `Recording.md`.
+7. After every answer, the agent updates the answer log and gives brief project-specific feedback before asking the next question.
+8. The agent asks exactly 5 adaptive follow-up questions total using `shared/questions/adaptive-question-guide.md`.
+9. The agent rereads `Recording.md` and treats it as the source of truth.
+10. The agent analyzes project answers using `project/profiles/project-profile-taxonomy.md`.
+11. The agent analyzes language answers using each language's profile taxonomy and `patterns/gof/` database.
+12. The agent selects specific local pattern/resource references that materially affect the recommendation.
+13. The agent generates the requested guidance: `CodeStyle.md`, optional `ProjectStyle.md`, optional `SKILL.md`, optional `SPEC.md`, or narrower spec files.
+
+Use `docs/golden-path.md` as the operational checklist when validating or teaching the workflow.
 
 ## Current Status
 
-The Python and TypeScript language packs are implemented with a shared layer.
+The project, Python, and TypeScript packs are implemented with a shared layer.
 
 - human entry point: `README.md`,
+- release notes: `CHANGELOG.md`,
+- golden path guide: `docs/golden-path.md`,
+- agent/router entry point: `SKILL.md`,
 - agent guide: `AGENT.md`,
-- installable skill entry point: `SKILL.md`,
+- project-wide questions: `project/questions/fixed-project.md`,
+- project profile taxonomy: `project/profiles/project-profile-taxonomy.md`,
 - shared interview resources: `shared/questions/`, `shared/templates/`, `shared/records/`,
 - Python fixed question sheet: `python/questions/fixed-python.md`,
 - TypeScript fixed question sheet: `typescript/questions/fixed-typescript.md`,
 - 22-page Python design-pattern database: `python/patterns/gof/`,
-- 23-page TypeScript design-pattern database: `typescript/patterns/gof/`,
-- Python profile taxonomy: `python/profiles/python-profile-taxonomy.md`,
-- TypeScript profile taxonomy: `typescript/profiles/typescript-profile-taxonomy.md`,
-- Python `CodeStyle.md` template: `python/templates/CodeStyle.template.md`,
-- TypeScript `CodeStyle.md` template: `typescript/templates/CodeStyle.template.md`,
-- shared SKILL and SPEC templates: `shared/templates/`,
-- shared session recording template: `shared/records/session-record.template.md`,
-- completed example: `examples/`.
+- 22-page TypeScript design-pattern database: `typescript/patterns/gof/`,
+- validation script: `scripts/validate_repo.py`,
+- quality test harness: `tests/`,
+- CI workflow: `.github/workflows/validate.yml`,
+- Simplified Chinese translation: `zh/`.
 
-No automation scripts, CLI, web app, or CI system are part of the current version.
+No runtime interview app is part of the current version.
 
 ## File Type Responsibilities
 
 ### Entry Files
 
-Entry files give agents the minimum context needed to proceed. `SKILL.md` is the installable skill entry point. `AGENT.md` provides additional workflow guidance. `README.md` explains CodeBTI for humans and links to the main workflow.
+Entry files give agents the minimum context needed to proceed. `SKILL.md` is operational and should remain concise. `README.md` explains CodeBTI for humans. `AGENT.md` defines repository maintenance expectations.
 
-Entry files should be concise, operational, and stable. Avoid burying important instructions in long essays.
+### Project Pack
+
+The project pack contains cross-cutting questions and profile guidance. It controls:
+
+- collaboration workflow,
+- output shape,
+- validation gates,
+- shared-vs-language rule boundaries,
+- dependency governance,
+- change record policy.
+
+Language packs should not duplicate these decisions unless a language-specific override is necessary and recorded.
+
+### Language Packs
+
+Each language pack owns its fixed questions, pattern pages, profile taxonomy, records guide, and `CodeStyle.md` template. Language packs should use shared interview mechanics and shared output templates rather than copying them.
+
+### Shared Layer
+
+Shared files must remain project- and language-neutral. Use them for question format, adaptive question rules, editorial rules, session record structure, and language-neutral SKILL/SPEC templates.
+
+If a pack needs to deviate from shared rules, document the conflict in that pack. Do not fork shared files into a language pack.
 
 ### Design Pattern Examples
 
-Pattern files describe real engineering preferences. They should not simply list abstract patterns. Each file should explain:
+Pattern files describe real engineering preferences. Each file should explain:
 
 - the style choice,
 - when it is useful,
 - when it becomes harmful,
-- what it looks like in Python,
+- what it looks like in the target language,
 - what signals in a user's answers suggest this preference,
 - and how the preference should appear in generated code or review comments.
 
-Pattern examples are general references. The generated `CodeStyle.md` should be project-specific. The current Python pattern database mirrors the classic GoF catalog structure and cites RefactoringGuru sources in each pattern page.
-
-### QA Sheets
-
-The fixed Python QA sheet contains 10 example-based questions covering:
-
-- general purpose and paradigm,
-- defensive coding and type boundaries,
-- error handling and recovery,
-- naming and readability,
-- architecture and wiring style,
-- folder structure,
-- testing philosophy,
-- comments and docstrings,
-- Git history and collaboration,
-- dependencies and environments.
-
-The adaptive question guide instructs the agent to ask exactly 5 follow-up questions based on ambiguity, contradictions, project risk, strong signals, and likely pattern misuse.
+Generated `CodeStyle.md` guidance should be project-specific. Cite only pattern pages that shaped the recommendation.
 
 ### Records
 
@@ -203,25 +133,24 @@ Each session should be recorded incrementally while the interview is happening. 
 Recording.md
 ```
 
-The live record should live in the target project root so another agent can recover the interview state if context is lost. After the session, the record may be kept as `Recording.md` or copied into `python/records/` with a date-stamped filename. The date-stamped filename should include the date and a short project slug, for example:
-
-```text
-python/records/2026-04-22-my-python-cli.md
-```
+The live record should live in the target project root so another agent can recover interview state if context is lost. Use `shared/records/session-record.template.md` as the starting point.
 
 A session record should include:
 
 - project summary,
+- language targets,
 - interview progress,
 - full question card snapshots,
-- answer log in chronological order,
-- fixed questions and answers,
-- adaptive questions and answers,
-- brief feedback given after each answer,
-- agent observations,
-- inferred CodeBTI profile,
+- chronological answer log,
+- project fixed answers,
+- language fixed answers,
+- adaptive answers,
+- feedback given after each answer,
+- hidden inference notes,
+- inferred project and language profiles,
 - generated output files,
-- and unresolved assumptions.
+- validation result,
+- unresolved assumptions.
 
 Do not record secrets, private credentials, or irrelevant personal information.
 
@@ -232,9 +161,10 @@ The primary generated artifact is `CodeStyle.md`. It should be specific enough t
 A strong `CodeStyle.md` should define:
 
 - project intent,
+- shared project rules,
 - preferred architecture,
 - module boundaries,
-- naming conventions,
+- language-specific style rules,
 - typing policy,
 - error-handling policy,
 - dependency policy,
@@ -243,109 +173,113 @@ A strong `CodeStyle.md` should define:
 - examples of preferred code,
 - examples of avoided code,
 - review checklist,
-- and instructions for future agent behavior.
-- references to the local pattern/resource pages that ground the recommendations.
+- instructions for future agent behavior,
+- references to local pattern/resource pages.
 
-When useful, the same guidance can be distilled into:
+When useful, generate:
 
+- `ProjectStyle.md` for project workflow and governance,
 - `SKILL.md` for reusable agent behavior,
 - `SPEC.md` for project-specific requirements,
-- or narrower spec files such as `API_SPEC.md`, `TESTING_SPEC.md`, or `ARCHITECTURE_SPEC.md`.
+- narrower spec files such as `API_SPEC.md`, `TESTING_SPEC.md`, or `ARCHITECTURE_SPEC.md`.
 
-## CodeBTI Profile Concept
+## Profile Concept
 
-CodeBTI should produce memorable profile names, but the profiles must remain engineering-grounded. A profile is a shorthand for a set of design preferences, not a substitute for detailed guidance.
+CodeBTI profiles are engineering shorthand, not judgments of skill or personality.
 
-For the initial Python version, define profiles across practical axes such as:
+Project profiles describe workflow and governance preferences, such as:
 
-- Abstraction: local and concrete vs. layered and generalized.
-- Type discipline: dynamic and pragmatic vs. strict and explicit.
-- State model: mutable workflow vs. immutable transformations.
-- Error model: exceptions, result objects, validation upfront, or fail-fast.
-- Dependency posture: standard-library first vs. ecosystem-friendly.
-- Testing style: behavior-first, unit-first, property-based, integration-heavy, or smoke-test oriented.
+- `Controlled Multi-Language Maintainer`,
+- `Lightweight Prototype Collaborator`,
+- `Review-Gated Integrator`,
+- `Release-Managed Steward`.
 
-The current Python taxonomy defines practical profile families such as:
+Language profiles describe coding-style preferences, such as:
 
-- `Object-Centered Boundary Keeper`
-- `Function-First Pipeline Builder`
-- `Data-First Validator`
-- `Pragmatic Script Builder`
-- `Test-First Integrator`
-- `Framework-Aligned Builder`
-- `Algorithm-First Minimalist`
+- Python `Object-Centered Boundary Keeper`,
+- Python `Data-First Validator`,
+- TypeScript `Interface-First Boundary Keeper`,
+- TypeScript `Functional Pipeline Builder`.
 
-Use `python/profiles/python-profile-taxonomy.md` as the initial Python taxonomy and refine it as new interview data appears.
-
-## Initial Python Scope
-
-The first version should focus on Python projects, including:
-
-- packages,
-- command-line tools,
-- data processing scripts,
-- APIs,
-- notebooks converted into maintainable modules,
-- and agent-written project scaffolds.
-
-The Python guidance should cover at least:
-
-- project layout,
-- imports,
-- typing,
-- dataclasses and Pydantic-style models,
-- exceptions,
-- logging,
-- configuration,
-- dependency management,
-- tests,
-- scripts and CLIs,
-- docstrings,
-- and review expectations.
-
-Do not overfit the system to one framework. Framework-specific guidance should be added as optional extensions.
+Mixed results should be expressed as combined profiles rather than forced into a single clean label.
 
 ## Expansion Model
 
-Future languages should be added as sibling directories. Each language pack owns its fixed questions, pattern pages, profile taxonomy, and `CodeStyle.md` template. Shared interview resources in `shared/` are used by all language packs without modification.
+Future languages should be added as sibling directories. Each language pack owns its fixed questions, pattern pages, profile taxonomy, records guide, and `CodeStyle.md` template. Shared interview resources in `shared/` are used by all packs without modification.
 
-```
+```text
 CodeBTI/
-  shared/               # shared across all languages
+  shared/
+  project/
   python/
   typescript/
-  rust/                 # new language pack
+  rust/
     questions/fixed-rust.md
     patterns/gof/
     profiles/rust-profile-taxonomy.md
+    records/README.md
     templates/CodeStyle.template.md
 ```
 
-The general workflow stays language-neutral. Language folders hold language-specific examples, questions, and taxonomy details.
+After adding or changing packs, update `README.md`, `AGENT.md`, and `MANIFEST.md`, then run:
+
+```sh
+python3 scripts/validate_repo.py
+python3 -m pytest
+```
+
+## Validation Gate
+
+The repository has a lightweight validation gate. It checks:
+
+- local Markdown links,
+- required pack files,
+- fixed-question counts and required sections,
+- fixed-question ID/scope quality,
+- choice/scoring/pattern-signal label parity,
+- required template sections,
+- shared Chinese mirror coverage,
+- manifest drift.
+
+Run it before submitting changes:
+
+```sh
+python3 scripts/validate_repo.py
+python3 -m pytest
+```
+
+GitHub Actions runs the same command on pull requests and pushes.
+
+For release-hardening passes, also run:
+
+```sh
+git diff --check
+PYTHONPYCACHEPREFIX=/tmp/codebti_pycache python3 -m py_compile scripts/validate_repo.py
+```
 
 ## Agent Behavior Rules
 
 When an agent works in this repository:
 
-- Prefer markdown files over code unless the user explicitly asks for tooling.
+- Prefer Markdown files over code unless the user explicitly asks for tooling.
 - Keep source files readable by both humans and agents.
-- Make generated templates structured and easy to fill.
+- Keep `shared/` language-neutral.
+- Keep project-wide workflow decisions in `project/`.
+- Keep language-specific examples, patterns, and profile rules inside the language pack.
 - Avoid vague style advice that cannot guide implementation.
 - Include tradeoffs, not just rules.
 - Preserve session records as evidence for generated recommendations.
 - Treat CodeBTI results as project guidance, not personal judgment.
-- Keep Python as the first implementation target while leaving room for other languages.
+- Run `python3 scripts/validate_repo.py` after structural, link, question, template, or manifest changes.
 
-## Current Definition of Done
+## Definition of Done
 
-A language pack is ready when it contains:
+A change is ready when:
 
-- the fixed question sheet in `questions/fixed-<lang>.md`,
-- a pattern index in `patterns/README.md`,
-- GoF pattern pages in `patterns/gof/`,
-- a profile taxonomy draft in `profiles/<lang>-profile-taxonomy.md`,
-- a `CodeStyle.md` template in `templates/CodeStyle.template.md`.
-
-The shared layer (`shared/questions/`, `shared/templates/`, `shared/records/`) is shared — it does not need to be replicated per language.
-
-With these files present, a user can ask an AI agent to run a CodeBTI interview and receive a useful project-specific `CodeStyle.md`.
+- docs describe one consistent workflow,
+- relevant question/profile/template files are updated together,
+- translated mirror files are updated when shared files change,
+- `MANIFEST.md` reflects new files or directories,
+- `python3 scripts/validate_repo.py` passes,
+- `python3 -m pytest` passes,
+- release-hardening changes also pass `git diff --check` and `py_compile`.

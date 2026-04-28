@@ -6,6 +6,12 @@ Users can revise earlier answers at any time. During an interview, show the user
 
 ## Q1. General Purpose and Paradigm
 
+Question ID:
+python.default.shape
+
+Scope:
+Language:Python
+
 Dimension:
 Object-centered vs function-first vs data-first vs flat procedural organization.
 
@@ -86,6 +92,12 @@ CodeStyle output implications:
 Use this answer to set the default project shape: class-centered, function-first, data-model-centered, or script/procedure-first. Future guidance should explain when the project may deviate from that default.
 
 ## Q2. Defensive Coding and Type Boundaries
+
+Question ID:
+python.typing.boundaries
+
+Scope:
+Language:Python
 
 Dimension:
 Strict static typing vs boundary typing vs runtime validation vs dynamic duck typing.
@@ -171,6 +183,12 @@ Set typing policy, validation policy, and where agents should add checks. This a
 
 ## Q3. Error Handling and Recovery
 
+Question ID:
+python.error.recovery
+
+Scope:
+Language:Python
+
 Dimension:
 Fail-fast exceptions vs safe fallback vs explicit result objects vs batch quarantine.
 
@@ -249,6 +267,12 @@ Define the project-wide error policy so agents do not mix silent defaults, excep
 
 ## Q4. Naming and Readability
 
+Question ID:
+python.naming.readability
+
+Scope:
+Language:Python
+
 Dimension:
 Explicit names vs concise idioms vs domain vocabulary vs comment-supported naming.
 
@@ -283,6 +307,12 @@ CodeStyle output implications:
 Set naming rules for functions, classes, modules, variables, and review comments. The generated `CodeStyle.md` should include allowed abbreviations and discouraged generic names.
 
 ## Q5. Architecture and Wiring Style
+
+Question ID:
+python.architecture.wiring
+
+Scope:
+Language:Python
 
 Dimension:
 Python language tools vs dependency injection vs swappable patterns vs central registry vs algorithm-first code.
@@ -321,6 +351,12 @@ CodeStyle output implications:
 Set the default wiring rule: Python wrappers, dependency injection, explicit interfaces, central registry, or algorithm-first direct code. Include caution rules for hidden state and over-abstraction.
 
 ## Q6. Folder Structure
+
+Question ID:
+python.folder.structure
+
+Scope:
+Language:Python
 
 Dimension:
 Feature folders vs technical layers vs flat source tree vs framework/tool-driven layout.
@@ -379,6 +415,12 @@ Define where agents should create new modules and when they may introduce subfol
 
 ## Q7. Testing Philosophy
 
+Question ID:
+python.testing.philosophy
+
+Scope:
+Language:Python
+
 Dimension:
 Test-first coverage vs integration confidence vs core-logic focus vs manual/log-driven iteration.
 
@@ -414,6 +456,12 @@ Set minimum test requirements for generated code and future agent edits. Define 
 
 ## Q8. Comments and Docstrings
 
+Question ID:
+python.comments.docstrings
+
+Scope:
+Language:Python
+
 Dimension:
 Self-documenting code vs why-focused comments vs strict docstrings vs AI-facing context comments.
 
@@ -448,6 +496,12 @@ CodeStyle output implications:
 Define when agents should add comments, docstrings, planning notes, and context markers. Also define what kinds of comments should be removed during cleanup.
 
 ## Q9. Git History and Collaboration
+
+Question ID:
+python.git.collaboration
+
+Scope:
+Language:Python
 
 Dimension:
 Fast mainline commits vs conventional PR flow vs release branches vs linear history vs no Git preference.
@@ -486,6 +540,12 @@ CodeStyle output implications:
 Set commit-message, branch, PR, and history expectations for future agent work. If E is chosen, keep Git guidance minimal.
 
 ## Q10. Dependencies and Environments
+
+Question ID:
+python.dependencies.environments
+
+Scope:
+Language:Python
 
 Dimension:
 Standard pip/venv vs conda environments vs lockfile package managers vs newer Rust-based tooling.

@@ -71,7 +71,7 @@ Default to explicit `Subject`/`Observer` interfaces or typed event emitters. Ens
 
 ## Related Patterns
 
-[Mediator](../mediator.md) (can centralize Observer relationships), [Singleton](../singleton.md) (often used as a centralized event bus).
+[Mediator](mediator.md) (can centralize Observer relationships), [Singleton](singleton.md) (often used as a centralized event bus).
 
 ## Source Reference
 

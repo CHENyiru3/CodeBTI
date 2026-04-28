@@ -1,6 +1,6 @@
 # TypeScript Design Patterns
 
-All 23 GoF design patterns adapted for TypeScript idioms and the CodeBTI style inference system.
+All 22 GoF design patterns adapted for TypeScript idioms and the CodeBTI style inference system.
 
 ## Creational Patterns
 

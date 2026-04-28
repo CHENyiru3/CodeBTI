@@ -61,7 +61,7 @@ Use Template Method for algorithms with invariant steps and customizable steps. 
 
 ## Related Patterns
 
-[Strategy](../strategy.md) (Strategy overrides the algorithm itself, Template Method overrides steps), [Factory Method](../factory-method.md) (often called from template methods).
+[Strategy](strategy.md) (Strategy overrides the algorithm itself, Template Method overrides steps), [Factory Method](factory-method.md) (often called from template methods).
 
 ## Source Reference
 

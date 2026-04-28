@@ -2,7 +2,7 @@
 
 Use this guide when turning draft CodeBTI questions into final interview questions.
 
-The goal is a serious but approachable questionnaire. Users should not feel tested on design-pattern vocabulary or Python seniority. They should choose the style they would naturally want to maintain.
+The goal is a serious but approachable questionnaire. Users should not feel tested on design-pattern vocabulary or language seniority. They should choose the style they would naturally want to maintain.
 
 ## Voice
 

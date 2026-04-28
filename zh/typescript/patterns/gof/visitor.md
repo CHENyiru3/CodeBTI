@@ -65,7 +65,7 @@ for (const comp of components) comp.accept(visitor);
 
 ## 相关模式
 
-[Composite](../composite.md)（常被 Visitor 遍历）。
+[Composite](composite.md)（常被 Visitor 遍历）。
 
 ## 来源引用
 

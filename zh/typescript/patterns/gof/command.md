@@ -53,7 +53,7 @@ class CommandInvoker {
 
 ## 相关模式
 
-[Chain of Responsibility](../chain-of-responsibility.md), [Memento](../memento.md), [Strategy](../strategy.md).
+[Chain of Responsibility](chain-of-responsibility.md), [Memento](memento.md), [Strategy](strategy.md).
 
 ## 来源引用
 

@@ -61,7 +61,7 @@ Use Strategy for swappable algorithms. Prefer function-typed strategies (`(input
 
 ## Related Patterns
 
-[Bridge](../bridge.md) (similar structure, different intent), [State](../state.md), [Template Method](../template-method.md).
+[Bridge](bridge.md) (similar structure, different intent), [State](state.md), [Template Method](template-method.md).
 
 ## Source Reference
 
