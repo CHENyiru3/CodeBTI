@@ -2,7 +2,7 @@
 
 本文件夹存储 CodeBTI 访谈记录。记录保留用户的项目描述、完整题目卡、固定答案、自适应答案、逐答案反馈、Agent 观察和最终风格推断。
 
-访谈期间，在目标项目根目录维护一份实时的 `Recording.md`。在问下一个问题前，每次回答后都更新它。结束时，在生成 `CodeStyle.md`、`SKILL.md` 或 `SPEC.md` 前重新阅读 `Recording.md`。
+访谈期间，在目标项目根目录维护一份实时的 `Recording.md` 和初始 `SPEC.md`。在问下一个问题前，每次回答后都更新 `Recording.md`。结束时，在生成 `CodeStyle.md`、`SKILL.md` 或最终 SPEC 更新前重新阅读两个文件。
 
 访谈结束后，可以保留 `Recording.md`，或将其复制到此文件夹，每个访谈会话一个 markdown 文件。
 
@@ -29,13 +29,13 @@ YYYY-MM-DD-project-slug.md
 - 不记录秘密、凭证、私人令牌或无关的个人信息。
 - 优先使用简洁笔记而非完整对话记录。
 - 保留足够证据，使另一个 Agent 能够理解为什么生成了最终的 `CodeStyle.md`。
-- 将最终的 `Recording.md` 作为生成 markdown 输出的事实来源。
+- 将最终的 `Recording.md` 和 `SPEC.md` 作为生成 markdown 输出的事实来源。
 
 ## 记录内容
 
 每个会话应包括：
 
-- 项目摘要，
+- 项目摘要和 SPEC intake，
 - 访谈日期，
 - 语言目标，
 - 访谈进度，

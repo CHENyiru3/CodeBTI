@@ -22,11 +22,40 @@ None
 
 A small task tracker with a Python API/service layer and a TypeScript browser client. The project values controlled agent changes, clear shared defaults, and enough validation to keep documentation and generated guidance stable.
 
+## Opening SPEC Intake
+
+Mission:
+Help a small team track tasks across a Python service layer and a TypeScript client without losing project intent between agent sessions.
+
+Goals:
+Create a usable task workflow, keep API/client boundaries explicit, and preserve enough validation to make future changes reviewable.
+
+Target audience:
+Developers and maintainers using the tracker for small project coordination.
+
+Constraints:
+Prefer controlled agent changes, CI-required checks, and lockfile discipline. Avoid framework decisions until the feature scope needs them.
+
+Likely tech stack or language targets:
+Python service/API layer and TypeScript browser client.
+
+Roadmap intent:
+Phase 1 creates task CRUD and shared guidance; Phase 2 adds richer client flows; later phases can add integrations.
+
+Non-goals:
+No real-time collaboration or plugin marketplace in the first pass.
+
+Open questions:
+API framework and UI framework are intentionally unspecified until feature planning.
+
+Initial SPEC draft:
+[SPEC.md](SPEC.md)
+
 ## Interview Rounds
 
 | Round | Scope | Source | Status |
 | --- | --- | --- | --- |
-| Opening | Project | Required opening prompt | Complete |
+| Opening | Project | Required SPEC-style opening prompt | Complete |
 | Project fixed questions | Project | `../../../project/questions/fixed-project.md` | Complete |
 | Python fixed questions | Language:Python | `../../../python/questions/fixed-python.md` | Complete |
 | TypeScript fixed questions | Language:TypeScript | `../../../typescript/questions/fixed-typescript.md` | Complete |
@@ -36,6 +65,7 @@ A small task tracker with a Python API/service layer and a TypeScript browser cl
 
 | Step | Question ID | Scope | Source |
 | --- | --- | --- | --- |
+| Opening | opening.spec-intake | Project | Required SPEC-style opening prompt |
 | P1 | project.control.model | Project | `../../../project/questions/fixed-project.md` |
 | P2 | project.output.shape | Project | `../../../project/questions/fixed-project.md` |
 | P3 | project.validation.gate | Project | `../../../project/questions/fixed-project.md` |
@@ -150,7 +180,7 @@ Language profiles:
 - `CodeStyle.md`: Generated at [CodeStyle.md](CodeStyle.md).
 - `ProjectStyle.md`: Not generated separately; project rules are embedded in `CodeStyle.md`.
 - `SKILL.md`: Not generated.
-- `SPEC.md`: Not generated.
+- `SPEC.md`: Initial draft generated at [SPEC.md](SPEC.md).
 
 ## Validation
 

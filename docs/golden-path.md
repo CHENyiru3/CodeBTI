@@ -7,12 +7,14 @@ This guide describes the expected end-to-end workflow for a normal CodeBTI sessi
 Ask the required opening prompt:
 
 ```text
-What kind of project do you want to build? Please describe shortly.
+Please describe the project as a compact SPEC-style brief. Include mission, goals, target audience, constraints, likely tech stack or language targets, roadmap intent, non-goals, and open questions. Keep this at the what/why level; avoid low-level implementation details unless they are hard constraints.
 ```
 
 Use the answer to identify the target language pack or packs. If the language is unclear, ask one concise clarification before scored questions begin.
 
-Create or update `Recording.md` in the target project root using [../shared/records/session-record.template.md](../shared/records/session-record.template.md). Record the opening answer as the project summary. The opening answer is not scored.
+Create or update `Recording.md` in the target project root using [../shared/records/session-record.template.md](../shared/records/session-record.template.md). Record the opening answer as the project summary and SPEC intake. The opening answer is not scored.
+
+Create or update an initial `SPEC.md` draft using [../shared/templates/SPEC.template.md](../shared/templates/SPEC.template.md). Capture what and why: mission, goals, audience, constraints, non-goals, likely tech stack, roadmap intent, and open questions. Leave implementation details to later feature specs unless the user named them as hard constraints.
 
 ## 2. Ask Project Questions
 
@@ -55,7 +57,7 @@ Adaptive questions may target:
 
 ## 5. Infer Profiles
 
-After all scored answers are recorded, reread `Recording.md` before inferring anything.
+After all scored answers are recorded, reread `Recording.md` and the current `SPEC.md` draft before inferring anything.
 
 Infer:
 
@@ -97,3 +99,4 @@ Final handoff should state:
 - validation commands run and results,
 - unresolved assumptions.
 
+Between feature implementations, replan by rereading `SPEC.md`, updating it with changed mission, stack, roadmap, or constraints, and recording the rationale in `Recording.md`.

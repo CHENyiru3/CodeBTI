@@ -10,6 +10,9 @@ sys.path.insert(0, str(ROOT))
 from scripts import validate_repo  # noqa: E402
 
 
+OPENING_PROMPT_SNIPPET = "compact SPEC-style brief"
+
+
 def read(path: str) -> str:
     return (ROOT / path).read_text(encoding="utf-8")
 
@@ -90,10 +93,39 @@ def test_release_hardening_docs_are_linked() -> None:
     assert "python3 -m pytest" in golden_path
 
 
+def test_opening_prompt_is_spec_style_and_recorded() -> None:
+    skill = read("SKILL.md")
+    golden_path = read("docs/golden-path.md")
+    record_template = read("shared/records/session-record.template.md")
+    spec_template = read("shared/templates/SPEC.template.md")
+
+    for text in (skill, golden_path, record_template):
+        assert OPENING_PROMPT_SNIPPET in text
+        assert "mission, goals, target audience, constraints" in text
+        assert "roadmap intent, non-goals, and open questions" in text
+
+    for heading in (
+        "## Mission",
+        "## Goals",
+        "## Target Audience",
+        "## Constraints",
+        "## Non-Goals",
+        "## Tech Stack",
+        "## Roadmap",
+        "## Open Questions",
+    ):
+        assert heading in spec_template
+
+
 def test_multilanguage_fixture_is_complete() -> None:
     recording = read("tests/fixtures/multilang/Recording.md")
     code_style = read("tests/fixtures/multilang/CodeStyle.md")
+    spec = read("tests/fixtures/multilang/SPEC.md")
 
+    assert "## Opening SPEC Intake" in recording
+    assert "[SPEC.md](SPEC.md)" in recording
+    assert "Roadmap intent" in recording
+    assert "Open questions" in recording
     for question in [f"P{i}" for i in range(1, 7)]:
         assert question in recording
     for language in ("Python", "TypeScript"):
@@ -114,3 +146,6 @@ def test_multilanguage_fixture_is_complete() -> None:
         "## Agent Behavior",
     ):
         assert heading in code_style
+
+    for heading in ("## Mission", "## Goals", "## Tech Stack", "## Roadmap", "## Open Questions"):
+        assert heading in spec

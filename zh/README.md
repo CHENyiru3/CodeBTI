@@ -14,16 +14,17 @@ CodeBTI 不是人格测试。它是一套实用的访谈与文档系统，用来
 
 CodeBTI 现在使用更可控的项目优先流程：
 
-1. 用户描述项目及可能的语言目标。
-2. Agent 在目标项目中创建一份实时的 `Recording.md`，并记录项目摘要。
-3. Agent 先询问 [project/questions/fixed-project.md](../project/questions/fixed-project.md) 中的 6 个固定项目问题。
-4. Agent 再对每个选定语言包询问固定语言问题，例如 [python/questions/fixed-python.md](../python/questions/fixed-python.md) 或 [typescript/questions/fixed-typescript.md](../typescript/questions/fixed-typescript.md)。
-5. 每个计分问题之前，Agent 将完整题目卡保存到 `Recording.md`；用户回答后，更新答案日志并给出简短项目反馈。
-6. Agent 使用 [shared/questions/adaptive-question-guide.md](../shared/questions/adaptive-question-guide.md) 在整个会话中总共提出恰好 5 个适应性后续追问。
-7. Agent 将 `Recording.md` 作为事实来源重新阅读。
-8. Agent 根据 [project/profiles/project-profile-taxonomy.md](../project/profiles/project-profile-taxonomy.md) 推断项目 Profile，并根据所选语言 taxonomy 推断语言 Profile。
-9. Agent 只选择对最终指导有实质影响的模式/资源引用。
-10. Agent 使用所选语言模板、可选 [project/templates/ProjectStyle.template.md](../project/templates/ProjectStyle.template.md) 和可选共享 SKILL/SPEC 模板生成项目指导。
+1. 用户回答一个 SPEC 风格开场提示，说明使命、目标、受众、约束、可能的技术栈/语言、路线图意图、非目标和开放问题。
+2. Agent 在目标项目中创建一份实时的 `Recording.md`，并将开场回答记录为项目摘要和 SPEC intake。
+3. Agent 使用 [shared/templates/SPEC.template.md](../shared/templates/SPEC.template.md) 创建或更新初始 `SPEC.md` 草稿，保持在 what/why 层级。
+4. Agent 先询问 [project/questions/fixed-project.md](../project/questions/fixed-project.md) 中的 6 个固定项目问题。
+5. Agent 再对每个选定语言包询问固定语言问题，例如 [python/questions/fixed-python.md](../python/questions/fixed-python.md) 或 [typescript/questions/fixed-typescript.md](../typescript/questions/fixed-typescript.md)。
+6. 每个计分问题之前，Agent 将完整题目卡保存到 `Recording.md`；用户回答后，更新答案日志并给出简短项目反馈。
+7. Agent 使用 [shared/questions/adaptive-question-guide.md](../shared/questions/adaptive-question-guide.md) 在整个会话中总共提出恰好 5 个适应性后续追问。
+8. Agent 将 `Recording.md` 和 `SPEC.md` 作为事实来源重新阅读。
+9. Agent 根据 [project/profiles/project-profile-taxonomy.md](../project/profiles/project-profile-taxonomy.md) 推断项目 Profile，并根据所选语言 taxonomy 推断语言 Profile。
+10. Agent 只选择对最终指导有实质影响的模式/资源引用。
+11. Agent 使用所选语言模板、可选 [project/templates/ProjectStyle.template.md](../project/templates/ProjectStyle.template.md) 和可选共享 SKILL/SPEC 模板生成项目指导。
 
 可执行的逐步流程见英文 [golden path workflow](../docs/golden-path.md)。
 
@@ -160,6 +161,8 @@ CodeBTI/
 对于多语言项目，单份 `CodeStyle.md` 可以包含语言专属章节。跨语言共同事项适用于所有语言，除非某个语言章节明确覆盖。
 
 访谈中的实时证据保存在目标项目根目录的 `Recording.md` 中，包含完整题目卡、答案日志、反馈、隐藏推理笔记和最终证据审核。项目可保留原文件，或在输出生成后将其按日期重命名归档。
+
+对于 SPEC 驱动开发，将 `SPEC.md` 视为持续演进的 what/why 文档。每次 feature 实现之间，重新阅读它；当使命、约束、技术栈、路线图或开放问题变化时更新它，并在 `Recording.md` 中记录 replanning 理由。
 
 ## 贡献
 

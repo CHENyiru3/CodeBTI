@@ -9,9 +9,9 @@ This folder defines the Python-specific CodeBTI interview round. The language ro
 3. Ask the 10 fixed Python questions from [fixed-python.md](fixed-python.md).
 4. After each answer, record the answer under `Language:Python` and give brief project-specific feedback.
 5. Ask exactly 5 adaptive follow-up questions total for the whole session using [../../shared/questions/adaptive-question-guide.md](../../shared/questions/adaptive-question-guide.md).
-6. Reread `Recording.md`, infer Python style dimensions and pattern tendencies, then generate Python-specific guidance inside `CodeStyle.md`.
+6. Reread `Recording.md` and `SPEC.md`, infer Python style dimensions and pattern tendencies, then generate Python-specific guidance inside `CodeStyle.md`.
 
-The opening project-description prompt and project-wide questions are outside this language round. Record Python answers separately from project-wide answers and other language answers.
+The opening SPEC-style prompt and project-wide questions are outside this language round. Record Python answers separately from project-wide answers and other language answers.
 
 Ask exactly one user-facing interview question per turn. This applies to the opening prompt, each fixed question, and each adaptive follow-up question.
 

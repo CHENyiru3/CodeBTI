@@ -9,9 +9,9 @@
 3. 从 [fixed-python.md](fixed-python.md) 询问 10 个固定 Python 问题。
 4. 每个回答后，将答案记录在 `Language:Python` 下，并给出简短项目反馈。
 5. 使用 [../../shared/questions/adaptive-question-guide.md](../../shared/questions/adaptive-question-guide.md) 在整个会话中总共提出恰好 5 个适应性后续追问。
-6. 重新阅读 `Recording.md`，推断 Python 风格维度和模式倾向，然后在 `CodeStyle.md` 中生成 Python 专属指导。
+6. 重新阅读 `Recording.md` 和 `SPEC.md`，推断 Python 风格维度和模式倾向，然后在 `CodeStyle.md` 中生成 Python 专属指导。
 
-开场项目描述提示和项目级问题不属于此语言轮次。Python 答案应与项目级答案及其他语言答案分开记录。
+开场 SPEC 风格提示和项目级问题不属于此语言轮次。Python 答案应与项目级答案及其他语言答案分开记录。
 
 每轮只问一个用户面对的访谈问题。这适用于开场提示、每个固定问题和每个适应性后续追问。
 

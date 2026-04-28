@@ -13,6 +13,7 @@ Release-hardening baseline for the project-first CodeBTI workflow.
 - GitHub Actions validation workflow.
 - Multi-language fixture covering project, Python, TypeScript, adaptive answers, and generated shared/language guidance.
 - Golden path workflow guide for agents and maintainers.
+- SPEC-driven opening intake that creates an initial `SPEC.md` draft before scored questions begin.
 
 ### Changed
 
@@ -20,6 +21,7 @@ Release-hardening baseline for the project-first CodeBTI workflow.
 - Shared interview docs now stay language-neutral; project governance moved into `project/`.
 - Language templates now expose shared project rules before language-specific guidance.
 - Documentation now treats `Recording.md` as the recoverable source of truth for every session.
+- Opening evidence now captures mission, goals, audience, constraints, stack targets, roadmap intent, non-goals, and open questions at the what/why level.
 
 ### Validation
 
@@ -31,4 +33,3 @@ python3 -m pytest
 git diff --check
 PYTHONPYCACHEPREFIX=/tmp/codebti_pycache python3 -m py_compile scripts/validate_repo.py
 ```
-

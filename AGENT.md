@@ -44,19 +44,20 @@ The root `SKILL.md` is the installable skill entry point. It routes every CodeBT
 
 ## Core Workflow
 
-1. The user describes what they want to build.
+1. The user answers one SPEC-style opening prompt covering mission, goals, audience, constraints, likely stack/languages, roadmap intent, non-goals, and open questions.
 2. The agent identifies target language packs. If unclear, ask one concise clarification before scored questions.
 3. The agent creates or updates a live `Recording.md` in the target project.
-4. The agent asks the 6 fixed project questions in `project/questions/fixed-project.md`.
-5. The agent asks fixed questions for each selected language pack, such as Python or TypeScript.
-6. Before every scored question, the agent saves the full question card in `Recording.md`.
-7. After every answer, the agent updates the answer log and gives brief project-specific feedback before asking the next question.
-8. The agent asks exactly 5 adaptive follow-up questions total using `shared/questions/adaptive-question-guide.md`.
-9. The agent rereads `Recording.md` and treats it as the source of truth.
-10. The agent analyzes project answers using `project/profiles/project-profile-taxonomy.md`.
-11. The agent analyzes language answers using each language's profile taxonomy and `patterns/gof/` database.
-12. The agent selects specific local pattern/resource references that materially affect the recommendation.
-13. The agent generates the requested guidance: `CodeStyle.md`, optional `ProjectStyle.md`, optional `SKILL.md`, optional `SPEC.md`, or narrower spec files.
+4. The agent creates or updates an initial `SPEC.md` draft at the what/why level.
+5. The agent asks the 6 fixed project questions in `project/questions/fixed-project.md`.
+6. The agent asks fixed questions for each selected language pack, such as Python or TypeScript.
+7. Before every scored question, the agent saves the full question card in `Recording.md`.
+8. After every answer, the agent updates the answer log and gives brief project-specific feedback before asking the next question.
+9. The agent asks exactly 5 adaptive follow-up questions total using `shared/questions/adaptive-question-guide.md`.
+10. The agent rereads `Recording.md` and `SPEC.md` and treats them as the source of truth.
+11. The agent analyzes project answers using `project/profiles/project-profile-taxonomy.md`.
+12. The agent analyzes language answers using each language's profile taxonomy and `patterns/gof/` database.
+13. The agent selects specific local pattern/resource references that materially affect the recommendation.
+14. The agent generates the requested guidance: `CodeStyle.md`, optional `ProjectStyle.md`, optional `SKILL.md`, optional `SPEC.md`, or narrower spec files.
 
 Use `docs/golden-path.md` as the operational checklist when validating or teaching the workflow.
 
@@ -137,7 +138,8 @@ The live record should live in the target project root so another agent can reco
 
 A session record should include:
 
-- project summary,
+- project summary and SPEC intake,
+- initial `SPEC.md` draft reference,
 - language targets,
 - interview progress,
 - full question card snapshots,
@@ -182,6 +184,8 @@ When useful, generate:
 - `SKILL.md` for reusable agent behavior,
 - `SPEC.md` for project-specific requirements,
 - narrower spec files such as `API_SPEC.md`, `TESTING_SPEC.md`, or `ARCHITECTURE_SPEC.md`.
+
+For SPEC-driven development, `SPEC.md` is a living what/why document. Between feature implementations, reread and update it when mission, constraints, stack, roadmap, or open questions change, then record the replanning rationale in `Recording.md`.
 
 ## Profile Concept
 

@@ -44,19 +44,20 @@ CodeBTI/
 
 ## 核心工作流
 
-1. 用户描述想构建什么。
+1. 用户回答一个 SPEC 风格开场提示，说明使命、目标、受众、约束、可能的技术栈/语言、路线图意图、非目标和开放问题。
 2. Agent 识别目标语言包。如果不明确，在计分问题前提出一个简短澄清问题。
 3. Agent 在目标项目中创建或更新实时 `Recording.md`。
-4. Agent 询问 `project/questions/fixed-project.md` 中的 6 个固定项目问题。
-5. Agent 对每个所选语言包询问固定问题，例如 Python 或 TypeScript。
-6. 每个计分问题之前，Agent 将完整题目卡保存到 `Recording.md`。
-7. 每次回答后，Agent 更新答案日志，并在下一个问题前给出简短项目反馈。
-8. Agent 使用 `shared/questions/adaptive-question-guide.md` 在整个会话中总共提出恰好 5 个适应性后续追问。
-9. Agent 重新阅读 `Recording.md`，并将其作为事实来源。
-10. Agent 使用 `project/profiles/project-profile-taxonomy.md` 分析项目级答案。
-11. Agent 使用每个语言的 Profile taxonomy 和 `patterns/gof/` 数据库分析语言答案。
-12. Agent 只选择对建议有实质影响的本地模式/资源引用。
-13. Agent 生成请求的指导：`CodeStyle.md`、可选 `ProjectStyle.md`、可选 `SKILL.md`、可选 `SPEC.md` 或更细的规范文件。
+4. Agent 在 what/why 层级创建或更新初始 `SPEC.md` 草稿。
+5. Agent 询问 `project/questions/fixed-project.md` 中的 6 个固定项目问题。
+6. Agent 对每个所选语言包询问固定问题，例如 Python 或 TypeScript。
+7. 每个计分问题之前，Agent 将完整题目卡保存到 `Recording.md`。
+8. 每次回答后，Agent 更新答案日志，并在下一个问题前给出简短项目反馈。
+9. Agent 使用 `shared/questions/adaptive-question-guide.md` 在整个会话中总共提出恰好 5 个适应性后续追问。
+10. Agent 重新阅读 `Recording.md` 和 `SPEC.md`，并将它们作为事实来源。
+11. Agent 使用 `project/profiles/project-profile-taxonomy.md` 分析项目级答案。
+12. Agent 使用每个语言的 Profile taxonomy 和 `patterns/gof/` 数据库分析语言答案。
+13. Agent 只选择对建议有实质影响的本地模式/资源引用。
+14. Agent 生成请求的指导：`CodeStyle.md`、可选 `ProjectStyle.md`、可选 `SKILL.md`、可选 `SPEC.md` 或更细的规范文件。
 
 验证或讲解工作流时，使用英文 `docs/golden-path.md` 作为操作清单。
 
@@ -137,7 +138,8 @@ Recording.md
 
 会话记录应包含：
 
-- 项目摘要，
+- 项目摘要和 SPEC intake，
+- 初始 `SPEC.md` 草稿引用，
 - 语言目标，
 - 访谈进度，
 - 完整题目卡快照，
@@ -182,6 +184,8 @@ Recording.md
 - `SKILL.md`：可复用 Agent 行为，
 - `SPEC.md`：项目专属需求，
 - `API_SPEC.md`、`TESTING_SPEC.md` 或 `ARCHITECTURE_SPEC.md` 等更细规范。
+
+对于 SPEC 驱动开发，`SPEC.md` 是持续演进的 what/why 文档。每次 feature 实现之间，如果使命、约束、技术栈、路线图或开放问题变化，重新阅读并更新它，然后在 `Recording.md` 中记录 replanning 理由。
 
 ## Profile 概念
 

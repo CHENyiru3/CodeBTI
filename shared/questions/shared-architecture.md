@@ -44,7 +44,7 @@ All packs share:
 
 ## How the Interview Flows
 
-1. Opening prompt.
+1. SPEC-style opening prompt and initial `SPEC.md` draft.
 2. Fixed project questions from `project/questions/fixed-project.md`.
 3. Fixed language questions from each selected language pack.
 4. Exactly 5 adaptive follow-up questions using `shared/questions/adaptive-question-guide.md`.

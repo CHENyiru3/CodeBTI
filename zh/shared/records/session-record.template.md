@@ -22,7 +22,36 @@ TODO
 
 TODO
 
-来源：必选开场提示，"您想构建什么类型的项目？请简要描述。"
+来源：必选 SPEC 风格开场提示。
+
+## 开场 SPEC Intake
+
+使命：
+TODO
+
+目标：
+TODO
+
+目标受众：
+TODO
+
+约束：
+TODO
+
+可能的技术栈或语言目标：
+TODO
+
+路线图意图：
+TODO
+
+非目标：
+TODO
+
+开放问题：
+TODO
+
+初始 SPEC 草稿：
+TODO：`SPEC.md` 路径，或说明为什么没有生成草稿。
 
 ## 访谈轮次
 
@@ -30,7 +59,7 @@ TODO
 
 | Round | Scope | Source | Status |
 | --- | --- | --- | --- |
-| Opening | Project | Required opening prompt | TODO |
+| Opening | Project | Required SPEC-style opening prompt | TODO |
 | Project fixed questions | Project | `project/questions/fixed-project.md` | TODO |
 | Language fixed questions | Language:TODO | `TODO/questions/fixed-TODO.md` | TODO |
 | Adaptive questions | Project, Language, or Cross-language | Generated from `shared/questions/adaptive-question-guide.md` | TODO |
@@ -76,7 +105,7 @@ Choices:
 - E. Full choice text if present
 ```
 
-### Opening. Project Summary
+### Opening. Project Summary and SPEC Intake
 
 Question kind:
 Opening
@@ -85,10 +114,10 @@ Scope:
 Project
 
 Source:
-Required opening prompt
+Required SPEC-style opening prompt
 
 Full question:
-What kind of project do you want to build? Please describe shortly.
+请用一份紧凑的 SPEC 风格 brief 描述这个项目。请包含使命、目标、目标受众、约束、可能的技术栈或语言目标、路线图意图、非目标和开放问题。保持在 what/why 层级；除非它们是硬约束，否则避免低层实现细节。
 
 Required scored snapshot blocks:
 
@@ -102,7 +131,7 @@ Required scored snapshot blocks:
 
 | Step | Question kind | Scope | Question focus | User answer | User note | Feedback given | Hidden inference note | Changed from | Recorded at |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Opening | Project summary | Project | Project intent | TODO | TODO | TODO | Not scored | None | TODO |
+| Opening | Project summary and SPEC intake | Project | Mission, goals, audience, constraints, stack, roadmap, non-goals, open questions | TODO | TODO | TODO | Not scored | None | TODO |
 | P1 | Project fixed | Project | Project control model | TODO | TODO | TODO | TODO | None | TODO |
 | P2 | Project fixed | Project | Output shape | TODO | TODO | TODO | TODO | None | TODO |
 | P3 | Project fixed | Project | Validation gate | TODO | TODO | TODO | TODO | None | TODO |
@@ -237,7 +266,7 @@ TODO
 - `CodeStyle.md`: TODO. 使用相关语言的 `templates/CodeStyle.template.md` 和共享项目规则。
 - `ProjectStyle.md`: TODO. 当单独生成项目级工作流指导时，使用 `project/templates/ProjectStyle.template.md`。
 - `SKILL.md`: TODO. 使用 `shared/templates/SKILL.template.md`。
-- `SPEC.md`: TODO. 使用 `shared/templates/SPEC.template.md`。
+- `SPEC.md`: TODO. 开场 intake 后创建，并在 replanning 时更新。使用 `shared/templates/SPEC.template.md`。
 
 ## 验证
 

@@ -18,23 +18,25 @@ Use this skill when a user wants to establish consistent coding style, design-pa
 
 ## Router Workflow
 
-1. Ask the required opening prompt: "What kind of project do you want to build? Please describe shortly."
+1. Ask the required opening prompt:
+   "Please describe the project as a compact SPEC-style brief. Include mission, goals, target audience, constraints, likely tech stack or language targets, roadmap intent, non-goals, and open questions. Keep this at the what/why level; avoid low-level implementation details unless they are hard constraints."
 2. Identify the target language pack or packs from the user's answer. If the language is unclear, ask one concise clarification before starting scored questions.
 3. Create or update a live `Recording.md` in the target project root using `shared/records/session-record.template.md` as the structure.
-4. Record the opening answer as the project summary. This opening prompt is not scored.
-5. Ask the 6 fixed project questions from `project/questions/fixed-project.md`. Save the full user-facing question card in `Recording.md` before each question, then record the answer and feedback.
-6. For each selected language pack, ask that language's fixed questions:
+4. Record the opening answer as the project summary and SPEC intake. This opening prompt is not scored.
+5. Create or update an initial `SPEC.md` draft using `shared/templates/SPEC.template.md`. Preserve what and why; leave implementation details for later feature planning unless the user named them as constraints.
+6. Ask the 6 fixed project questions from `project/questions/fixed-project.md`. Save the full user-facing question card in `Recording.md` before each question, then record the answer and feedback.
+7. For each selected language pack, ask that language's fixed questions:
    - Python: `python/questions/fixed-python.md`
    - TypeScript: `typescript/questions/fixed-typescript.md`
-7. Record each language answer set under its language target in `Recording.md`.
-8. Ask exactly 5 adaptive follow-up questions total for the whole session using `shared/questions/adaptive-question-guide.md`. The adaptive questions may target project-level ambiguity, one language, or a cross-language conflict.
-9. After all scored questions are answered, reread `Recording.md` and use it as the source of truth for profile inference.
-10. Infer the project-level profile from `project/profiles/project-profile-taxonomy.md`.
-11. Infer each language profile from its language taxonomy and pattern database:
+8. Record each language answer set under its language target in `Recording.md`.
+9. Ask exactly 5 adaptive follow-up questions total for the whole session using `shared/questions/adaptive-question-guide.md`. The adaptive questions may target project-level ambiguity, one language, or a cross-language conflict.
+10. After all scored questions are answered, reread `Recording.md` and the current `SPEC.md` draft, then use them as the source of truth for profile inference.
+11. Infer the project-level profile from `project/profiles/project-profile-taxonomy.md`.
+12. Infer each language profile from its language taxonomy and pattern database:
     - Python: `python/profiles/python-profile-taxonomy.md`, `python/patterns/gof/`
     - TypeScript: `typescript/profiles/typescript-profile-taxonomy.md`, `typescript/patterns/gof/`
-12. Select only local pattern/resource references that materially affect the final recommendation.
-13. Generate the requested guidance:
+13. Select only local pattern/resource references that materially affect the final recommendation.
+14. Generate the requested guidance:
     - single-language project: use the language `templates/CodeStyle.template.md`;
     - multi-language project: use shared project rules first, then language-specific sections;
     - project-level workflow summary: use `project/templates/ProjectStyle.template.md` when helpful;
@@ -59,12 +61,14 @@ Use this skill when a user wants to establish consistent coding style, design-pa
 ## Agent Rules
 
 - Ask exactly one user-facing interview question per turn, including the opening prompt, project questions, language questions, and adaptive follow-ups.
+- Treat the opening prompt as a single SPEC-style intake question. Do not split it into multiple turns unless the user asks to proceed section by section.
 - Show user-facing scenarios, instructions, code examples, and choices; keep scoring/signal notes hidden unless the user asks.
 - Save every question card in `Recording.md`, not just the answer.
+- Create or update `SPEC.md` immediately after the opening answer, then revise it after later replanning or feature work.
 - After receiving each answer, update `Recording.md`, give one or two sentences of project-specific feedback, then ask the next question.
 - Keep project-wide answers separate from language-specific answers.
 - For multi-language projects, shared project rules govern Git workflow, dependency governance, validation gates, output shape, and change records unless a language section explicitly overrides them.
-- At the end, reread `Recording.md` before generating `CodeStyle.md`, `ProjectStyle.md`, `SKILL.md`, or `SPEC.md`.
+- At the end, reread `Recording.md` and `SPEC.md` before generating `CodeStyle.md`, `ProjectStyle.md`, `SKILL.md`, or final SPEC updates.
 - Ground final reports with relevant local pattern pages and profile references. Every cited pattern should explain whether it is encouraged, allowed with caution, or avoided for this project.
 - Allow the user to revise earlier answers at any time and record answer changes.
 - Do not mix typing styles, error policies, naming conventions, or validation expectations inconsistently in generated output.

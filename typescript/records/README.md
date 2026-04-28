@@ -2,7 +2,7 @@
 
 This folder stores TypeScript CodeBTI interview records or archived project records that include a TypeScript language round. A record preserves the user's project description, full question cards, project answers, language answers, adaptive answers, feedback, agent observations, and final style inference.
 
-During an interview, maintain a live `Recording.md` in the target project root. Update it after every answer before asking the next question. At the end, reread `Recording.md` before generating `CodeStyle.md`, `ProjectStyle.md`, `SKILL.md`, or `SPEC.md`.
+During an interview, maintain a live `Recording.md` and initial `SPEC.md` in the target project root. Update `Recording.md` after every answer before asking the next question. At the end, reread both files before generating `CodeStyle.md`, `ProjectStyle.md`, `SKILL.md`, or final SPEC updates.
 
 After the interview, either keep `Recording.md` in the project or copy it into this folder with one markdown file per interview session.
 
@@ -29,13 +29,13 @@ Example:
 - Do not record secrets, credentials, private tokens, or unrelated personal details.
 - Prefer concise notes over full conversation transcripts.
 - Preserve enough evidence that another agent can understand why the final `CodeStyle.md` was generated.
-- Treat the final `Recording.md` as the source of truth for generated markdown outputs.
+- Treat the final `Recording.md` and `SPEC.md` as the source of truth for generated markdown outputs.
 
 ## What To Record
 
 Each session should include:
 
-- project summary,
+- project summary and SPEC intake,
 - interview date,
 - language targets,
 - interview progress,

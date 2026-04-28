@@ -16,16 +16,17 @@ This repository can be installed directly as a Codex skill. Copy or install this
 
 For every project, CodeBTI now uses a controlled project-first flow:
 
-1. The user describes the project and likely language targets.
-2. The agent starts a live `Recording.md` in the target project and records the project summary.
-3. The agent asks the 6 fixed project questions from [project/questions/fixed-project.md](project/questions/fixed-project.md).
-4. The agent asks the fixed questions for each selected language pack, such as [python/questions/fixed-python.md](python/questions/fixed-python.md) or [typescript/questions/fixed-typescript.md](typescript/questions/fixed-typescript.md).
-5. Before each scored question, the agent saves the full user-facing question card in `Recording.md`; after each answer, it updates the answer log and gives short project-specific feedback.
-6. The agent asks exactly 5 adaptive follow-up questions total using [shared/questions/adaptive-question-guide.md](shared/questions/adaptive-question-guide.md).
-7. The agent rereads `Recording.md` as the source of truth.
-8. The agent infers a project profile from [project/profiles/project-profile-taxonomy.md](project/profiles/project-profile-taxonomy.md) and language profiles from the selected language taxonomies.
-9. The agent selects only pattern/resource references that materially affect the guidance.
-10. The agent generates project guidance using the selected language templates, optional [project/templates/ProjectStyle.template.md](project/templates/ProjectStyle.template.md), and optional shared SKILL/SPEC templates.
+1. The user answers one SPEC-style opening prompt covering mission, goals, audience, constraints, likely stack/languages, roadmap intent, non-goals, and open questions.
+2. The agent starts a live `Recording.md` in the target project and records the opening answer as the project summary and SPEC intake.
+3. The agent creates or updates an initial `SPEC.md` draft from [shared/templates/SPEC.template.md](shared/templates/SPEC.template.md), keeping it at the what/why level.
+4. The agent asks the 6 fixed project questions from [project/questions/fixed-project.md](project/questions/fixed-project.md).
+5. The agent asks the fixed questions for each selected language pack, such as [python/questions/fixed-python.md](python/questions/fixed-python.md) or [typescript/questions/fixed-typescript.md](typescript/questions/fixed-typescript.md).
+6. Before each scored question, the agent saves the full user-facing question card in `Recording.md`; after each answer, it updates the answer log and gives short project-specific feedback.
+7. The agent asks exactly 5 adaptive follow-up questions total using [shared/questions/adaptive-question-guide.md](shared/questions/adaptive-question-guide.md).
+8. The agent rereads `Recording.md` and `SPEC.md` as the source of truth.
+9. The agent infers a project profile from [project/profiles/project-profile-taxonomy.md](project/profiles/project-profile-taxonomy.md) and language profiles from the selected language taxonomies.
+10. The agent selects only pattern/resource references that materially affect the guidance.
+11. The agent generates project guidance using the selected language templates, optional [project/templates/ProjectStyle.template.md](project/templates/ProjectStyle.template.md), and optional shared SKILL/SPEC templates.
 
 For an operational step-by-step version, use the [golden path workflow](docs/golden-path.md).
 
@@ -149,6 +150,8 @@ The main output is a project-specific `CodeStyle.md`. When useful, the same resu
 For multi-language projects, a single `CodeStyle.md` can contain language-specific sections. Cross-cutting concerns apply to all languages unless a language section explicitly overrides them.
 
 The live interview evidence is kept in `Recording.md` during the session. It includes full question cards, answer log, feedback, hidden inference notes, and final evidence review.
+
+For SPEC-driven work, treat `SPEC.md` as a living what/why document. Between feature implementations, reread it, update mission, constraints, stack, roadmap, or open questions when they change, and record the replanning rationale in `Recording.md`.
 
 ## Contributing
 

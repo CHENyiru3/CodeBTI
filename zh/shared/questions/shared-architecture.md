@@ -44,7 +44,7 @@
 
 ## 访谈如何进行
 
-1. 开场提示。
+1. SPEC 风格开场提示和初始 `SPEC.md` 草稿。
 2. 来自 `project/questions/fixed-project.md` 的固定项目问题。
 3. 来自每个所选语言包的固定语言问题。
 4. 使用 `shared/questions/adaptive-question-guide.md` 提出恰好 5 个适应性后续追问。

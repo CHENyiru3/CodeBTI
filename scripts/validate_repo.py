@@ -145,6 +145,13 @@ REQUIRED_TEMPLATE_SECTIONS = {
         "## Pattern Preferences",
     ),
     "shared/templates/SPEC.template.md": (
+        "## Mission",
+        "## Goals",
+        "## Target Audience",
+        "## Constraints",
+        "## Non-Goals",
+        "## Tech Stack",
+        "## Roadmap",
         "## Summary",
         "## Requirements",
         "## Shared Project Rules",

@@ -35,6 +35,7 @@ Lightweight gates that keep the Markdown-first repository stable.
 | `tests/test_validate_repo.py` | Pytest checks for validator behavior, release-hardening docs, templates, and fixtures. |
 | `tests/fixtures/multilang/CodeStyle.md` | Multi-language generated guidance fixture. |
 | `tests/fixtures/multilang/Recording.md` | Multi-language interview record fixture. |
+| `tests/fixtures/multilang/SPEC.md` | Multi-language initial SPEC draft fixture. |
 
 ## Project Pack (`project/`)
 

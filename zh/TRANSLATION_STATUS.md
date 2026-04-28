@@ -56,3 +56,4 @@ When updating English source files, check the "Translated" list above and update
 - 2026-04-25: Migrated from old structure (`zh/python/questions/adaptive-question-guide.md`, etc.) to mirrored shared + language pack structure. Pattern pages moved from `zh/python/patterns/python/` to `zh/python/patterns/gof/`. `zh/example/` renamed to `zh/examples/`.
 - 2026-04-28: Stabilized the shared layer as translated mirrors of English shared files and added validation coverage for mirror presence.
 - 2026-04-28: Added release-hardening docs and tightened shared/language output templates with matching Chinese mirrors where translated files already exist.
+- 2026-04-28: Updated the opening workflow to a SPEC-style intake and mirrored shared record/SPEC template changes in Chinese.

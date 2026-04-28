@@ -15,6 +15,54 @@ TODO: selected language profile(s) that affect implementation.
 Evidence rule:
 Every requirement below must be traceable to the session record or listed under `Open Questions`.
 
+## Mission
+
+Why this project exists:
+TODO: project vision, problem, and reason to build it.
+
+## Goals
+
+- TODO: outcome stated at the what/why level.
+
+## Target Audience
+
+Primary users:
+TODO
+
+Secondary users or stakeholders:
+TODO
+
+## Constraints
+
+Hard constraints:
+TODO: timeline, platform, privacy, security, compliance, quality, budget, or workflow limits.
+
+Soft preferences:
+TODO: preferences that may change during replanning.
+
+## Non-Goals
+
+- TODO: explicit scope boundary.
+
+## Tech Stack
+
+Known stack decisions:
+TODO: language, framework, infrastructure, or tooling constraints already chosen by the user.
+
+Stack assumptions:
+TODO: likely choices that still need confirmation.
+
+## Roadmap
+
+Phase 1:
+TODO: first useful project milestone.
+
+Phase 2:
+TODO: next milestone or expansion.
+
+Later:
+TODO: future direction without over-specifying implementation.
+
 ## Summary
 
 TODO: concise statement of the requested capability and why it matters.

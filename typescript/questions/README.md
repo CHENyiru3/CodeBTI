@@ -9,9 +9,9 @@ This folder defines the TypeScript-specific CodeBTI interview round. The languag
 3. Ask the 10 fixed TypeScript questions from [fixed-typescript.md](fixed-typescript.md).
 4. After each answer, record the answer under `Language:TypeScript` and give brief project-specific feedback.
 5. Ask exactly 5 adaptive follow-up questions total for the whole session using [../../shared/questions/adaptive-question-guide.md](../../shared/questions/adaptive-question-guide.md).
-6. Reread `Recording.md`, infer TypeScript style dimensions and pattern tendencies, then generate TypeScript-specific guidance inside `CodeStyle.md`.
+6. Reread `Recording.md` and `SPEC.md`, infer TypeScript style dimensions and pattern tendencies, then generate TypeScript-specific guidance inside `CodeStyle.md`.
 
-The opening project-description prompt and project-wide questions are outside this language round. Record TypeScript answers separately from project-wide answers and other language answers.
+The opening SPEC-style prompt and project-wide questions are outside this language round. Record TypeScript answers separately from project-wide answers and other language answers.
 
 Ask exactly one user-facing interview question per turn. This applies to the opening prompt, each fixed question, and each adaptive follow-up question.
 

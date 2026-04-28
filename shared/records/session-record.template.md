@@ -22,7 +22,36 @@ TODO
 
 TODO
 
-Source: required opening prompt, "What kind of project do you want to build? Please describe shortly."
+Source: required SPEC-style opening prompt.
+
+## Opening SPEC Intake
+
+Mission:
+TODO
+
+Goals:
+TODO
+
+Target audience:
+TODO
+
+Constraints:
+TODO
+
+Likely tech stack or language targets:
+TODO
+
+Roadmap intent:
+TODO
+
+Non-goals:
+TODO
+
+Open questions:
+TODO
+
+Initial SPEC draft:
+TODO: path to `SPEC.md`, or explain why no draft was generated.
 
 ## Interview Rounds
 
@@ -30,7 +59,7 @@ Record the planned and completed rounds.
 
 | Round | Scope | Source | Status |
 | --- | --- | --- | --- |
-| Opening | Project | Required opening prompt | TODO |
+| Opening | Project | Required SPEC-style opening prompt | TODO |
 | Project fixed questions | Project | `project/questions/fixed-project.md` | TODO |
 | Language fixed questions | Language:TODO | `TODO/questions/fixed-TODO.md` | TODO |
 | Adaptive questions | Project, Language, or Cross-language | Generated from `shared/questions/adaptive-question-guide.md` | TODO |
@@ -76,7 +105,7 @@ Choices:
 - E. Full choice text if present
 ```
 
-### Opening. Project Summary
+### Opening. Project Summary and SPEC Intake
 
 Question kind:
 Opening
@@ -85,10 +114,10 @@ Scope:
 Project
 
 Source:
-Required opening prompt
+Required SPEC-style opening prompt
 
 Full question:
-What kind of project do you want to build? Please describe shortly.
+Please describe the project as a compact SPEC-style brief. Include mission, goals, target audience, constraints, likely tech stack or language targets, roadmap intent, non-goals, and open questions. Keep this at the what/why level; avoid low-level implementation details unless they are hard constraints.
 
 Required scored snapshot blocks:
 
@@ -102,7 +131,7 @@ Update this table after every answer before asking the next question. Keep notes
 
 | Step | Question kind | Scope | Question focus | User answer | User note | Feedback given | Hidden inference note | Changed from | Recorded at |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Opening | Project summary | Project | Project intent | TODO | TODO | TODO | Not scored | None | TODO |
+| Opening | Project summary and SPEC intake | Project | Mission, goals, audience, constraints, stack, roadmap, non-goals, open questions | TODO | TODO | TODO | Not scored | None | TODO |
 | P1 | Project fixed | Project | Project control model | TODO | TODO | TODO | TODO | None | TODO |
 | P2 | Project fixed | Project | Output shape | TODO | TODO | TODO | TODO | None | TODO |
 | P3 | Project fixed | Project | Validation gate | TODO | TODO | TODO | TODO | None | TODO |
@@ -237,7 +266,7 @@ TODO
 - `CodeStyle.md`: TODO. Use the relevant language `templates/CodeStyle.template.md` and shared project rules.
 - `ProjectStyle.md`: TODO. Use `project/templates/ProjectStyle.template.md` when project-level workflow guidance is generated separately.
 - `SKILL.md`: TODO. Use `shared/templates/SKILL.template.md`.
-- `SPEC.md`: TODO. Use `shared/templates/SPEC.template.md`.
+- `SPEC.md`: TODO. Create after the opening intake and update during replanning. Use `shared/templates/SPEC.template.md`.
 
 ## Validation
 
