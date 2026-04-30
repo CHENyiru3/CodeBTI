@@ -8,6 +8,7 @@ This file lists repository source files with one-line descriptions. High-volume 
 |------|-------------|
 | `.gitignore` | Local generated artifact ignore rules. |
 | `AGENT.md` | Agent guide and workflow reference. |
+| `AGENTS.md` | Codex-compatible pointer to `AGENT.md`. |
 | `CHANGELOG.md` | Release notes and validation baseline. |
 | `CONTRIBUTING.md` | Contribution rules and validation expectations. |
 | `LICENSE` | MIT license. |
@@ -23,6 +24,21 @@ Operational guides that explain how to run or review the workflow.
 | File | Description |
 |------|-------------|
 | `docs/golden-path.md` | End-to-end CodeBTI session workflow from kickoff through validation and handoff. |
+
+## Companion Skill (`neat-freak/`)
+
+Local assistant skill package for end-of-session documentation and memory synchronization. The root skill keeps the upstream-style source, while `zh/` provides the Chinese entry point and local reference mirror.
+
+| File | Description |
+|------|-------------|
+| `neat-freak/SKILL.md` | Neat-freak skill entry point with local CodeBTI overlay pointer. |
+| `neat-freak/references/agent-paths.md` | Upstream-style agent memory and configuration path reference. |
+| `neat-freak/references/codebti-markdown-workflow.md` | CodeBTI/Markdown repository cleanup overlay. |
+| `neat-freak/references/sync-matrix.md` | Upstream-style change-impact matrix for cleanup passes. |
+| `neat-freak/zh/SKILL.md` | Chinese neat-freak skill entry point. |
+| `neat-freak/zh/references/agent-paths.md` | Chinese/local agent memory and configuration path reference. |
+| `neat-freak/zh/references/codebti-markdown-workflow.md` | Chinese CodeBTI/Markdown repository cleanup overlay. |
+| `neat-freak/zh/references/sync-matrix.md` | Chinese/local change-impact matrix for cleanup passes. |
 
 ## Validation and Automation
 

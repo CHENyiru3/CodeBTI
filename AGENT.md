@@ -14,6 +14,7 @@ The repository is Markdown-first and agent-facing. AI coding agents should be ab
 CodeBTI/
   SKILL.md              # installable skill entry point and router
   AGENT.md              # agent guide and workflow reference
+  AGENTS.md             # Codex-compatible pointer to AGENT.md
   README.md             # human entry point
   MANIFEST.md           # file inventory
   project/              # project-wide interview pack
@@ -37,10 +38,12 @@ CodeBTI/
   .github/workflows/    # CI validation
   docs/                 # operational workflow guides
   examples/             # completed single-language example
+  neat-freak/           # companion cleanup skill with CodeBTI overlay
   zh/                   # Simplified Chinese translation
 ```
 
 The root `SKILL.md` is the installable skill entry point. It routes every CodeBTI session through the project pack first, then through one or more language packs.
+`AGENTS.md` is intentionally a thin compatibility entry that points Codex-style agents to this guide.
 
 ## Core Workflow
 
@@ -70,6 +73,7 @@ The project, Python, and TypeScript packs are implemented with a shared layer.
 - golden path guide: `docs/golden-path.md`,
 - agent/router entry point: `SKILL.md`,
 - agent guide: `AGENT.md`,
+- Codex compatibility entry: `AGENTS.md`,
 - project-wide questions: `project/questions/fixed-project.md`,
 - project profile taxonomy: `project/profiles/project-profile-taxonomy.md`,
 - shared interview resources: `shared/questions/`, `shared/templates/`, `shared/records/`,
@@ -80,6 +84,7 @@ The project, Python, and TypeScript packs are implemented with a shared layer.
 - validation script: `scripts/validate_repo.py`,
 - quality test harness: `tests/`,
 - CI workflow: `.github/workflows/validate.yml`,
+- companion cleanup skill: `neat-freak/`,
 - Simplified Chinese translation: `zh/`.
 
 No runtime interview app is part of the current version.
@@ -88,7 +93,11 @@ No runtime interview app is part of the current version.
 
 ### Entry Files
 
-Entry files give agents the minimum context needed to proceed. `SKILL.md` is operational and should remain concise. `README.md` explains CodeBTI for humans. `AGENT.md` defines repository maintenance expectations.
+Entry files give agents the minimum context needed to proceed. `SKILL.md` is operational and should remain concise. `README.md` explains CodeBTI for humans. `AGENT.md` defines repository maintenance expectations. `AGENTS.md` is a compatibility pointer and should stay short.
+
+### Companion Skills
+
+`neat-freak/` is a separate assistant skill package for end-of-session documentation and memory synchronization. Its CodeBTI overlay checks manifest drift, Chinese translation mirrors, examples and fixtures, validation gates, and installed skill copies. Keep upstream-style references in `neat-freak/references/` and local Chinese/reference mirrors in `neat-freak/zh/`.
 
 ### Project Pack
 

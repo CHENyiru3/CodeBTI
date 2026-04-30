@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Companion `neat-freak/` cleanup skill package with root and Chinese entry points, upstream-style references, and a CodeBTI/Markdown workflow overlay.
+- Root `AGENTS.md` compatibility pointer for Codex-style project instructions.
+
 ## 0.2.0 - 2026-04-28
 
 Release-hardening baseline for the project-first CodeBTI workflow.

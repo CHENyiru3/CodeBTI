@@ -12,6 +12,8 @@ CodeBTI is not a personality test. It is a practical interview and documentation
 
 This repository can be installed directly as a Codex skill. Copy or install this repo into your Codex skills directory as `codebti`. The root [SKILL.md](SKILL.md) is the entry point.
 
+The companion [neat-freak](neat-freak/SKILL.md) package is a separate cleanup skill for end-of-session documentation and memory synchronization. It includes a CodeBTI/Markdown repository overlay so cleanup passes check `MANIFEST.md`, translation mirrors, fixtures, validation gates, and installed skill copies.
+
 ## How It Works
 
 For every project, CodeBTI now uses a controlled project-first flow:
@@ -96,8 +98,10 @@ CodeBTI/
 ├── .github/workflows/         # CI validation
 ├── docs/                      # operational workflow guides
 ├── examples/                  # completed interview example
+├── neat-freak/                # companion cleanup skill with CodeBTI overlay
 ├── zh/                        # Simplified Chinese translation
 ├── AGENT.md                   # agent guide
+├── AGENTS.md                  # Codex-compatible pointer to AGENT.md
 ├── CHANGELOG.md               # release notes
 ├── MANIFEST.md                # file inventory
 └── SKILL.md                   # installable skill entry point

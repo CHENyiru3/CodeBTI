@@ -10,6 +10,8 @@ CodeBTI 不是人格测试。它是一套实用的访谈与文档系统，用来
 
 本仓库可直接安装为 Codex skill。将本仓库复制或安装到 Codex skills 目录中，命名为 `codebti`。根目录的 `SKILL.md` 即为入口文件。
 
+配套的 [neat-freak](../neat-freak/SKILL.md) 是独立的收尾清理 skill，用于会话结束后的文档和记忆同步。它包含 CodeBTI/Markdown 仓库 overlay，因此清理时会检查 `MANIFEST.md`、中文镜像、fixtures、验证门禁和已安装 skill 副本。
+
 ## 工作原理
 
 CodeBTI 现在使用更可控的项目优先流程：
@@ -106,8 +108,10 @@ CodeBTI/
 ├── .github/workflows/         # CI 验证
 ├── docs/                      # 操作工作流指南
 ├── examples/                  # 完成的访谈示例
+├── neat-freak/                # 配套清理 skill，含 CodeBTI overlay
 ├── zh/                        # 简体中文翻译（镜像结构）
 ├── AGENT.md                   # Agent 指南
+├── AGENTS.md                  # Codex 兼容入口，指向 AGENT.md
 ├── CHANGELOG.md               # 发布说明
 ├── MANIFEST.md                # 文件清单
 ├── README.md                 # 本文件
